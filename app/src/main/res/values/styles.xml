@@ -20,4 +20,22 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
+
+    <style name="TextViewBasic">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+
+    <style name="InterBoldNormalWhite" parent="TextViewBasic">
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:textSize">@dimen/font_title_normal</item>
+    </style>
+
+    <style name="InterSmallGraySecondary">
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textColor">@color/gray_secondary</item>
+        <item name="fontFamily">@font/inter_light</item>
+        <item name="android:textSize">@dimen/font_title_small</item>
+    </style>
+
 </resources>
