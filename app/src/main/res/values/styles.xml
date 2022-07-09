@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowContentTransitions">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -26,16 +27,23 @@
         <item name="android:letterSpacing">0.02</item>
     </style>
 
-    <style name="InterBoldNormalWhite" parent="TextViewBasic">
-        <item name="fontFamily">@font/inter_bold</item>
-        <item name="android:textSize">@dimen/font_title_normal</item>
-    </style>
-
+    <!--    Inter-->
     <style name="InterSmallGraySecondary">
         <item name="android:letterSpacing">0.02</item>
         <item name="android:textColor">@color/gray_secondary</item>
         <item name="fontFamily">@font/inter_light</item>
         <item name="android:textSize">@dimen/font_title_small</item>
+    </style>
+
+    <!--    InterBold-->
+    <style name="InterBoldNormalWhite" parent="TextViewBasic">
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:textSize">@dimen/font_title_normal</item>
+    </style>
+
+    <style name="InterBoldXLargeWhite" parent="TextViewBasic">
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:textSize">@dimen/font_title_x_large</item>
     </style>
 
 </resources>
