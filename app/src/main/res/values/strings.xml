@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Touche Time</string>
+    <string name="home_title">Vamos lutar \nhoje?</string>
+    <string name="card_custom_view_title_1">Luta oficial</string>
+    <string name="card_custom_view_description_1">A luta seguirá regras oficiais</string>
 </resources>
