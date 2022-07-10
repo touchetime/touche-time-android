@@ -17,7 +17,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="@dimen/spacing_xxx_large"
         android:orientation="vertical"
         android:paddingHorizontal="@dimen/spacing_normal"
         app:layout_constraintEnd_toEndOf="parent"

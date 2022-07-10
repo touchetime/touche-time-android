@@ -1,9 +1,10 @@
-package com.touchetime.presentation.ui.home
+package com.touchetime.presentation.ui.fragments.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.touchetime.R
 import com.touchetime.databinding.FragmentHomeBinding
@@ -11,6 +12,11 @@ import com.touchetime.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
 
     private lateinit var viewBinding: FragmentHomeBinding
+    private val backPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            activity?.finish()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,8 +30,15 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        activity?.onBackPressedDispatcher?.addCallback(backPressedCallback)
+
         setupFight()
         setupFightListener()
+    }
+
+    override fun onDestroyView() {
+        backPressedCallback.remove()
+        super.onDestroyView()
     }
 
     private fun setupFight() {
@@ -42,6 +55,6 @@ class HomeFragment : Fragment() {
     }
 
     companion object {
-        fun netInstance() = HomeFragment()
+        fun newInstance() = HomeFragment()
     }
 }
