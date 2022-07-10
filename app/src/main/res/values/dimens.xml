@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--    custom-->
+    <dimen name="foul_margins">6dp</dimen>
     <dimen name="progress_bar_splash_screen_margin_bottom">64dp</dimen>
+
+    <dimen name="font_foul_size">40sp</dimen>
+    <dimen name="font_score_size">120sp</dimen>
 
     <!-- region Spacings -->
     <dimen name="spacing_bigger">56dp</dimen>

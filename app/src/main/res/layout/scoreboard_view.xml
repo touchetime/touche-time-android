@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/spacing_x_large"
+    android:paddingEnd="@dimen/spacing_normal"
+    tools:background="@drawable/background_scoreboard_blue">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/foul_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/icon_foul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/foul_margins"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_foul" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/foul"
+            style="@style/InterMediumFoulWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/score_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_middle"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/score"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/score">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/add_score"
+            android:layout_width="@dimen/spacing_xxx_large"
+            android:layout_height="@dimen/spacing_xxx_large"
+            android:layout_marginBottom="@dimen/spacing_small"
+            android:src="@drawable/ic_add"
+            tools:background="@drawable/background_score_blue" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/remove_score"
+            android:layout_width="@dimen/spacing_xxx_large"
+            android:layout_height="@dimen/spacing_xxx_large"
+            android:src="@drawable/ic_remove"
+            tools:background="@drawable/background_score_blue" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/name"
+        style="@style/InterBoldNormalWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xx_large"
+        android:text="@string/wrestler"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/touche"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/touche"
+        android:textAppearance="@style/InterBoldNormalWhite"
+        app:layout_constraintBottom_toBottomOf="@id/score_container"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:background="@drawable/background_button_blue_touche" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/score"
+        style="@style/InterBoldScoreWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_xx_large"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/score_container"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

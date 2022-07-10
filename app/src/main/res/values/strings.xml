@@ -3,4 +3,8 @@
     <string name="home_title">Vamos lutar \nhoje?</string>
     <string name="card_custom_view_title_1">Luta oficial</string>
     <string name="card_custom_view_description_1">A luta seguirá regras oficiais</string>
+    <string name="wrestler">Wrestler</string>
+    <string name="blue">Azul</string>
+    <string name="red">Vermelho</string>
+    <string name="touche">Touche</string>
 </resources>

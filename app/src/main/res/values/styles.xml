@@ -27,7 +27,7 @@
         <item name="android:letterSpacing">0.02</item>
     </style>
 
-    <!--    Inter-->
+    <!-- Inter -->
     <style name="InterSmallGraySecondary">
         <item name="android:letterSpacing">0.02</item>
         <item name="android:textColor">@color/gray_secondary</item>
@@ -35,7 +35,15 @@
         <item name="android:textSize">@dimen/font_title_small</item>
     </style>
 
-    <!--    InterBold-->
+    <style name="InterMediumNormalWhite" parent="TextViewBasic">
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">@dimen/font_title_normal</item>
+    </style>
+
+    <style name="InterMediumFoulWhite" parent="InterMediumNormalWhite">
+        <item name="android:textSize">@dimen/font_foul_size</item>
+    </style>
+
     <style name="InterBoldNormalWhite" parent="TextViewBasic">
         <item name="fontFamily">@font/inter_bold</item>
         <item name="android:textSize">@dimen/font_title_normal</item>
@@ -44,6 +52,11 @@
     <style name="InterBoldXLargeWhite" parent="TextViewBasic">
         <item name="fontFamily">@font/inter_bold</item>
         <item name="android:textSize">@dimen/font_title_x_large</item>
+    </style>
+
+    <style name="InterBoldScoreWhite" parent="TextViewBasic">
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="android:textSize">@dimen/font_score_size</item>
     </style>
 
 </resources>
