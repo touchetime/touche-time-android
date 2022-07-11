@@ -56,19 +56,19 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
 
     private fun setupRed() {
         viewBinding.red.apply {
-            this.setupAddScore { }
-            this.setupRemoveScore { }
-            this.setupTouche { }
-            this.setupFoul { }
+            this.setupAddScore { viewModel.addScoreRed() }
+            this.setupRemoveScore { viewModel.removeScoreRed() }
+            this.setupTouche { viewModel.setupToucheRed() }
+            this.setupFoul { viewModel.setupFoulRed() }
         }
     }
 
     private fun setupBlue() {
         viewBinding.blue.apply {
-            this.setupAddScore { }
-            this.setupRemoveScore { }
-            this.setupTouche { }
-            this.setupFoul { }
+            this.setupAddScore { viewModel.addScoreBlue() }
+            this.setupRemoveScore { viewModel.removeScoreBlue() }
+            this.setupTouche { viewModel.setupToucheBlue() }
+            this.setupFoul { viewModel.setupFoulBlue() }
         }
     }
 
