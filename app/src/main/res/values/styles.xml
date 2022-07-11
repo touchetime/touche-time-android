@@ -59,4 +59,12 @@
         <item name="android:textSize">@dimen/font_score_size</item>
     </style>
 
+    <!-- Ds Digi -->
+    <style name="DsDigiBoldChronometerWhite" parent="TextViewBasic">
+        <item name="android:fontFamily">@font/ds_digi_b</item>
+        <item name="android:textSize">@dimen/font_chronometer_scoreboard_size</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_middle</item>
+        <item name="android:textAlignment">viewEnd</item>
+    </style>
+
 </resources>

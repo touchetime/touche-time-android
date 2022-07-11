@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="@dimen/spacing_normal"
-    android:paddingVertical="@dimen/spacing_x_large">
+    android:paddingTop="@dimen/spacing_normal"
+    android:paddingBottom="@dimen/spacing_x_large">
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/back"
@@ -45,5 +46,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/red" />
+
+    <com.touchetime.presentation.common.ChronometerView
+        android:id="@+id/regressiveCounter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/blue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

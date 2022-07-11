@@ -3,7 +3,9 @@
     <!--    custom-->
     <dimen name="foul_margins">6dp</dimen>
     <dimen name="progress_bar_splash_screen_margin_bottom">64dp</dimen>
+    <dimen name="play_pause_height">64dp</dimen>
 
+    <dimen name="font_chronometer_scoreboard_size">96sp</dimen>
     <dimen name="font_foul_size">40sp</dimen>
     <dimen name="font_score_size">120sp</dimen>
 

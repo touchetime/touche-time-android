@@ -7,6 +7,8 @@
         <entry key="app/src/main/res/drawable/background_button_blue_touche.xml" value="0.117" />
         <entry key="app/src/main/res/drawable/background_button_red_touche.xml" value="0.117" />
         <entry key="app/src/main/res/drawable/background_card_custom_view.xml" value="0.182" />
+        <entry key="app/src/main/res/drawable/background_circle_gray.xml" value="0.2295" />
+        <entry key="app/src/main/res/drawable/background_point_chronometer.xml" value="0.14" />
         <entry key="app/src/main/res/drawable/background_score_blue.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/background_score_red.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/background_scoreboard_blue.xml" value="0.196" />
@@ -15,15 +17,20 @@
         <entry key="app/src/main/res/drawable/ic_arrow_left.xml" value="0.1475" />
         <entry key="app/src/main/res/drawable/ic_foul.xml" value="0.179" />
         <entry key="app/src/main/res/drawable/ic_next.xml" value="0.1555" />
+        <entry key="app/src/main/res/drawable/ic_pause.xml" value="0.2295" />
+        <entry key="app/src/main/res/drawable/ic_play_pause.xml" value="0.2295" />
         <entry key="app/src/main/res/drawable/ic_remove.xml" value="0.2685" />
         <entry key="app/src/main/res/drawable/ic_users.xml" value="0.143" />
+        <entry key="app/src/main/res/drawable/item_chronometer_background.xml" value="0.2295" />
+        <entry key="app/src/main/res/drawable/item_chronomether_background.xml" value="0.14" />
         <entry key="app/src/main/res/drawable/progress_bar_custom.xml" value="0.161" />
         <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.196" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.2556648140230868" />
         <entry key="app/src/main/res/layout/card_custom_view.xml" value="0.31145833333333334" />
+        <entry key="app/src/main/res/layout/chronometer_view.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_fight.xml" value="0.2556648140230868" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25651988029072254" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/scoreboard_view.xml" value="0.2524271844660194" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1705" />
       </map>
