@@ -8,10 +8,14 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.touchetime.R
 import com.touchetime.databinding.FragmentHomeBinding
+import com.touchetime.presentation.ui.activity.main.MainActivity
+import com.touchetime.presentation.ui.fragments.fight.FightFragment
 
 class HomeFragment : Fragment() {
 
     private lateinit var viewBinding: FragmentHomeBinding
+    private val mainActivity: MainActivity?
+        get() = activity as? MainActivity
     private val backPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             activity?.finish()
@@ -51,7 +55,17 @@ class HomeFragment : Fragment() {
 
     private fun setupFightListener() {
         viewBinding.fight.setOnClickListener {
+            navigateToFragment(
+                FightFragment.newInstance(),
+                FightFragment::class.java.name
+            )
         }
+    }
+
+    private fun navigateToFragment(fragment: Fragment, key: String) {
+        mainActivity?.navigateToFragment(
+            fragment, key
+        )
     }
 
     companion object {
