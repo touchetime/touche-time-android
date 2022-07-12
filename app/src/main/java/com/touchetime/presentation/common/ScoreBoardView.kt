@@ -56,10 +56,25 @@ class ScoreBoardView @JvmOverloads constructor(
         }
     }
 
-    fun setupFoul(callback: () -> Unit) {
+    fun setupAddFoul(callback: () -> Unit) {
         viewBinding.foulContainer.setOnClickListener {
             callback()
         }
+    }
+
+    fun setupRemoveFoul(callback: () -> Unit) {
+        viewBinding.foulContainer.setOnLongClickListener {
+            callback()
+            true
+        }
+    }
+
+    fun updateScore(value: String) {
+        viewBinding.score.text = value
+    }
+
+    fun updateFoul(value: String) {
+        viewBinding.foul.text = value
     }
 
     private fun buildScoreBoard(

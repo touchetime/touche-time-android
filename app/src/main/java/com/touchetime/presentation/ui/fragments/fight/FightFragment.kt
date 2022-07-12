@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.touchetime.R
 import com.touchetime.databinding.FragmentFightBinding
 import com.touchetime.presentation.common.RegressiveCounter
+import com.touchetime.presentation.state.AthleteState
 
 class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
 
@@ -30,6 +31,7 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
         super.onViewCreated(view, savedInstanceState)
 
         setupTimeRound(TIME_ROUND)
+        setupObservers()
         setupScoreboard()
         setupBack()
         setupRed()
@@ -39,6 +41,46 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
             R.string.zero_minutes
         )
         setupPlayPause()
+    }
+
+    private fun setupObservers() {
+        viewModel.athleteRed.observe(viewLifecycleOwner) {
+            when (it) {
+                is AthleteState.AthleteDefault -> {}
+                is AthleteState.AthleteAddScore -> {
+                    updateScoreRed(it.score.toString())
+                }
+                is AthleteState.AthleteRemoveScore -> {
+                    updateScoreRed(it.score.toString())
+                }
+                is AthleteState.AthleteAddFoul -> {
+                    updateFoulRed(it.foul.toString())
+                }
+                is AthleteState.AthleteRemoveFoul -> {
+                    updateFoulRed(it.foul.toString())
+                }
+                is AthleteState.AthleteAddTouche -> {}
+            }
+        }
+
+        viewModel.athleteBlue.observe(viewLifecycleOwner) {
+            when (it) {
+                is AthleteState.AthleteDefault -> {}
+                is AthleteState.AthleteAddScore -> {
+                    updateScoreBlue(it.score.toString())
+                }
+                is AthleteState.AthleteRemoveScore -> {
+                    updateScoreBlue(it.score.toString())
+                }
+                is AthleteState.AthleteAddFoul -> {
+                    updateFoulBlue(it.foul.toString())
+                }
+                is AthleteState.AthleteRemoveFoul -> {
+                    updateFoulBlue(it.foul.toString())
+                }
+                is AthleteState.AthleteAddTouche -> {}
+            }
+        }
     }
 
     private fun setupScoreboard() {
@@ -56,19 +98,21 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
 
     private fun setupRed() {
         viewBinding.red.apply {
-            this.setupAddScore { viewModel.addScoreRed() }
-            this.setupRemoveScore { viewModel.removeScoreRed() }
+            this.setupAddScore { viewModel.setupAddScoreRed() }
+            this.setupRemoveScore { viewModel.setupRemoveScoreRed() }
             this.setupTouche { viewModel.setupToucheRed() }
-            this.setupFoul { viewModel.setupFoulRed() }
+            this.setupAddFoul { viewModel.setupAddFoulRed() }
+            this.setupRemoveFoul { viewModel.setupRemoveFoulRed() }
         }
     }
 
     private fun setupBlue() {
         viewBinding.blue.apply {
-            this.setupAddScore { viewModel.addScoreBlue() }
-            this.setupRemoveScore { viewModel.removeScoreBlue() }
+            this.setupAddScore { viewModel.setupAddScoreBlue() }
+            this.setupRemoveScore { viewModel.setupRemoveScoreBlue() }
             this.setupTouche { viewModel.setupToucheBlue() }
-            this.setupFoul { viewModel.setupFoulBlue() }
+            this.setupAddFoul { viewModel.setupAddFoulBlue() }
+            this.setupRemoveFoul { viewModel.setupRemoveFoulBlue() }
         }
     }
 
@@ -126,6 +170,22 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
 
     private fun setupRegressiveCounterIsRunning(value: Boolean) {
         viewBinding.regressiveCounter.setupIsRunning(value)
+    }
+
+    private fun updateScoreRed(value: String) {
+        viewBinding.red.updateScore(value)
+    }
+
+    private fun updateFoulRed(value: String) {
+        viewBinding.red.updateFoul(value)
+    }
+
+    private fun updateScoreBlue(value: String) {
+        viewBinding.blue.updateScore(value)
+    }
+
+    private fun updateFoulBlue(value: String) {
+        viewBinding.blue.updateFoul(value)
     }
 
     override fun onTick(minutes: String, seconds: String, millisUntilFinished: Long) {
