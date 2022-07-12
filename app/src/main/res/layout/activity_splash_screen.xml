@@ -13,14 +13,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_logo" />
 
-    <ProgressBar
-        android:layout_width="@dimen/spacing_big"
-        android:layout_height="@dimen/spacing_big"
-        android:layout_marginBottom="@dimen/progress_bar_splash_screen_margin_bottom"
-        android:indeterminateDrawable="@drawable/progress_bar_custom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
