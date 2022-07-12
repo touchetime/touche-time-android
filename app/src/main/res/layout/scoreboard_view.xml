@@ -3,19 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
+    style="@style/ScoreboardContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="@dimen/spacing_x_large"
-    android:paddingEnd="@dimen/spacing_normal"
     tools:background="@drawable/background_scoreboard_blue">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/foul_container"
+        style="@style/FoulContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_normal"
         android:gravity="center"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/score_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -29,7 +30,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/foul"
-            style="@style/InterMediumFoulWhite"
+            style="@style/InterBoldXLargeWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0" />
@@ -40,24 +41,21 @@
         android:id="@+id/score_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_middle"
+        android:layout_marginBottom="@dimen/spacing_normal"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@id/score"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/score">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/add_score"
-            android:layout_width="@dimen/spacing_xxx_large"
-            android:layout_height="@dimen/spacing_xxx_large"
+            style="@style/ButtonScore"
             android:layout_marginBottom="@dimen/spacing_small"
             android:src="@drawable/ic_add"
             tools:background="@drawable/background_score_blue" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/remove_score"
-            android:layout_width="@dimen/spacing_xxx_large"
-            android:layout_height="@dimen/spacing_xxx_large"
+            style="@style/ButtonScore"
             android:src="@drawable/ic_remove"
             tools:background="@drawable/background_score_blue" />
 
@@ -68,7 +66,7 @@
         style="@style/InterBoldNormalWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_xx_large"
+        android:layout_marginTop="@dimen/spacing_normal"
         android:text="@string/wrestler"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -89,11 +87,10 @@
         style="@style/InterBoldScoreWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/spacing_xx_large"
+        android:layout_marginEnd="28dp"
         android:text="0"
+        android:textSize="@dimen/font_score_size_small_screen"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/score_container"
-        app:layout_constraintTop_toBottomOf="@id/name"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toStartOf="@id/score_container" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

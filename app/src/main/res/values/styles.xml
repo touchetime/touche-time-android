@@ -56,7 +56,7 @@
 
     <style name="InterBoldScoreWhite" parent="TextViewBasic">
         <item name="android:fontFamily">@font/inter_bold</item>
-        <item name="android:textSize">@dimen/font_score_size</item>
+        <item name="android:textSize">@dimen/font_score_size_big_screen</item>
     </style>
 
     <!-- Ds Digi -->
@@ -67,4 +67,32 @@
         <item name="android:textAlignment">viewEnd</item>
     </style>
 
+    <!-- Scoreboard Custom View-->
+    <style name="ScoreboardContainer">
+        <item name="android:paddingStart">@dimen/spacing_normal</item>
+        <item name="android:paddingEnd">@dimen/spacing_normal</item>
+    </style>
+
+    <style name="ButtonScore">
+        <item name="android:layout_width">@dimen/spacing_xx_large</item>
+        <item name="android:layout_height">@dimen/spacing_xx_large</item>
+    </style>
+
+    <!-- Chronometer View -->
+    <style name="TextChronometer">
+<!--        <item name="android:layout_marginEnd">3dp</item>-->
+    </style>
+    
+    <!--Fight Fragment-->
+    <style name="FightFragmentContainer">
+        <item name="android:paddingTop">@dimen/spacing_small</item>
+    </style>
+
+    <style name="ScoreboardRed">
+        <item name="android:layout_marginTop">@dimen/spacing_normal</item>
+    </style>
+
+    <style name="ScoreboardBlue">
+        <item name="android:layout_marginTop">@dimen/spacing_middle</item>
+    </style>
 </resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Scoreboard Custom View-->
+    <style name="ScoreboardContainer">
+        <item name="android:paddingStart">@dimen/spacing_normal</item>
+        <item name="android:paddingEnd">@dimen/spacing_normal</item>
+    </style>
+
+    <style name="ButtonScore">
+        <item name="android:layout_width">@dimen/spacing_xxx_large</item>
+        <item name="android:layout_height">@dimen/spacing_xxx_large</item>
+    </style>
+
+    <style name="FoulContainer">
+        <item name="android:layout_marginBottom">@dimen/foul_container_margin_bottom_big</item>
+    </style>
+
+    <!-- Chronometer View -->
+    <style name="TextChronometer">
+        <item name="android:layout_marginEnd">@dimen/spacing_small</item>
+    </style>
+
+    <!--Fight Fragment-->
+    <style name="FightFragmentContainer">
+        <item name="android:paddingTop">@dimen/spacing_normal</item>
+    </style>
+
+    <style name="ScoreboardRed">
+        <item name="android:layout_marginTop">@dimen/spacing_x_large</item>
+    </style>
+
+    <style name="ScoreboardBlue">
+        <item name="android:layout_marginTop">@dimen/spacing_normal</item>
+    </style>
+</resources>
