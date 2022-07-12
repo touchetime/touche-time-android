@@ -67,6 +67,17 @@
         <item name="android:textAlignment">viewEnd</item>
     </style>
 
+    <!-- DM Sans -->
+    <style name="DmSansRegularTinyWhite" parent="TextViewBasic">
+        <item name="android:fontFamily">@font/dm_sans_regular</item>
+        <item name="android:textSize">@dimen/font_title_tiny</item>
+    </style>
+
+    <style name="DmSansBoldLargeWhite" parent="TextViewBasic">
+        <item name="android:fontFamily">@font/dm_sans_bold</item>
+        <item name="android:textSize">@dimen/font_title_large</item>
+    </style>
+
     <!-- Scoreboard Custom View-->
     <style name="ScoreboardContainer">
         <item name="android:paddingStart">@dimen/spacing_normal</item>
