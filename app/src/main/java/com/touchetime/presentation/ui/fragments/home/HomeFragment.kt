@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
         viewBinding.fight.setupParams(
             R.string.card_custom_view_title_1,
             R.string.card_custom_view_description_1,
-            R.drawable.ic_users
+            R.drawable.ic_uww
         )
     }
 

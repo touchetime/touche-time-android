@@ -6,49 +6,43 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/background_card_custom_view"
-    android:paddingHorizontal="@dimen/spacing_normal"
-    android:paddingVertical="@dimen/spacing_x_large">
+    android:padding="@dimen/spacing_normal">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/uww_height"
+        android:layout_height="@dimen/uww_height"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/ic_users" />
+        tools:srcCompat="@drawable/ic_uww" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/title"
-        style="@style/InterBoldNormalWhite"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_x_large"
-        app:layout_constraintEnd_toStartOf="@id/arrow_right"
-        app:layout_constraintStart_toEndOf="@id/icon"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/card_custom_view_title_1" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/description"
-        style="@style/InterSmallGraySecondary"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_x_large"
-        android:layout_marginTop="@dimen/spacing_small"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/arrow_right"
-        app:layout_constraintStart_toEndOf="@id/icon"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        tools:text="@string/card_custom_view_description_1" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/arrow_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="@dimen/spacing_large"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_next" />
+        app:layout_constraintStart_toEndOf="@id/icon"
+        app:layout_constraintTop_toTopOf="@id/icon">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title"
+            style="@style/InterBoldNormalWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_tiny"
+            tools:text="@string/card_custom_view_title_1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/description"
+            style="@style/InterSmallGraySecondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/card_custom_view_description_1" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -91,9 +91,9 @@
 
     <!-- Chronometer View -->
     <style name="TextChronometer">
-<!--        <item name="android:layout_marginEnd">3dp</item>-->
+        <!--        <item name="android:layout_marginEnd">3dp</item>-->
     </style>
-    
+
     <!--Fight Fragment-->
     <style name="FightFragmentContainer">
         <item name="android:paddingTop">@dimen/spacing_small</item>
