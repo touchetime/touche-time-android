@@ -23,4 +23,10 @@ class ChosenOptionView @JvmOverloads constructor(
             this.description.text = context.getString(description)
         }
     }
+
+    fun setupListener(callback: () -> Unit) {
+        viewBinding.container.setOnClickListener {
+            callback()
+        }
+    }
 }
