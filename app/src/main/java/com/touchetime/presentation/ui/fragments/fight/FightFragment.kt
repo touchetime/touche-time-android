@@ -31,6 +31,7 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
         super.onViewCreated(view, savedInstanceState)
 
         setupTimeRound(TIME_ROUND)
+        setupToolbar()
         setupObservers()
         setupScoreboard()
         setupBack()
@@ -166,6 +167,10 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
 
     private fun setupTimeRound(value: Long) {
         viewModel.setupTimerRounder(value)
+    }
+
+    private fun setupToolbar() {
+        viewBinding.toolbar.setupParams(R.string.card_custom_view_title_1, R.drawable.ic_arrow_left)
     }
 
     private fun setupRegressiveCounterIsRunning(value: Boolean) {

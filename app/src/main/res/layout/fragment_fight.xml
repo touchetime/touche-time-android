@@ -5,10 +5,12 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="@dimen/spacing_normal">
 
-    <com.touchetime.presentation.common.Toolbar
+    <com.touchetime.presentation.common.ToolbarView
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:clipChildren="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
