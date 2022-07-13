@@ -20,16 +20,4 @@
         <item name="android:layout_marginEnd">@dimen/spacing_small</item>
     </style>
 
-    <!--Fight Fragment-->
-    <style name="FightFragmentContainer">
-        <item name="android:paddingTop">@dimen/spacing_normal</item>
-    </style>
-
-    <style name="ScoreboardRed">
-        <item name="android:layout_marginTop">@dimen/spacing_x_large</item>
-    </style>
-
-    <style name="ScoreboardBlue">
-        <item name="android:layout_marginTop">@dimen/spacing_normal</item>
-    </style>
 </resources>

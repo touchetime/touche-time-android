@@ -19,4 +19,5 @@
     <string name="tree_ten_minutes">30</string>
     <string name="chosen_option_view_title_1">Escolha a categoria</string>
     <string name="chosen_option_view_description_1">Escolha entre Estilo Livre, Greco-Romana e Livre Feminino</string>
+    <string name="customize_fight_description">Escolha todos os padrões de acordo com a UWW</string>
 </resources>

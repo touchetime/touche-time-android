@@ -91,7 +91,7 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
     }
 
     private fun setupBack() {
-        viewBinding.back.setOnClickListener {
+        viewBinding.toolbar.setupBack {
             parentFragmentManager.popBackStackImmediate()
         }
     }
