@@ -10,13 +10,15 @@ import androidx.fragment.app.viewModels
 import com.touchetime.R
 import com.touchetime.databinding.FragmentCustomizeFightBinding
 import com.touchetime.presentation.ui.fragments.category.CategoryFragment
+import com.touchetime.presentation.ui.fragments.style.StyleFragment
 
 class CustomizeFight : Fragment() {
 
     private lateinit var viewBinding: FragmentCustomizeFightBinding
     private val viewModel: CustomizeFightViewModel by viewModels()
     private val resultKeys = arrayOf(
-        CategoryFragment.CATEGORY_SELECTED
+        CategoryFragment.CATEGORY_SELECTED,
+        StyleFragment.STYLE_SELECTED
     )
     private val backPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
@@ -41,7 +43,6 @@ class CustomizeFight : Fragment() {
         setupToolbar()
         setupCategory()
         setupStyle()
-        setupWeight()
         setupResultKeysListeners()
         setupObservers()
     }
@@ -79,17 +80,12 @@ class CustomizeFight : Fragment() {
                 R.string.chosen_option_view_title_2,
                 R.string.chosen_option_view_description_2
             )
-            this.setupListener { }
-        }
-    }
-
-    private fun setupWeight() {
-        viewBinding.weight.apply {
-            this.setupParams(
-                R.string.chosen_option_view_title_3,
-                R.string.chosen_option_view_description_3
-            )
-            this.setupListener { }
+            this.setupListener {
+                StyleFragment.show(
+                    childFragmentManager,
+                    viewModel.styleSelected.value
+                )
+            }
         }
     }
 
@@ -97,6 +93,7 @@ class CustomizeFight : Fragment() {
         resultKeys.forEach {
             when (it) {
                 CategoryFragment.CATEGORY_SELECTED,
+                StyleFragment.STYLE_SELECTED
                 -> childFragmentManager
                 else -> activity?.supportFragmentManager
             }?.setFragmentResultListener(
@@ -111,17 +108,28 @@ class CustomizeFight : Fragment() {
         viewModel.categorySelected.observe(viewLifecycleOwner) {
             viewBinding.category.setupItemSelectedVisibility(it)
         }
+
+        viewModel.styleSelected.observe(viewLifecycleOwner) {
+            viewBinding.style.setupItemSelectedVisibility(it)
+        }
     }
 
     private fun handleResultKey(key: String, bundle: Bundle) {
         when (key) {
             CategoryFragment.CATEGORY_SELECTED -> setupCategorySelected(bundle)
+            StyleFragment.STYLE_SELECTED -> setupStyleSelected(bundle)
         }
     }
 
     private fun setupCategorySelected(bundle: Bundle) {
         (bundle.getSerializable(CategoryFragment.CATEGORY) as? Int)?.let {
             viewModel.setupCategorySelected(it)
+        }
+    }
+
+    private fun setupStyleSelected(bundle: Bundle) {
+        (bundle.getSerializable(StyleFragment.STYLE) as? Int)?.let {
+            viewModel.setupStyleSelected(it)
         }
     }
 

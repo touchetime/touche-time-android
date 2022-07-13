@@ -1,4 +1,4 @@
-package com.touchetime.presentation.ui.fragments.category
+package com.touchetime.presentation.ui.fragments.style
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,10 +12,10 @@ import com.touchetime.databinding.BottomSheetDefaultBinding
 import com.touchetime.presentation.common.BottomSheetDialogTransparentBackgroundFragment
 import com.touchetime.presentation.ui.BottomSheetItemAdapter
 
-class CategoryFragment : BottomSheetDialogTransparentBackgroundFragment() {
+class StyleFragment : BottomSheetDialogTransparentBackgroundFragment() {
 
     private lateinit var viewBinding: BottomSheetDefaultBinding
-    private val viewModel: CategoryViewModel by viewModels()
+    private val viewModel: StyleViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,20 +36,20 @@ class CategoryFragment : BottomSheetDialogTransparentBackgroundFragment() {
 
     private fun readArgs() {
         (arguments?.getSerializable(ARGS) as? Int).let {
-            viewModel.setupCategorySelected(it)
+            viewModel.setupStyleSelected(it)
         }
     }
 
     private fun setupBottomSheet() {
-        viewBinding.title.setText(R.string.category)
+        viewBinding.title.setText(R.string.style)
     }
 
     private fun setupAdapter() {
         val adapter = BottomSheetItemAdapter() {
             parentFragmentManager.setFragmentResult(
-                CATEGORY_SELECTED,
+                STYLE_SELECTED,
                 bundleOf(
-                    CATEGORY to it
+                    STYLE to it
                 )
             )
             dismiss()
@@ -57,21 +57,21 @@ class CategoryFragment : BottomSheetDialogTransparentBackgroundFragment() {
 
         viewBinding.recyclerView.adapter = adapter
 
-        adapter.submitList(viewModel.getListCategory())
+        adapter.submitList(viewModel.getListStyle())
     }
 
     companion object {
         private const val ARGS = "ARGS"
-        const val CATEGORY = "CATEGORY"
-        const val CATEGORY_SELECTED = "CATEGORY_SELECTED"
+        const val STYLE = "STYLE"
+        const val STYLE_SELECTED = "STYLE_SELECTED"
 
-        private fun newInstance(categorySelected: Int? = null) = CategoryFragment().apply {
+        private fun newInstance(styleSelected: Int? = null) = StyleFragment().apply {
             arguments = bundleOf(
-                ARGS to categorySelected
+                ARGS to styleSelected
             )
         }
 
-        fun show(fragmentManager: FragmentManager, categorySelected: Int? = null) =
-            newInstance(categorySelected).show(fragmentManager, CategoryFragment::class.java.name)
+        fun show(fragmentManager: FragmentManager, styleSelected: Int? = null) =
+            newInstance(styleSelected).show(fragmentManager, StyleFragment::class.java.name)
     }
 }
