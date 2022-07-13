@@ -36,8 +36,9 @@ class HomeFragment : Fragment() {
 
         activity?.onBackPressedDispatcher?.addCallback(backPressedCallback)
 
-        setupFight()
-        setupFightListener()
+        setupCardView()
+        setupMainFightListener()
+        setupCustomFightListener()
     }
 
     override fun onDestroyView() {
@@ -45,16 +46,31 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
     }
 
-    private fun setupFight() {
-        viewBinding.fight.setupParams(
+    private fun setupCardView() {
+        viewBinding.mainFight.setupParams(
             R.string.card_custom_view_title_1,
             R.string.card_custom_view_description_1,
             R.drawable.ic_uww
         )
+
+        viewBinding.customFight.setupParams(
+            R.string.card_custom_view_title_2,
+            R.string.card_custom_view_description_2,
+            R.drawable.ic_logo
+        )
     }
 
-    private fun setupFightListener() {
-        viewBinding.fight.setOnClickListener {
+    private fun setupMainFightListener() {
+        viewBinding.mainFight.setOnClickListener {
+//            navigateToFragment(
+//                FightFragment.newInstance(),
+//                FightFragment::class.java.name
+//            )
+        }
+    }
+
+    private fun setupCustomFightListener() {
+        viewBinding.customFight.setOnClickListener {
             navigateToFragment(
                 FightFragment.newInstance(),
                 FightFragment::class.java.name

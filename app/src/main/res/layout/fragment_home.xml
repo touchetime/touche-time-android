@@ -39,9 +39,15 @@
             android:text="@string/home_title_2" />
 
         <com.touchetime.presentation.common.CardCustomView
-            android:id="@+id/fight"
+            android:id="@+id/main_fight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <com.touchetime.presentation.common.CardCustomView
+            android:id="@+id/custom_fight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
