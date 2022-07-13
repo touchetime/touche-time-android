@@ -73,6 +73,11 @@
         <item name="android:textSize">@dimen/font_title_tiny</item>
     </style>
 
+    <style name="DmSansBoldNormalWhite" parent="TextViewBasic">
+        <item name="android:fontFamily">@font/dm_sans_bold</item>
+        <item name="android:textSize">@dimen/font_title_normal</item>
+    </style>
+
     <style name="DmSansBoldLargeWhite" parent="TextViewBasic">
         <item name="android:fontFamily">@font/dm_sans_bold</item>
         <item name="android:textSize">@dimen/font_title_large</item>
@@ -92,18 +97,5 @@
     <!-- Chronometer View -->
     <style name="TextChronometer">
         <!--        <item name="android:layout_marginEnd">3dp</item>-->
-    </style>
-
-    <!--Fight Fragment-->
-    <style name="FightFragmentContainer">
-        <item name="android:paddingTop">@dimen/spacing_small</item>
-    </style>
-
-    <style name="ScoreboardRed">
-        <item name="android:layout_marginTop">@dimen/spacing_normal</item>
-    </style>
-
-    <style name="ScoreboardBlue">
-        <item name="android:layout_marginTop">@dimen/spacing_middle</item>
     </style>
 </resources>
