@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import com.touchetime.databinding.ChosenOptionViewBinding
 
 class ChosenOptionView @JvmOverloads constructor(
@@ -27,6 +28,13 @@ class ChosenOptionView @JvmOverloads constructor(
     fun setupListener(callback: () -> Unit) {
         viewBinding.container.setOnClickListener {
             callback()
+        }
+    }
+
+    fun setupItemSelectedVisibility(@StringRes itemSelected: Int?) {
+        viewBinding.apply {
+            objectSelected.isVisible = itemSelected != null
+            textItemSelected.text = itemSelected?.let { context.getString(it) }
         }
     }
 }
