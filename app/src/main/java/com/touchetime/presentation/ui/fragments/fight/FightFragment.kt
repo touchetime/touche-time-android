@@ -34,7 +34,6 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
         setupToolbar()
         setupObservers()
         setupScoreboard()
-        setupBack()
         setupRed()
         setupBlue()
         setupChronometer(
@@ -91,10 +90,8 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
         }
     }
 
-    private fun setupBack() {
-        viewBinding.toolbar.setupBack {
-            parentFragmentManager.popBackStackImmediate()
-        }
+    private fun returnToLastScreen() {
+        parentFragmentManager.popBackStackImmediate()
     }
 
     private fun setupRed() {
@@ -170,7 +167,10 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
     }
 
     private fun setupToolbar() {
-        viewBinding.toolbar.setupParams(R.string.card_custom_view_title_1, R.drawable.ic_arrow_left)
+        viewBinding.toolbar.apply {
+            this.setupParams(R.string.card_custom_view_title_1, R.drawable.ic_arrow_left)
+            this.setupBack { returnToLastScreen() }
+        }
     }
 
     private fun setupRegressiveCounterIsRunning(value: Boolean) {

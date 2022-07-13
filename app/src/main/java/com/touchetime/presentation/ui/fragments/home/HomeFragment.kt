@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.touchetime.R
 import com.touchetime.databinding.FragmentHomeBinding
 import com.touchetime.presentation.ui.activity.main.MainActivity
+import com.touchetime.presentation.ui.fragments.customizefight.CustomizeFight
 import com.touchetime.presentation.ui.fragments.fight.FightFragment
 
 class HomeFragment : Fragment() {
@@ -62,10 +63,10 @@ class HomeFragment : Fragment() {
 
     private fun setupMainFightListener() {
         viewBinding.mainFight.setOnClickListener {
-//            navigateToFragment(
-//                FightFragment.newInstance(),
-//                FightFragment::class.java.name
-//            )
+            navigateToFragment(
+                CustomizeFight.newInstance(),
+                CustomizeFight::class.java.name
+            )
         }
     }
 

@@ -11,6 +11,8 @@
     <string name="blue">Azul</string>
     <string name="red">Vermelho</string>
     <string name="touche">Touche</string>
+    <string name="category">Categoria</string>
+    <string name="style">Estilo</string>
     <string name="round_one">ROUND 1</string>
     <string name="round_two">ROUND 2</string>
     <string name="interval">INTERVALO</string>
