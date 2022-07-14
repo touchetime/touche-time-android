@@ -73,7 +73,7 @@ class HomeFragment : Fragment() {
     private fun setupCustomFightListener() {
         viewBinding.customFight.setOnClickListener {
             navigateToFragment(
-                FightFragment.newInstance(),
+                FightFragment.show(getString(R.string.custom_fight)),
                 FightFragment::class.java.name
             )
         }

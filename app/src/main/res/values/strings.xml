@@ -3,6 +3,7 @@
     <string name="home_title_1">CRIAR LUTA</string>
     <string name="home_title_2">Defina as regras da sua luta</string>
     <string name="fight_title">Luta oficial</string>
+    <string name="custom_fight">Luta Personalizada</string>
     <string name="card_custom_view_title_1">Luta oficial</string>
     <string name="card_custom_view_description_1">Informe o nome dos atletas e utilize as regras oficiais da UWW para cada categoria.</string>
     <string name="card_custom_view_title_2">Personalizar luta</string>
@@ -21,7 +22,7 @@
     <string name="zero_minutes">00</string>
     <string name="tree_ten_minutes">30</string>
     <string name="chosen_option_view_title_1">Escolha a categoria</string>
-    <string name="chosen_option_view_description_1">Escolha entre as categorias oficiais</string>
+    <string name="chosen_option_view_description_1">Escolha entre as categorias de idade oficiais da UWW</string>
     <string name="chosen_option_view_title_2">Escolha o estilo</string>
     <string name="chosen_option_view_description_2">Escolha entre Estilo Livre, Greco-Romana e Livre Feminino</string>
     <string name="chosen_option_view_title_3">Escolha o peso</string>

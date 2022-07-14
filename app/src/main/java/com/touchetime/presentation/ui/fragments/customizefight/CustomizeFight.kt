@@ -59,7 +59,7 @@ class CustomizeFight : Fragment() {
 
     private fun setupToolbar() {
         viewBinding.toolbar.apply {
-            this.setupParams(R.string.card_custom_view_title_1, R.drawable.ic_arrow_left)
+            this.setupParams(title = getString(R.string.card_custom_view_title_1))
             this.setupBack { returnToLastScreen() }
         }
     }
@@ -96,8 +96,15 @@ class CustomizeFight : Fragment() {
 
     private fun setupGoFight() {
         viewBinding.goFight.setOnClickListener {
-            navigateToFragment(FightFragment.newInstance(), FightFragment::class.java.name)
+            navigateToFragment(FightFragment.show(buildFightName()), FightFragment::class.java.name)
         }
+    }
+
+    private fun buildFightName(): String {
+        val category = viewModel.categorySelected.value
+        val style = viewModel.styleSelected.value
+
+        return "${category?.let { getString(it) }} | ${style?.let { getString(it) }}"
     }
 
     private fun navigateToFragment(fragment: Fragment, key: String) {

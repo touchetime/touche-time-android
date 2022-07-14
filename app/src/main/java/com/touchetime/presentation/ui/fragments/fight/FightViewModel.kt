@@ -19,14 +19,22 @@ class FightViewModel : ViewModel() {
         MutableLiveData<AthleteState>(AthleteState.AthleteDefault(athleteRedUpdated))
     private val _athleteBlue =
         MutableLiveData<AthleteState>(AthleteState.AthleteDefault(athleteBlueUpdated))
+    private val _fightName = MutableLiveData<String>()
 
     val athleteRed: LiveData<AthleteState> = _athleteRed
     val athleteBlue: LiveData<AthleteState> = _athleteBlue
+    val fightName: LiveData<String> = _fightName
 
     var shouldStartFirstRound: Boolean = false
     var shouldStartSecondRound: Boolean = false
     var shouldStartInterval: Boolean = false
     var timerRound: Long? = null
+
+    fun setupFightName(fightName: String) {
+        viewModelScope.launch {
+            _fightName.postValue(fightName)
+        }
+    }
 
     fun setupTimerRounder(value: Long) {
         this.timerRound = value

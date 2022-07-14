@@ -5,6 +5,7 @@ import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.touchetime.R
@@ -30,6 +31,7 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        readArgs()
         setupTimeRound(TIME_ROUND)
         setupToolbar()
         setupObservers()
@@ -41,6 +43,12 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
             R.string.zero_minutes
         )
         setupPlayPause()
+    }
+
+    private fun readArgs() {
+        (arguments?.getSerializable(ARGS) as? String)?.let {
+            viewModel.setupFightName(it)
+        }
     }
 
     private fun setupObservers() {
@@ -80,6 +88,10 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
                 }
                 is AthleteState.AthleteAddTouche -> {}
             }
+        }
+
+        viewModel.fightName.observe(viewLifecycleOwner) {
+            viewBinding.toolbar.setupParams(title = it)
         }
     }
 
@@ -168,7 +180,7 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
 
     private fun setupToolbar() {
         viewBinding.toolbar.apply {
-            this.setupParams(R.string.card_custom_view_title_1, R.drawable.ic_arrow_left)
+            this.setupParams(title = getString(R.string.card_custom_view_title_1))
             this.setupBack { returnToLastScreen() }
         }
     }
@@ -224,9 +236,16 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
     }
 
     companion object {
+        private const val ARGS = "ARGS"
         private const val TIME_ROUND = 11000L // 10000L - 180000L
         private const val TIME_INTERVAL = 5000L // 5000L - 30000L
 
-        fun newInstance() = FightFragment()
+        private fun newInstance(fightName: String) = FightFragment().apply {
+            arguments = bundleOf(
+                ARGS to fightName
+            )
+        }
+
+        fun show(fightName: String) = newInstance(fightName)
     }
 }
