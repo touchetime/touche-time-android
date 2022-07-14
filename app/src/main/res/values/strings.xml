@@ -27,10 +27,11 @@
     <string name="chosen_option_view_title_3">Escolha o peso</string>
     <string name="chosen_option_view_description_3">Escolha o peso</string>
     <string name="customize_fight_description">Escolha todos os padrões de acordo com a UWW</string>
-    <string name="u13">U-13</string>
+    <string name="childrens">Infantil</string>
     <string name="u15">U-15</string>
     <string name="u17">U-17</string>
     <string name="u20">U-20</string>
+    <string name="u23">U-23</string>
     <string name="senior">Sênior</string>
     <string name="greco_roman">Greco-Romana</string>
     <string name="woman_wrestling">Estilo Feminino</string>
