@@ -47,6 +47,7 @@ class CustomizeFight : Fragment() {
         setupToolbar()
         setupCategory()
         setupStyle()
+        setupWeight()
         setupGoFight()
         setupResultKeysListeners()
         setupObservers()
@@ -83,6 +84,21 @@ class CustomizeFight : Fragment() {
         viewBinding.style.apply {
             this.setupParams(
                 R.string.chosen_option_view_title_2,
+                R.string.chosen_option_view_description_2
+            )
+            this.setupListener {
+                StyleFragment.show(
+                    childFragmentManager,
+                    viewModel.styleSelected.value
+                )
+            }
+        }
+    }
+
+    private fun setupWeight() {
+        viewBinding.weight.apply {
+            this.setupParams(
+                R.string.chosen_option_view_title_3,
                 R.string.chosen_option_view_description_2
             )
             this.setupListener {

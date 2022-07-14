@@ -43,6 +43,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_normal" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/DmSansRegularMediumWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_x_large"
+        android:text="@string/weight" />
+
+    <com.touchetime.presentation.common.ChosenOptionView
+        android:id="@+id/weight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal" />
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="0dp"
