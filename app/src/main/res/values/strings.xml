@@ -27,7 +27,9 @@
     <string name="chosen_option_view_description_2">Escolha entre Estilo Livre, Greco-Romana e Livre Feminino</string>
     <string name="chosen_option_view_title_3">Escolha o peso</string>
     <string name="customize_fight_description">Escolha todos os padrões de acordo com a UWW</string>
-    <string name="childrens">Infantil</string>
+    <string name="childrens_1">Infantil I</string>
+    <string name="childrens_2">Infantil II</string>
+    <string name="childrens_3">Infantil III</string>
     <string name="u15">U-15</string>
     <string name="u17">U-17</string>
     <string name="u20">U-20</string>
