@@ -9,13 +9,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.touchetime.R
 import com.touchetime.databinding.FragmentCustomizeFightBinding
+import com.touchetime.presentation.ui.activity.main.MainActivity
 import com.touchetime.presentation.ui.fragments.category.CategoryFragment
+import com.touchetime.presentation.ui.fragments.fight.FightFragment
 import com.touchetime.presentation.ui.fragments.style.StyleFragment
 
 class CustomizeFight : Fragment() {
 
     private lateinit var viewBinding: FragmentCustomizeFightBinding
     private val viewModel: CustomizeFightViewModel by viewModels()
+    private val mainActivity: MainActivity?
+        get() = activity as? MainActivity
     private val resultKeys = arrayOf(
         CategoryFragment.CATEGORY_SELECTED,
         StyleFragment.STYLE_SELECTED
@@ -43,6 +47,7 @@ class CustomizeFight : Fragment() {
         setupToolbar()
         setupCategory()
         setupStyle()
+        setupGoFight()
         setupResultKeysListeners()
         setupObservers()
     }
@@ -89,6 +94,16 @@ class CustomizeFight : Fragment() {
         }
     }
 
+    private fun setupGoFight() {
+        viewBinding.goFight.setOnClickListener {
+            navigateToFragment(FightFragment.newInstance(), FightFragment::class.java.name)
+        }
+    }
+
+    private fun navigateToFragment(fragment: Fragment, key: String) {
+        mainActivity?.navigateToFragment(fragment, key)
+    }
+
     private fun setupResultKeysListeners() {
         resultKeys.forEach {
             when (it) {
@@ -107,10 +122,14 @@ class CustomizeFight : Fragment() {
     private fun setupObservers() {
         viewModel.categorySelected.observe(viewLifecycleOwner) {
             viewBinding.category.setupItemSelectedVisibility(it)
+
+            viewBinding.goFight.isEnabled = it != null && viewModel.styleSelected.value != null
         }
 
         viewModel.styleSelected.observe(viewLifecycleOwner) {
             viewBinding.style.setupItemSelectedVisibility(it)
+
+            viewBinding.goFight.isEnabled = it != null && viewModel.categorySelected.value != null
         }
     }
 
