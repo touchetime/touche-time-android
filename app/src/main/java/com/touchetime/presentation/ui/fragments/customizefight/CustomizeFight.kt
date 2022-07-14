@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.touchetime.R
 import com.touchetime.databinding.FragmentCustomizeFightBinding
+import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.ui.activity.main.MainActivity
 import com.touchetime.presentation.ui.fragments.category.CategoryFragment
 import com.touchetime.presentation.ui.fragments.fight.FightFragment
 import com.touchetime.presentation.ui.fragments.style.StyleFragment
+import com.touchetime.presentation.ui.fragments.weight.WeightFragment
 
 class CustomizeFight : Fragment() {
 
@@ -22,7 +24,8 @@ class CustomizeFight : Fragment() {
         get() = activity as? MainActivity
     private val resultKeys = arrayOf(
         CategoryFragment.CATEGORY_SELECTED,
-        StyleFragment.STYLE_SELECTED
+        StyleFragment.STYLE_SELECTED,
+        WeightFragment.WEIGHT_SELECTED
     )
     private val backPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
@@ -101,13 +104,22 @@ class CustomizeFight : Fragment() {
                 R.string.chosen_option_view_title_3,
                 R.string.chosen_option_view_description_2
             )
+            this.setupIsEnabled(false)
             this.setupListener {
-                StyleFragment.show(
+                WeightFragment.show(
                     childFragmentManager,
-                    viewModel.styleSelected.value
+                    Fight(
+                        viewModel.categorySelected.value,
+                        viewModel.styleSelected.value,
+                        viewModel.weightSelected.value
+                    )
                 )
             }
         }
+    }
+
+    private fun resetWeightSelected() {
+        viewModel.setupWeightSelected(null)
     }
 
     private fun setupGoFight() {
@@ -119,8 +131,9 @@ class CustomizeFight : Fragment() {
     private fun buildFightName(): String {
         val category = viewModel.categorySelected.value
         val style = viewModel.styleSelected.value
+        val weight = viewModel.weightSelected.value
 
-        return "${category?.let { getString(it) }} | ${style?.let { getString(it) }}"
+        return "${category?.let { getString(it) }} | ${style?.let { getString(it) }} -${weight}kg"
     }
 
     private fun navigateToFragment(fragment: Fragment, key: String) {
@@ -131,7 +144,8 @@ class CustomizeFight : Fragment() {
         resultKeys.forEach {
             when (it) {
                 CategoryFragment.CATEGORY_SELECTED,
-                StyleFragment.STYLE_SELECTED
+                StyleFragment.STYLE_SELECTED,
+                WeightFragment.WEIGHT_SELECTED
                 -> childFragmentManager
                 else -> activity?.supportFragmentManager
             }?.setFragmentResultListener(
@@ -146,20 +160,50 @@ class CustomizeFight : Fragment() {
         viewModel.categorySelected.observe(viewLifecycleOwner) {
             viewBinding.category.setupItemSelectedVisibility(it)
 
-            viewBinding.goFight.isEnabled = it != null && viewModel.styleSelected.value != null
+            checkButtonVisibility()
+            resetWeightSelected()
+            checkWeightEnabled()
         }
 
         viewModel.styleSelected.observe(viewLifecycleOwner) {
             viewBinding.style.setupItemSelectedVisibility(it)
 
-            viewBinding.goFight.isEnabled = it != null && viewModel.categorySelected.value != null
+            checkButtonVisibility()
+            resetWeightSelected()
+            checkWeightEnabled()
         }
+
+        viewModel.weightSelected.observe(viewLifecycleOwner) {
+            viewBinding.weight.setupItemSelectedVisibility(it, true)
+
+            checkButtonVisibility()
+        }
+    }
+
+    private fun checkButtonVisibility() {
+        changeButtonVisibility(
+            viewModel.categorySelected.value != null &&
+                viewModel.styleSelected.value != null &&
+                viewModel.weightSelected.value != null
+        )
+    }
+
+    private fun checkWeightEnabled() {
+        viewBinding.weight.setupIsEnabled(
+            viewModel.categorySelected.value != null &&
+                viewModel.styleSelected.value != null
+        )
+    }
+
+    private fun changeButtonVisibility(value: Boolean) {
+        viewBinding.goFight.isEnabled = value
     }
 
     private fun handleResultKey(key: String, bundle: Bundle) {
         when (key) {
             CategoryFragment.CATEGORY_SELECTED -> setupCategorySelected(bundle)
             StyleFragment.STYLE_SELECTED -> setupStyleSelected(bundle)
+            WeightFragment.WEIGHT_SELECTED -> setupWeightSelected(bundle)
         }
     }
 
@@ -172,6 +216,12 @@ class CustomizeFight : Fragment() {
     private fun setupStyleSelected(bundle: Bundle) {
         (bundle.getSerializable(StyleFragment.STYLE) as? Int)?.let {
             viewModel.setupStyleSelected(it)
+        }
+    }
+
+    private fun setupWeightSelected(bundle: Bundle) {
+        (bundle.getSerializable(WeightFragment.WEIGHT) as? Int)?.let {
+            viewModel.setupWeightSelected(it)
         }
     }
 

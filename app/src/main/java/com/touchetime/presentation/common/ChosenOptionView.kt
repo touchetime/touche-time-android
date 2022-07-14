@@ -31,10 +31,18 @@ class ChosenOptionView @JvmOverloads constructor(
         }
     }
 
-    fun setupItemSelectedVisibility(@StringRes itemSelected: Int?) {
+    fun setupIsEnabled(value: Boolean) {
+        viewBinding.container.isEnabled = value
+    }
+
+    fun setupItemSelectedVisibility(@StringRes itemSelected: Int?, isNumber: Boolean = false) {
         viewBinding.apply {
             objectSelected.isVisible = itemSelected != null
-            textItemSelected.text = itemSelected?.let { context.getString(it) }
+            textItemSelected.text = if (isNumber) {
+                "-${itemSelected}Kg"
+            } else {
+                itemSelected?.let { context.getString(it) }
+            }
         }
     }
 }

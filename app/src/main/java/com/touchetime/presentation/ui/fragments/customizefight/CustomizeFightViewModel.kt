@@ -10,9 +10,11 @@ class CustomizeFightViewModel : ViewModel() {
 
     private val _categorySelected = MutableLiveData<Int>()
     private val _styleSelected = MutableLiveData<Int>()
+    private val _weightSelected = MutableLiveData<Int>()
 
     val categorySelected: LiveData<Int> = _categorySelected
     val styleSelected: LiveData<Int> = _styleSelected
+    val weightSelected: LiveData<Int> = _weightSelected
 
     fun setupCategorySelected(categorySelected: Int) {
         viewModelScope.launch {
@@ -23,6 +25,12 @@ class CustomizeFightViewModel : ViewModel() {
     fun setupStyleSelected(styleSelected: Int) {
         viewModelScope.launch {
             _styleSelected.postValue(styleSelected)
+        }
+    }
+
+    fun setupWeightSelected(weightSelected: Int?) {
+        viewModelScope.launch {
+            _weightSelected.postValue(weightSelected)
         }
     }
 }

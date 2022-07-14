@@ -1,11 +1,83 @@
 package com.touchetime.presentation.ui.fragments.weight
 
+import com.touchetime.R
+import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.model.ObjectToSelect
 
 object Weight {
 
+    fun getListWeight(
+        fight: Fight? = null,
+    ): List<ObjectToSelect> {
+        return when (fight?.category) {
+            R.string.childrens_1 -> {
+                children1AllWeight
+            }
+            R.string.childrens_2 -> {
+                children2AllWeight
+            }
+            R.string.childrens_3 -> {
+                children3AllWeight
+            }
+            R.string.u15 -> {
+                getListWeightU15ByStyle(fight.style)
+            }
+            R.string.u17 -> {
+                getListWeightU17ByStyle(fight.style)
+            }
+            else -> {
+                getListWeightDefaultByStyle(fight?.style) // This situation will no occur
+            }
+        }
+    }
+
+    private fun getListWeightU15ByStyle(styleSelected: Int? = null): List<ObjectToSelect> {
+        return when (styleSelected) {
+            R.string.greco_roman, R.string.free_style -> {
+                u15GrecoRomanAndFreeStyle
+            }
+            R.string.woman_wrestling -> {
+                u15WomanWrestling
+            }
+            else -> {
+                listOf() // This situation will no occur
+            }
+        }
+    }
+
+    private fun getListWeightU17ByStyle(styleSelected: Int? = null): List<ObjectToSelect> {
+        return when (styleSelected) {
+            R.string.greco_roman, R.string.free_style -> {
+                u17GrecoRomanAndFreeStyle
+            }
+            R.string.woman_wrestling -> {
+                u17WomanWrestling
+            }
+            else -> {
+                listOf() // This situation will no occur
+            }
+        }
+    }
+
+    private fun getListWeightDefaultByStyle(styleSelected: Int? = null): List<ObjectToSelect> {
+        return when (styleSelected) {
+            R.string.greco_roman -> {
+                defaultGrecoRoman
+            }
+            R.string.woman_wrestling -> {
+                defaultWomanWrestling
+            }
+            R.string.free_style -> {
+                defaultFreeStyle
+            }
+            else -> {
+                listOf() // This situation will no occur
+            }
+        }
+    }
+
     // Senior, U23 and U20
-    val defaultGrecoRoman: List<ObjectToSelect> = listOf(
+    private val defaultGrecoRoman: List<ObjectToSelect> = listOf(
         ObjectToSelect(55, false),
         ObjectToSelect(60, false),
         ObjectToSelect(63, false),
@@ -18,7 +90,7 @@ object Weight {
         ObjectToSelect(130, false),
     )
 
-    val defaultWomanWrestling: List<ObjectToSelect> = listOf(
+    private val defaultWomanWrestling: List<ObjectToSelect> = listOf(
         ObjectToSelect(50, false),
         ObjectToSelect(53, false),
         ObjectToSelect(55, false),
@@ -31,7 +103,7 @@ object Weight {
         ObjectToSelect(76, false),
     )
 
-    val defaultFreeStyle: List<ObjectToSelect> = listOf(
+    private val defaultFreeStyle: List<ObjectToSelect> = listOf(
         ObjectToSelect(57, false),
         ObjectToSelect(61, false),
         ObjectToSelect(65, false),
@@ -45,7 +117,7 @@ object Weight {
     )
 
     // U17
-    val u17GrecoRomanAndFreeStyle: List<ObjectToSelect> = listOf(
+    private val u17GrecoRomanAndFreeStyle: List<ObjectToSelect> = listOf(
         ObjectToSelect(41, false),
         ObjectToSelect(45, false),
         ObjectToSelect(48, false),
@@ -59,7 +131,7 @@ object Weight {
         ObjectToSelect(110, false),
     )
 
-    val u17WomanWrestling: List<ObjectToSelect> = listOf(
+    private val u17WomanWrestling: List<ObjectToSelect> = listOf(
         ObjectToSelect(40, false),
         ObjectToSelect(43, false),
         ObjectToSelect(46, false),
@@ -73,7 +145,7 @@ object Weight {
     )
 
     // U15
-    val u15GrecoRomanAndFreeStyle: List<ObjectToSelect> = listOf(
+    private val u15GrecoRomanAndFreeStyle: List<ObjectToSelect> = listOf(
         ObjectToSelect(38, false),
         ObjectToSelect(41, false),
         ObjectToSelect(44, false),
@@ -85,7 +157,7 @@ object Weight {
         ObjectToSelect(85, false),
     )
 
-    val u15WomanWrestling: List<ObjectToSelect> = listOf(
+    private val u15WomanWrestling: List<ObjectToSelect> = listOf(
         ObjectToSelect(33, false),
         ObjectToSelect(36, false),
         ObjectToSelect(39, false),
@@ -99,7 +171,7 @@ object Weight {
     )
 
     // Children 3
-    val children3AllWeight: List<ObjectToSelect> = listOf(
+    private val children3AllWeight: List<ObjectToSelect> = listOf(
         ObjectToSelect(28, false),
         ObjectToSelect(31, false),
         ObjectToSelect(34, false),
@@ -112,7 +184,7 @@ object Weight {
     )
 
     // Children 2
-    val children2AllWeight: List<ObjectToSelect> = listOf(
+    private val children2AllWeight: List<ObjectToSelect> = listOf(
         ObjectToSelect(28, false),
         ObjectToSelect(30, false),
         ObjectToSelect(33, false),
@@ -125,7 +197,7 @@ object Weight {
     )
 
     // Children 1
-    val children1AllWeight: List<ObjectToSelect> = listOf(
+    private val children1AllWeight: List<ObjectToSelect> = listOf(
         ObjectToSelect(23, false),
         ObjectToSelect(26, false),
         ObjectToSelect(29, false),
