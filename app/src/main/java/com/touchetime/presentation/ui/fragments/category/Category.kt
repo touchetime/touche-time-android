@@ -14,6 +14,7 @@ object Category {
         ObjectToSelect(R.string.u20),
         ObjectToSelect(R.string.u23),
         ObjectToSelect(R.string.senior),
+        ObjectToSelect(R.string.master),
     )
 
     fun getListCategory(): List<ObjectToSelect> = listCategory

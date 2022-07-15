@@ -24,6 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/spacing_tiny"
+            android:textColor="@color/text_color_button"
             tools:text="@string/chosen_option_view_title_1" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -31,6 +32,7 @@
             style="@style/InterSmallGraySecondary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/text_color_button"
             tools:text="@string/chosen_option_view_description_1" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -49,30 +51,31 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_next" />
+        app:srcCompat="@drawable/ic_next"
+        app:tint="@color/text_color_button" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/object_selected"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/background_item_selected"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/object_selected"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/background_item_selected"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_item_selected"
-            style="@style/DmSansRegularMediumWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black_primary"
-            tools:text="Sênior" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_item_selected"
+                style="@style/DmSansRegularMediumWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_primary"
+                tools:text="Sênior" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

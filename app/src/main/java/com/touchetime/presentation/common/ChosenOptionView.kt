@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
-import com.touchetime.databinding.ChosenOptionViewBinding
 
 class ChosenOptionView @JvmOverloads constructor(
     context: Context,
@@ -14,7 +13,7 @@ class ChosenOptionView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    private val viewBinding = ChosenOptionViewBinding.inflate(
+    private val viewBinding = com.touchetime.databinding.ChosenOptionViewBinding.inflate(
         LayoutInflater.from(context), this, true
     )
 
@@ -32,7 +31,12 @@ class ChosenOptionView @JvmOverloads constructor(
     }
 
     fun setupIsEnabled(value: Boolean) {
-        viewBinding.container.isEnabled = value
+        viewBinding.apply {
+            container.isEnabled = value
+            viewBinding.title.isEnabled = value
+            viewBinding.description.isEnabled = value
+            viewBinding.next.isEnabled = value
+        }
     }
 
     fun setupItemSelectedVisibility(@StringRes itemSelected: Int?, isNumber: Boolean = false) {

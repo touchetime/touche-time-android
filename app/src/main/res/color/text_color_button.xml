@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:color="@color/white" android:state_enabled="true"/>
-    <item android:color="@color/smoke" android:state_enabled="false"/>
-    <item android:color="@color/smoke" />
+    <item android:color="@color/gray_secondary" android:state_enabled="false"/>
+    <item android:color="@color/gray_secondary" />
 </selector>

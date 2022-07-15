@@ -89,6 +89,7 @@ class CustomizeFight : Fragment() {
                 R.string.chosen_option_view_title_2,
                 R.string.chosen_option_view_description_2
             )
+            this.setupIsEnabled(false)
             this.setupListener {
                 StyleFragment.show(
                     childFragmentManager,
@@ -161,6 +162,7 @@ class CustomizeFight : Fragment() {
             viewBinding.category.setupItemSelectedVisibility(it)
 
             checkButtonVisibility()
+            checkStyleEnabled()
             resetWeightSelected()
             checkWeightEnabled()
         }
@@ -185,6 +187,12 @@ class CustomizeFight : Fragment() {
             viewModel.categorySelected.value != null &&
                 viewModel.styleSelected.value != null &&
                 viewModel.weightSelected.value != null
+        )
+    }
+
+    private fun checkStyleEnabled() {
+        viewBinding.style.setupIsEnabled(
+            viewModel.categorySelected.value != null
         )
     }
 
