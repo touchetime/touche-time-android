@@ -35,7 +35,7 @@ class CategoryFragment : BottomSheetDialogTransparentBackgroundFragment() {
     }
 
     private fun readArgs() {
-        (arguments?.getSerializable(ARGS) as? CategoryState).let {
+        arguments?.getParcelable<CategoryState>(ARGS).let {
             viewModel.setupCategorySelected(it)
         }
     }

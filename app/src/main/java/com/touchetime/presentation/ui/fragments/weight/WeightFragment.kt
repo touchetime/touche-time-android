@@ -35,7 +35,7 @@ class WeightFragment : BottomSheetDialogTransparentBackgroundFragment() {
     }
 
     private fun readArgs() {
-        (arguments?.getParcelable<Fight>(ARGS)).let {
+        arguments?.getParcelable<Fight>(ARGS).let {
             viewModel.setupFight(it)
         }
     }

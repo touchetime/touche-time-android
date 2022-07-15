@@ -1,9 +1,12 @@
 package com.touchetime.presentation.state
 
+import android.os.Parcelable
 import androidx.annotation.StringRes
 import com.touchetime.R
+import kotlinx.parcelize.Parcelize
 
-enum class CategoryState(@StringRes val value: Int) {
+@Parcelize
+enum class CategoryState(@StringRes val value: Int) : Parcelable {
     CHILDREN_1(R.string.childrens_1),
     CHILDREN_2(R.string.childrens_2),
     CHILDREN_3(R.string.childrens_3),
