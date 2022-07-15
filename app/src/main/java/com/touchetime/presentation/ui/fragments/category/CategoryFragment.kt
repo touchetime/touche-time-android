@@ -35,7 +35,7 @@ class CategoryFragment : BottomSheetDialogTransparentBackgroundFragment() {
     }
 
     private fun readArgs() {
-        arguments?.getParcelable<CategoryState>(ARGS).let {
+        arguments?.getParcelable<CategoryState>(ARGS)?.let {
             viewModel.setupCategorySelected(it)
         }
     }
@@ -65,13 +65,17 @@ class CategoryFragment : BottomSheetDialogTransparentBackgroundFragment() {
         const val CATEGORY = "CATEGORY"
         const val CATEGORY_SELECTED = "CATEGORY_SELECTED"
 
-        private fun newInstance(categoryState: CategoryState? = null) = CategoryFragment().apply {
-            arguments = bundleOf(
-                ARGS to categoryState
-            )
-        }
+        private fun newInstance(categoryState: CategoryState = CategoryState.DEFAULT) =
+            CategoryFragment().apply {
+                arguments = bundleOf(
+                    ARGS to categoryState
+                )
+            }
 
-        fun show(fragmentManager: FragmentManager, categoryState: CategoryState? = null) =
+        fun show(
+            fragmentManager: FragmentManager,
+            categoryState: CategoryState = CategoryState.DEFAULT
+        ) =
             newInstance(categoryState).show(fragmentManager, CategoryFragment::class.java.name)
     }
 }

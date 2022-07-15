@@ -15,5 +15,6 @@ enum class CategoryState(@StringRes val value: Int) : Parcelable {
     U20(R.string.u20),
     U23(R.string.u23),
     SENIOR(R.string.senior),
-    MASTER(R.string.master)
+    MASTER(R.string.master),
+    DEFAULT(R.string.category)
 }

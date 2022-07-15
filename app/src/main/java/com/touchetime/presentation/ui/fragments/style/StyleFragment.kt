@@ -35,7 +35,7 @@ class StyleFragment : BottomSheetDialogTransparentBackgroundFragment() {
     }
 
     private fun readArgs() {
-        arguments?.getParcelable<StyleState>(ARGS).let {
+        arguments?.getParcelable<StyleState>(ARGS)?.let {
             viewModel.setupStyleSelected(it)
         }
     }
@@ -65,13 +65,13 @@ class StyleFragment : BottomSheetDialogTransparentBackgroundFragment() {
         const val STYLE = "STYLE"
         const val STYLE_SELECTED = "STYLE_SELECTED"
 
-        private fun newInstance(styleState: StyleState? = null) = StyleFragment().apply {
+        private fun newInstance(styleState: StyleState) = StyleFragment().apply {
             arguments = bundleOf(
                 ARGS to styleState
             )
         }
 
-        fun show(fragmentManager: FragmentManager, styleState: StyleState? = null) =
+        fun show(fragmentManager: FragmentManager, styleState: StyleState = StyleState.DEFAULT) =
             newInstance(styleState).show(fragmentManager, StyleFragment::class.java.name)
     }
 }

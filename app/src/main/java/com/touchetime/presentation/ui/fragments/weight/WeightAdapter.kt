@@ -7,18 +7,20 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.touchetime.R
 import com.touchetime.databinding.BottomSheetItemBinding
-import com.touchetime.presentation.model.ObjectToSelect
+import com.touchetime.presentation.model.WeightSelect
 import com.touchetime.presentation.util.inflate
 
 class WeightAdapter(
     private val onItemClicked: (params: Int) -> Unit
-) : ListAdapter<ObjectToSelect, WeightAdapter.ViewHolder>(DiffCallback()) {
+) : ListAdapter<WeightSelect, WeightAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(parent.inflate(R.layout.bottom_sheet_item), onItemClicked)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(
+            getItem(position)
+        )
     }
 
     inner class ViewHolder(
@@ -26,29 +28,33 @@ class WeightAdapter(
         private val onItemClicked: (position: Int) -> Unit,
     ) : RecyclerView.ViewHolder(view) {
         private val viewBinding = BottomSheetItemBinding.bind(view)
-        private lateinit var param: ObjectToSelect
+        private lateinit var param: WeightSelect
 
-        fun bind(params: ObjectToSelect) {
-            param = params
+        fun bind(weightSelected: WeightSelect) {
+            param = weightSelected
             viewBinding.apply {
-                this.text.isSelected = params.isSelected
-                this.text.text = "-${params.params}Kg"
-                background.isSelected = params.isSelected
+                this.text.isSelected = weightSelected.isSelected
+                this.background.isSelected = weightSelected.isSelected
+                this.text.text = if (weightSelected.value == 0) {
+                    "+${currentList[currentList.size - 2].value}kg"
+                } else {
+                    "-${weightSelected.value}Kg"
+                }
             }
         }
 
         init {
             view.setOnClickListener {
-                onItemClicked(param.params)
+                onItemClicked(param.value)
             }
         }
     }
 
-    class DiffCallback : DiffUtil.ItemCallback<ObjectToSelect>() {
-        override fun areItemsTheSame(oldItem: ObjectToSelect, newItem: ObjectToSelect): Boolean =
+    class DiffCallback : DiffUtil.ItemCallback<WeightSelect>() {
+        override fun areItemsTheSame(oldItem: WeightSelect, newItem: WeightSelect): Boolean =
             oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: ObjectToSelect, newItem: ObjectToSelect): Boolean =
+        override fun areContentsTheSame(oldItem: WeightSelect, newItem: WeightSelect): Boolean =
             oldItem == newItem
     }
 }

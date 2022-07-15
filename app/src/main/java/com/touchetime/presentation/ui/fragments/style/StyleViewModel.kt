@@ -6,7 +6,7 @@ import com.touchetime.presentation.state.StyleState
 
 class StyleViewModel : ViewModel() {
 
-    var styleSelected: StyleState? = null
+    var styleSelected: StyleState = StyleState.DEFAULT
         private set
 
     fun getListStyle(): List<StyleSelected> {
@@ -19,7 +19,7 @@ class StyleViewModel : ViewModel() {
         return listStyle
     }
 
-    fun setupStyleSelected(styleSelected: StyleState?) {
+    fun setupStyleSelected(styleSelected: StyleState) {
         this.styleSelected = styleSelected
     }
 }

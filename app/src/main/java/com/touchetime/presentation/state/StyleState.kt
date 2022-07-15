@@ -9,5 +9,6 @@ import kotlinx.parcelize.Parcelize
 enum class StyleState(@StringRes val value: Int) : Parcelable {
     GRECO_ROMAN(R.string.greco_roman),
     WOMAN_WRESTLING(R.string.woman_wrestling),
-    FREE_STYLE(R.string.free_style)
+    FREE_STYLE(R.string.free_style),
+    DEFAULT(R.string.style)
 }

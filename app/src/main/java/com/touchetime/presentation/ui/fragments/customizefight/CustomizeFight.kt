@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.touchetime.R
 import com.touchetime.databinding.FragmentCustomizeFightBinding
-import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.state.CategoryState
 import com.touchetime.presentation.state.StyleState
 import com.touchetime.presentation.ui.activity.main.MainActivity
@@ -77,10 +76,18 @@ class CustomizeFight : Fragment() {
                 R.string.chosen_option_view_description_1
             )
             this.setupListener {
-                CategoryFragment.show(
-                    childFragmentManager,
-                    viewModel.categorySelected.value
-                )
+                val categorySelected = viewModel.categorySelected.value
+
+                if (categorySelected != null) {
+                    CategoryFragment.show(
+                        fragmentManager = childFragmentManager,
+                        categoryState = categorySelected
+                    )
+                } else {
+                    CategoryFragment.show(
+                        childFragmentManager
+                    )
+                }
             }
         }
     }
@@ -93,10 +100,18 @@ class CustomizeFight : Fragment() {
             )
             this.setupIsEnabled(false)
             this.setupListener {
-                StyleFragment.show(
-                    childFragmentManager,
-                    viewModel.styleSelected.value
-                )
+                val styleSelected = viewModel.styleSelected.value
+
+                if (styleSelected != null) {
+                    StyleFragment.show(
+                        childFragmentManager,
+                        styleSelected
+                    )
+                } else {
+                    StyleFragment.show(
+                        childFragmentManager
+                    )
+                }
             }
         }
     }
@@ -108,18 +123,20 @@ class CustomizeFight : Fragment() {
                 R.string.chosen_option_view_description_2
             )
             this.setupIsEnabled(false)
-
-            // TODO: Adjust it
             this.setupListener {
-                WeightFragment.show(
-                    childFragmentManager,
-                    Fight(
-                        viewModel.fight.nameFight,
-                        viewModel.categorySelected.value,
-                        viewModel.styleSelected.value,
-                        viewModel.weightSelected.value
+                val categorySelected = viewModel.categorySelected.value
+                val styleSelected = viewModel.styleSelected.value
+
+                if (categorySelected != null && styleSelected != null) {
+                    WeightFragment.show(
+                        childFragmentManager,
+                        viewModel.fight
                     )
-                )
+                } else {
+                    WeightFragment.show(
+                        childFragmentManager,
+                    )
+                }
             }
         }
     }

@@ -6,7 +6,7 @@ import com.touchetime.presentation.state.CategoryState
 
 class CategoryViewModel : ViewModel() {
 
-    var categorySelected: CategoryState? = null
+    var categorySelected: CategoryState = CategoryState.DEFAULT
         private set
 
     fun getListCategory(): List<CategorySelected> {
@@ -19,7 +19,7 @@ class CategoryViewModel : ViewModel() {
         return listCategory
     }
 
-    fun setupCategorySelected(categoryState: CategoryState?) {
+    fun setupCategorySelected(categoryState: CategoryState) {
         this.categorySelected = categoryState
     }
 }
