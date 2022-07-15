@@ -98,6 +98,11 @@
         <item name="android:textSize">@dimen/font_title_medium</item>
     </style>
 
+    <style name="DmSansBoldMediumWhite" parent="TextViewBasic">
+        <item name="android:fontFamily">@font/dm_sans_bold</item>
+        <item name="android:textSize">@dimen/font_title_medium</item>
+    </style>
+
     <style name="DmSansBoldLargeWhite" parent="TextViewBasic">
         <item name="android:fontFamily">@font/dm_sans_bold</item>
         <item name="android:textSize">@dimen/font_title_large</item>
