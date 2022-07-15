@@ -3,6 +3,7 @@ package com.touchetime.presentation.ui.fragments.weight
 import com.touchetime.R
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.model.ObjectToSelect
+import com.touchetime.presentation.state.CategoryState
 
 object Weight {
 
@@ -10,19 +11,19 @@ object Weight {
         fight: Fight? = null,
     ): List<ObjectToSelect> {
         return when (fight?.category) {
-            R.string.childrens_1 -> {
+            CategoryState.CHILDREN_1 -> {
                 children1AllWeight
             }
-            R.string.childrens_2 -> {
+            CategoryState.CHILDREN_2 -> {
                 children2AllWeight
             }
-            R.string.childrens_3 -> {
+            CategoryState.CHILDREN_3 -> {
                 children3AllWeight
             }
-            R.string.u15 -> {
+            CategoryState.U15 -> {
                 getListWeightU15ByStyle(fight.style)
             }
-            R.string.u17 -> {
+            CategoryState.U17 -> {
                 getListWeightU17ByStyle(fight.style)
             }
             else -> {

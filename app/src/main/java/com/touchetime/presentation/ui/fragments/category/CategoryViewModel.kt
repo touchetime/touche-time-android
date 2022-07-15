@@ -1,24 +1,25 @@
 package com.touchetime.presentation.ui.fragments.category
 
 import androidx.lifecycle.ViewModel
-import com.touchetime.presentation.model.ObjectToSelect
+import com.touchetime.presentation.model.CategorySelected
+import com.touchetime.presentation.state.CategoryState
 
 class CategoryViewModel : ViewModel() {
 
-    var categorySelected: Int? = null
+    var categorySelected: CategoryState? = null
         private set
 
-    fun getListCategory(): List<ObjectToSelect> {
+    fun getListCategory(): List<CategorySelected> {
         val listCategory = Category.getListCategory()
 
         listCategory.forEach {
-            it.isSelected = it.params == categorySelected
+            it.isSelected = it.enum == categorySelected
         }
 
         return listCategory
     }
 
-    fun setupCategorySelected(categorySelected: Int?) {
-        this.categorySelected = categorySelected
+    fun setupCategorySelected(categoryState: CategoryState?) {
+        this.categorySelected = categoryState
     }
 }

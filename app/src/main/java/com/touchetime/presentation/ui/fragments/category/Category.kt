@@ -1,21 +1,21 @@
 package com.touchetime.presentation.ui.fragments.category
 
-import com.touchetime.R
-import com.touchetime.presentation.model.ObjectToSelect
+import com.touchetime.presentation.model.CategorySelected
+import com.touchetime.presentation.state.CategoryState
 
 object Category {
 
-    private val listCategory: List<ObjectToSelect> = listOf(
-        ObjectToSelect(R.string.childrens_1),
-        ObjectToSelect(R.string.childrens_2),
-        ObjectToSelect(R.string.childrens_3),
-        ObjectToSelect(R.string.u15),
-        ObjectToSelect(R.string.u17),
-        ObjectToSelect(R.string.u20),
-        ObjectToSelect(R.string.u23),
-        ObjectToSelect(R.string.senior),
-        ObjectToSelect(R.string.master),
+    private val listCategory: List<CategorySelected> = listOf(
+        CategorySelected(CategoryState.valueOf("CHILDREN_1")),
+        CategorySelected(CategoryState.valueOf("CHILDREN_2")),
+        CategorySelected(CategoryState.valueOf("CHILDREN_3")),
+        CategorySelected(CategoryState.valueOf("U15")),
+        CategorySelected(CategoryState.valueOf("U17")),
+        CategorySelected(CategoryState.valueOf("U20")),
+        CategorySelected(CategoryState.valueOf("U23")),
+        CategorySelected(CategoryState.valueOf("U23")),
+        CategorySelected(CategoryState.valueOf("MASTER")),
     )
 
-    fun getListCategory(): List<ObjectToSelect> = listCategory
+    fun getListCategory(): List<CategorySelected> = listCategory
 }

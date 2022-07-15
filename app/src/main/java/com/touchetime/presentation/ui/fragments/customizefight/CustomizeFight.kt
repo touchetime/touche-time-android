@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.touchetime.R
 import com.touchetime.databinding.FragmentCustomizeFightBinding
 import com.touchetime.presentation.model.Fight
+import com.touchetime.presentation.state.CategoryState
 import com.touchetime.presentation.ui.activity.main.MainActivity
 import com.touchetime.presentation.ui.fragments.category.CategoryFragment
 import com.touchetime.presentation.ui.fragments.fight.FightFragment
@@ -163,7 +164,7 @@ class CustomizeFight : Fragment() {
 
     private fun setupObservers() {
         viewModel.categorySelected.observe(viewLifecycleOwner) {
-            viewBinding.category.setupItemSelectedVisibility(it)
+            viewBinding.category.setupItemSelectedVisibility(it.value)
 
             checkButtonVisibility()
             checkStyleEnabled()
@@ -220,7 +221,7 @@ class CustomizeFight : Fragment() {
     }
 
     private fun setupCategorySelected(bundle: Bundle) {
-        (bundle.getSerializable(CategoryFragment.CATEGORY) as? Int)?.let {
+        (bundle.getSerializable(CategoryFragment.CATEGORY) as? CategoryState)?.let {
             viewModel.setupCategorySelected(it)
         }
     }

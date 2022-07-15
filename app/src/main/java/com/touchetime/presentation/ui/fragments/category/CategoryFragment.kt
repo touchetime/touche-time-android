@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.touchetime.R
 import com.touchetime.databinding.BottomSheetDefaultBinding
 import com.touchetime.presentation.common.BottomSheetDialogTransparentBackgroundFragment
-import com.touchetime.presentation.ui.BottomSheetItemAdapter
+import com.touchetime.presentation.state.CategoryState
 
 class CategoryFragment : BottomSheetDialogTransparentBackgroundFragment() {
 
@@ -35,7 +35,7 @@ class CategoryFragment : BottomSheetDialogTransparentBackgroundFragment() {
     }
 
     private fun readArgs() {
-        (arguments?.getSerializable(ARGS) as? Int).let {
+        (arguments?.getSerializable(ARGS) as? CategoryState).let {
             viewModel.setupCategorySelected(it)
         }
     }
@@ -45,7 +45,7 @@ class CategoryFragment : BottomSheetDialogTransparentBackgroundFragment() {
     }
 
     private fun setupAdapter() {
-        val adapter = BottomSheetItemAdapter() {
+        val adapter = CategoryAdapter() {
             parentFragmentManager.setFragmentResult(
                 CATEGORY_SELECTED,
                 bundleOf(
@@ -65,13 +65,13 @@ class CategoryFragment : BottomSheetDialogTransparentBackgroundFragment() {
         const val CATEGORY = "CATEGORY"
         const val CATEGORY_SELECTED = "CATEGORY_SELECTED"
 
-        private fun newInstance(categorySelected: Int? = null) = CategoryFragment().apply {
+        private fun newInstance(categoryState: CategoryState? = null) = CategoryFragment().apply {
             arguments = bundleOf(
-                ARGS to categorySelected
+                ARGS to categoryState
             )
         }
 
-        fun show(fragmentManager: FragmentManager, categorySelected: Int? = null) =
-            newInstance(categorySelected).show(fragmentManager, CategoryFragment::class.java.name)
+        fun show(fragmentManager: FragmentManager, categoryState: CategoryState? = null) =
+            newInstance(categoryState).show(fragmentManager, CategoryFragment::class.java.name)
     }
 }
