@@ -20,6 +20,10 @@ class ScoreBoardView @JvmOverloads constructor(
         LayoutInflater.from(context), this, true
     )
 
+    fun setupScore(score: Int) {
+        viewBinding.score.text = score.toString()
+    }
+
     fun setupColor(@StringRes color: Int) {
         viewBinding.apply {
             if (color == R.string.blue) {

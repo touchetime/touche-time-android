@@ -41,10 +41,11 @@
         <entry key="app/src/main/res/layout/chronometer_view.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.24027362120564344" />
         <entry key="app/src/main/res/layout/fragment_customize_fight.xml" value="0.24711415134672937" />
-        <entry key="app/src/main/res/layout/fragment_fight.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_fight.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/scoreboard_view.xml" value="0.25" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.18554938007695596" />
+        <entry key="app/src/main/res/layout/winner_dialog_fullscreen.xml" value="0.26464300983326206" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1705" />
       </map>
     </option>

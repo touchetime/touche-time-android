@@ -40,4 +40,5 @@
     <string name="woman_wrestling">Estilo Feminino</string>
     <string name="free_style">Estilo Livre</string>
     <string name="continue_fight">Continuar</string>
+    <string name="restart_fight">Reiniciar luta</string>
 </resources>

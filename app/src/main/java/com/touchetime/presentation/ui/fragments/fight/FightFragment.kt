@@ -12,6 +12,7 @@ import com.touchetime.R
 import com.touchetime.databinding.FragmentFightBinding
 import com.touchetime.presentation.common.RegressiveCounter
 import com.touchetime.presentation.state.AthleteState
+import com.touchetime.presentation.util.showWinnerFullscreenDialog
 
 class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
 
@@ -67,7 +68,9 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
                 is AthleteState.AthleteRemoveFoul -> {
                     updateFoulRed(it.foul.toString())
                 }
-                is AthleteState.AthleteAddTouche -> {}
+                is AthleteState.AthleteAddTouche -> {
+                    showWinnerFullscreenDialog(viewModel.athleteRedUpdated)
+                }
             }
         }
 
@@ -86,7 +89,9 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
                 is AthleteState.AthleteRemoveFoul -> {
                     updateFoulBlue(it.foul.toString())
                 }
-                is AthleteState.AthleteAddTouche -> {}
+                is AthleteState.AthleteAddTouche -> {
+                    showWinnerFullscreenDialog(viewModel.athleteBlueUpdated)
+                }
             }
         }
 
