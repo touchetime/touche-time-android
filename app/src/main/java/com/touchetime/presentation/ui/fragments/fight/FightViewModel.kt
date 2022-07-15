@@ -8,6 +8,7 @@ import com.touchetime.R
 import com.touchetime.presentation.model.Athlete
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.state.AthleteState
+import com.touchetime.presentation.state.StyleState
 import kotlinx.coroutines.launch
 
 class FightViewModel : ViewModel() {
@@ -197,7 +198,7 @@ class FightViewModel : ViewModel() {
             athleteWinner.score - athleteLoser.score >= FREE_STYLE_SUPERIORITY
         }
 
-    private fun isGrecoRoman(): Boolean = _fight.value?.style == R.string.greco_roman
+    private fun isGrecoRoman(): Boolean = _fight.value?.style == StyleState.GRECO_ROMAN
 
     companion object {
         private const val GRECO_ROMAN_SUPERIORITY = 8

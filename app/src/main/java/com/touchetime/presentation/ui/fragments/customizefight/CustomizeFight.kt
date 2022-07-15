@@ -11,6 +11,7 @@ import com.touchetime.R
 import com.touchetime.databinding.FragmentCustomizeFightBinding
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.state.CategoryState
+import com.touchetime.presentation.state.StyleState
 import com.touchetime.presentation.ui.activity.main.MainActivity
 import com.touchetime.presentation.ui.fragments.category.CategoryFragment
 import com.touchetime.presentation.ui.fragments.fight.FightFragment
@@ -173,7 +174,7 @@ class CustomizeFight : Fragment() {
         }
 
         viewModel.styleSelected.observe(viewLifecycleOwner) {
-            viewBinding.style.setupItemSelectedVisibility(it)
+            viewBinding.style.setupItemSelectedVisibility(it.value)
 
             checkButtonVisibility()
             resetWeightSelected()
@@ -227,7 +228,7 @@ class CustomizeFight : Fragment() {
     }
 
     private fun setupStyleSelected(bundle: Bundle) {
-        (bundle.getSerializable(StyleFragment.STYLE) as? Int)?.let {
+        (bundle.getSerializable(StyleFragment.STYLE) as? StyleState)?.let {
             viewModel.setupStyleSelected(it)
         }
     }

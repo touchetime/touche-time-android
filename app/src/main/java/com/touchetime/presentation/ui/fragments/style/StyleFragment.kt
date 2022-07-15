@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.touchetime.R
 import com.touchetime.databinding.BottomSheetDefaultBinding
 import com.touchetime.presentation.common.BottomSheetDialogTransparentBackgroundFragment
-import com.touchetime.presentation.ui.BottomSheetItemAdapter
+import com.touchetime.presentation.state.StyleState
 
 class StyleFragment : BottomSheetDialogTransparentBackgroundFragment() {
 
@@ -35,7 +35,7 @@ class StyleFragment : BottomSheetDialogTransparentBackgroundFragment() {
     }
 
     private fun readArgs() {
-        (arguments?.getSerializable(ARGS) as? Int).let {
+        arguments?.getParcelable<StyleState>(ARGS).let {
             viewModel.setupStyleSelected(it)
         }
     }
@@ -45,7 +45,7 @@ class StyleFragment : BottomSheetDialogTransparentBackgroundFragment() {
     }
 
     private fun setupAdapter() {
-        val adapter = BottomSheetItemAdapter() {
+        val adapter = StyleAdapter() {
             parentFragmentManager.setFragmentResult(
                 STYLE_SELECTED,
                 bundleOf(
@@ -65,13 +65,13 @@ class StyleFragment : BottomSheetDialogTransparentBackgroundFragment() {
         const val STYLE = "STYLE"
         const val STYLE_SELECTED = "STYLE_SELECTED"
 
-        private fun newInstance(styleSelected: Int? = null) = StyleFragment().apply {
+        private fun newInstance(styleState: StyleState? = null) = StyleFragment().apply {
             arguments = bundleOf(
-                ARGS to styleSelected
+                ARGS to styleState
             )
         }
 
-        fun show(fragmentManager: FragmentManager, styleSelected: Int? = null) =
-            newInstance(styleSelected).show(fragmentManager, StyleFragment::class.java.name)
+        fun show(fragmentManager: FragmentManager, styleState: StyleState? = null) =
+            newInstance(styleState).show(fragmentManager, StyleFragment::class.java.name)
     }
 }

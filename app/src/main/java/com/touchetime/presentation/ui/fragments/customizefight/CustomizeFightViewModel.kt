@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.state.CategoryState
+import com.touchetime.presentation.state.StyleState
 import kotlinx.coroutines.launch
 
 class CustomizeFightViewModel : ViewModel() {
@@ -15,11 +16,11 @@ class CustomizeFightViewModel : ViewModel() {
         private set
 
     private val _categorySelected = MutableLiveData<CategoryState>()
-    private val _styleSelected = MutableLiveData<Int>()
+    private val _styleSelected = MutableLiveData<StyleState>()
     private val _weightSelected = MutableLiveData<Int>()
 
     val categorySelected: LiveData<CategoryState> = _categorySelected
-    val styleSelected: LiveData<Int> = _styleSelected
+    val styleSelected: LiveData<StyleState> = _styleSelected
     val weightSelected: LiveData<Int> = _weightSelected
 
     fun setupCategorySelected(categoryState: CategoryState) {
@@ -29,7 +30,7 @@ class CustomizeFightViewModel : ViewModel() {
         }
     }
 
-    fun setupStyleSelected(styleSelected: Int) {
+    fun setupStyleSelected(styleSelected: StyleState) {
         viewModelScope.launch {
             _styleSelected.postValue(styleSelected)
             fight.style = styleSelected
@@ -46,7 +47,7 @@ class CustomizeFightViewModel : ViewModel() {
     fun setupNameFight(context: Context) {
         val nameFight = "${fight.category?.let { context.getString(it.value) }} | ${
         fight.style?.let {
-            context.getString(it)
+            context.getString(it.value)
         }
         } -${fight.weight}kg"
 

@@ -1,9 +1,9 @@
 package com.touchetime.presentation.ui.fragments.weight
 
-import com.touchetime.R
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.model.ObjectToSelect
 import com.touchetime.presentation.state.CategoryState
+import com.touchetime.presentation.state.StyleState
 
 object Weight {
 
@@ -32,12 +32,12 @@ object Weight {
         }
     }
 
-    private fun getListWeightU15ByStyle(styleSelected: Int? = null): List<ObjectToSelect> {
-        return when (styleSelected) {
-            R.string.greco_roman, R.string.free_style -> {
+    private fun getListWeightU15ByStyle(styleState: StyleState? = null): List<ObjectToSelect> {
+        return when (styleState) {
+            StyleState.GRECO_ROMAN, StyleState.FREE_STYLE -> {
                 u15GrecoRomanAndFreeStyle
             }
-            R.string.woman_wrestling -> {
+            StyleState.WOMAN_WRESTLING -> {
                 u15WomanWrestling
             }
             else -> {
@@ -46,12 +46,12 @@ object Weight {
         }
     }
 
-    private fun getListWeightU17ByStyle(styleSelected: Int? = null): List<ObjectToSelect> {
-        return when (styleSelected) {
-            R.string.greco_roman, R.string.free_style -> {
+    private fun getListWeightU17ByStyle(styleState: StyleState? = null): List<ObjectToSelect> {
+        return when (styleState) {
+            StyleState.GRECO_ROMAN, StyleState.FREE_STYLE -> {
                 u17GrecoRomanAndFreeStyle
             }
-            R.string.woman_wrestling -> {
+            StyleState.WOMAN_WRESTLING -> {
                 u17WomanWrestling
             }
             else -> {
@@ -60,15 +60,15 @@ object Weight {
         }
     }
 
-    private fun getListWeightDefaultByStyle(styleSelected: Int? = null): List<ObjectToSelect> {
-        return when (styleSelected) {
-            R.string.greco_roman -> {
+    private fun getListWeightDefaultByStyle(styleState: StyleState? = null): List<ObjectToSelect> {
+        return when (styleState) {
+            StyleState.GRECO_ROMAN -> {
                 defaultGrecoRoman
             }
-            R.string.woman_wrestling -> {
+            StyleState.WOMAN_WRESTLING -> {
                 defaultWomanWrestling
             }
-            R.string.free_style -> {
+            StyleState.FREE_STYLE -> {
                 defaultFreeStyle
             }
             else -> {

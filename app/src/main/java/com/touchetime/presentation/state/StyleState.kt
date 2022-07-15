@@ -1,9 +1,12 @@
 package com.touchetime.presentation.state
 
+import android.os.Parcelable
 import androidx.annotation.StringRes
 import com.touchetime.R
+import kotlinx.parcelize.Parcelize
 
-enum class StyleState(@StringRes val value: Int) {
+@Parcelize
+enum class StyleState(@StringRes val value: Int) : Parcelable {
     GRECO_ROMAN(R.string.greco_roman),
     WOMAN_WRESTLING(R.string.woman_wrestling),
     FREE_STYLE(R.string.free_style)

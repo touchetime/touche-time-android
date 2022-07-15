@@ -1,15 +1,15 @@
 package com.touchetime.presentation.ui.fragments.style
 
-import com.touchetime.R
-import com.touchetime.presentation.model.ObjectToSelect
+import com.touchetime.presentation.model.StyleSelected
+import com.touchetime.presentation.state.StyleState
 
 object Style {
 
-    private val listStyle: List<ObjectToSelect> = listOf(
-        ObjectToSelect(R.string.greco_roman),
-        ObjectToSelect(R.string.woman_wrestling),
-        ObjectToSelect(R.string.free_style),
+    private val listStyle: List<StyleSelected> = listOf(
+        StyleSelected(StyleState.GRECO_ROMAN),
+        StyleSelected(StyleState.WOMAN_WRESTLING),
+        StyleSelected(StyleState.FREE_STYLE),
     )
 
-    fun getListStyle(): List<ObjectToSelect> = listStyle
+    fun getListStyle(): List<StyleSelected> = listStyle
 }

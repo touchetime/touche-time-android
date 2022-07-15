@@ -12,8 +12,7 @@ object Category {
         CategorySelected(CategoryState.valueOf("U15")),
         CategorySelected(CategoryState.valueOf("U17")),
         CategorySelected(CategoryState.valueOf("U20")),
-        CategorySelected(CategoryState.valueOf("U23")),
-        CategorySelected(CategoryState.valueOf("U23")),
+        CategorySelected(CategoryState.valueOf("SENIOR")),
         CategorySelected(CategoryState.valueOf("MASTER")),
     )
 
