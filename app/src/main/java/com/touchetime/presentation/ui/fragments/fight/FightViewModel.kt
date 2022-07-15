@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.touchetime.R
 import com.touchetime.presentation.model.Athlete
+import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.state.AthleteState
 import kotlinx.coroutines.launch
 
@@ -20,20 +21,20 @@ class FightViewModel : ViewModel() {
         MutableLiveData<AthleteState>(AthleteState.AthleteDefault(athleteRedUpdated))
     private val _athleteBlue =
         MutableLiveData<AthleteState>(AthleteState.AthleteDefault(athleteBlueUpdated))
-    private val _fightName = MutableLiveData<String>()
+    private val _fight = MutableLiveData<Fight>()
 
     val athleteRed: LiveData<AthleteState> = _athleteRed
     val athleteBlue: LiveData<AthleteState> = _athleteBlue
-    val fightName: LiveData<String> = _fightName
+    val fight: LiveData<Fight> = _fight
 
     var shouldStartFirstRound: Boolean = false
     var shouldStartSecondRound: Boolean = false
     var shouldStartInterval: Boolean = false
     var timerRound: Long? = null
 
-    fun setupFightName(fightName: String) {
+    fun setupFight(fight: Fight) {
         viewModelScope.launch {
-            _fightName.postValue(fightName)
+            _fight.postValue(fight)
         }
     }
 
@@ -50,6 +51,8 @@ class FightViewModel : ViewModel() {
                     athleteRedUpdated.score
                 )
             )
+
+            checkIfAthleteWin(athleteRedUpdated, athleteBlueUpdated)
         }
     }
 
@@ -63,6 +66,9 @@ class FightViewModel : ViewModel() {
                         athleteRedUpdated.score
                     )
                 )
+
+                checkIfAthleteWin(athleteRedUpdated, athleteBlueUpdated)
+                checkIfAthleteWin(athleteBlueUpdated, athleteRedUpdated)
             }
         }
     }
@@ -112,6 +118,8 @@ class FightViewModel : ViewModel() {
                     athleteBlueUpdated.score
                 )
             )
+
+            checkIfAthleteWin(athleteBlueUpdated, athleteRedUpdated)
         }
     }
 
@@ -125,6 +133,9 @@ class FightViewModel : ViewModel() {
                         athleteBlueUpdated.score
                     )
                 )
+
+                checkIfAthleteWin(athleteBlueUpdated, athleteRedUpdated)
+                checkIfAthleteWin(athleteRedUpdated, athleteBlueUpdated)
             }
         }
     }
@@ -163,5 +174,33 @@ class FightViewModel : ViewModel() {
                 )
             }
         }
+    }
+
+    private fun checkIfAthleteWin(athleteWinner: Athlete, athleteLoser: Athlete) {
+        if (checkTechnicalSuperiority(athleteWinner, athleteLoser)) {
+            if (athleteWinner.color == athleteRedUpdated.color) {
+                _athleteRed.postValue(
+                    AthleteState.AthleteWin(true)
+                )
+            } else {
+                _athleteBlue.postValue(
+                    AthleteState.AthleteWin(true)
+                )
+            }
+        }
+    }
+
+    private fun checkTechnicalSuperiority(athleteWinner: Athlete, athleteLoser: Athlete): Boolean =
+        if (isGrecoRoman()) {
+            athleteWinner.score - athleteLoser.score >= GRECO_ROMAN_SUPERIORITY
+        } else {
+            athleteWinner.score - athleteLoser.score >= FREE_STYLE_SUPERIORITY
+        }
+
+    private fun isGrecoRoman(): Boolean = _fight.value?.style == R.string.greco_roman
+
+    companion object {
+        private const val GRECO_ROMAN_SUPERIORITY = 8
+        private const val FREE_STYLE_SUPERIORITY = 10
     }
 }

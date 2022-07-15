@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import com.touchetime.R
 import com.touchetime.databinding.FragmentFightBinding
 import com.touchetime.presentation.common.RegressiveCounter
+import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.state.AthleteState
 import com.touchetime.presentation.util.showWinnerFullscreenDialog
 
@@ -47,8 +48,8 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
     }
 
     private fun readArgs() {
-        (arguments?.getSerializable(ARGS) as? String)?.let {
-            viewModel.setupFightName(it)
+        (arguments?.getParcelable<Fight>(ARGS))?.let {
+            viewModel.setupFight(it)
         }
     }
 
@@ -68,7 +69,7 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
                 is AthleteState.AthleteRemoveFoul -> {
                     updateFoulRed(it.foul.toString())
                 }
-                is AthleteState.AthleteAddTouche -> {
+                is AthleteState.AthleteAddTouche, is AthleteState.AthleteWin -> {
                     showWinnerFullscreenDialog(viewModel.athleteRedUpdated)
                 }
             }
@@ -89,14 +90,14 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
                 is AthleteState.AthleteRemoveFoul -> {
                     updateFoulBlue(it.foul.toString())
                 }
-                is AthleteState.AthleteAddTouche -> {
+                is AthleteState.AthleteAddTouche, is AthleteState.AthleteWin -> {
                     showWinnerFullscreenDialog(viewModel.athleteBlueUpdated)
                 }
             }
         }
 
-        viewModel.fightName.observe(viewLifecycleOwner) {
-            viewBinding.toolbar.setupParams(title = it)
+        viewModel.fight.observe(viewLifecycleOwner) {
+            viewBinding.toolbar.setupParams(title = it.nameFight)
         }
     }
 
@@ -245,12 +246,12 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
         private const val TIME_ROUND = 11000L // 10000L - 180000L
         private const val TIME_INTERVAL = 5000L // 5000L - 30000L
 
-        private fun newInstance(fightName: String) = FightFragment().apply {
+        private fun newInstance(fight: Fight) = FightFragment().apply {
             arguments = bundleOf(
-                ARGS to fightName
+                ARGS to fight
             )
         }
 
-        fun show(fightName: String) = newInstance(fightName)
+        fun show(fightName: Fight) = newInstance(fightName)
     }
 }

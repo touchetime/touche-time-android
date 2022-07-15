@@ -106,10 +106,13 @@ class CustomizeFight : Fragment() {
                 R.string.chosen_option_view_description_2
             )
             this.setupIsEnabled(false)
+
+            // TODO: Adjust it
             this.setupListener {
                 WeightFragment.show(
                     childFragmentManager,
                     Fight(
+                        viewModel.fight.nameFight,
                         viewModel.categorySelected.value,
                         viewModel.styleSelected.value,
                         viewModel.weightSelected.value
@@ -125,16 +128,17 @@ class CustomizeFight : Fragment() {
 
     private fun setupGoFight() {
         viewBinding.goFight.setOnClickListener {
-            navigateToFragment(FightFragment.show(buildFightName()), FightFragment::class.java.name)
+            setupFightName()
+
+            navigateToFragment(
+                FightFragment.show(viewModel.fight),
+                FightFragment::class.java.name
+            )
         }
     }
 
-    private fun buildFightName(): String {
-        val category = viewModel.categorySelected.value
-        val style = viewModel.styleSelected.value
-        val weight = viewModel.weightSelected.value
-
-        return "${category?.let { getString(it) }} | ${style?.let { getString(it) }} -${weight}kg"
+    private fun setupFightName() {
+        context?.let { viewModel.setupNameFight(it) }
     }
 
     private fun navigateToFragment(fragment: Fragment, key: String) {

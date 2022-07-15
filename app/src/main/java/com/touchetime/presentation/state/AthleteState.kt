@@ -9,4 +9,5 @@ sealed class AthleteState {
     data class AthleteAddTouche(val touche: Boolean) : AthleteState()
     data class AthleteAddFoul(val foul: Int) : AthleteState()
     data class AthleteRemoveFoul(val foul: Int) : AthleteState()
+    data class AthleteWin(val value: Boolean) : AthleteState()
 }

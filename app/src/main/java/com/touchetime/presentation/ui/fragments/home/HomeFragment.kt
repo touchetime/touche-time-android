@@ -8,6 +8,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.touchetime.R
 import com.touchetime.databinding.FragmentHomeBinding
+import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.ui.activity.main.MainActivity
 import com.touchetime.presentation.ui.fragments.customizefight.CustomizeFight
 import com.touchetime.presentation.ui.fragments.fight.FightFragment
@@ -73,7 +74,7 @@ class HomeFragment : Fragment() {
     private fun setupCustomFightListener() {
         viewBinding.customFight.setOnClickListener {
             navigateToFragment(
-                FightFragment.show(getString(R.string.custom_fight)),
+                FightFragment.show(Fight(nameFight = getString(R.string.custom_fight))),
                 FightFragment::class.java.name
             )
         }
