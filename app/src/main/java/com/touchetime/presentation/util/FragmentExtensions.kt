@@ -6,7 +6,8 @@ import com.touchetime.presentation.model.Athlete
 
 fun Fragment.showWinnerFullscreenDialog(
     athlete: Athlete,
-    restartFight: () -> Unit = {}
+    closeFight: () -> Unit,
+    restartFight: () -> Unit
 ) = WinnerDialogFullscreen(
-    athlete, restartFight
+    athlete, closeFight, restartFight
 ).also { it.show(childFragmentManager, it::class.java.name) }

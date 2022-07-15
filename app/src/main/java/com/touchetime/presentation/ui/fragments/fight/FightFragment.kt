@@ -11,13 +11,18 @@ import androidx.fragment.app.viewModels
 import com.touchetime.R
 import com.touchetime.databinding.FragmentFightBinding
 import com.touchetime.presentation.common.RegressiveCounter
+import com.touchetime.presentation.common.WinnerDialogFullscreen
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.state.AthleteState
+import com.touchetime.presentation.ui.activity.main.MainActivity
+import com.touchetime.presentation.ui.fragments.home.HomeFragment
 import com.touchetime.presentation.util.showWinnerFullscreenDialog
 
 class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
 
     private lateinit var viewBinding: FragmentFightBinding
+    private val mainActivity: MainActivity?
+        get() = activity as? MainActivity
     private lateinit var regressiveCounter: CountDownTimer
     private val viewModel: FightViewModel by viewModels()
 
@@ -70,7 +75,7 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
                     updateFoulRed(it.foul.toString())
                 }
                 is AthleteState.AthleteAddTouche, is AthleteState.AthleteWin -> {
-                    showWinnerFullscreenDialog(viewModel.athleteRedUpdated)
+                    showWinnerFullscreenDialog(viewModel.athleteRedUpdated, ::fightEnded, ::fightEnded)
                 }
             }
         }
@@ -91,7 +96,7 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
                     updateFoulBlue(it.foul.toString())
                 }
                 is AthleteState.AthleteAddTouche, is AthleteState.AthleteWin -> {
-                    showWinnerFullscreenDialog(viewModel.athleteBlueUpdated)
+                    showWinnerFullscreenDialog(viewModel.athleteBlueUpdated, ::fightEnded, ::fightEnded)
                 }
             }
         }
@@ -99,6 +104,12 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
         viewModel.fight.observe(viewLifecycleOwner) {
             viewBinding.toolbar.setupParams(title = it.nameFight)
         }
+    }
+
+    private fun fightEnded() {
+        mainActivity?.navigateToFragment(
+            HomeFragment.newInstance(), HomeFragment::class.java.name
+        )
     }
 
     private fun setupScoreboard() {

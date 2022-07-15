@@ -11,7 +11,10 @@ import com.touchetime.presentation.model.Athlete
 
 class WinnerDialogFullscreen(
     private val athlete: Athlete,
-    val restartFight: () -> Unit = {},
+    val addScore: () -> Unit,
+    val RemoveScore: () -> Unit,
+    val closeFight: () -> Unit,
+    val restartFight: () -> Unit,
 ) : DialogFragmentTransparentBackground() {
 
     private lateinit var viewBinding: WinnerDialogFullscreenBinding
@@ -60,6 +63,7 @@ class WinnerDialogFullscreen(
         }
 
         viewBinding.toolbar.setupBack {
+            closeFight()
             dismiss()
         }
     }
