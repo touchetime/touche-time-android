@@ -1,9 +1,9 @@
 package com.touchetime.presentation.model
 
-import androidx.annotation.StringRes
+import com.touchetime.presentation.state.ColorState
 
 data class Athlete(
-    @StringRes val color: Int,
+    val color: ColorState = ColorState.DEFAULT,
     var score: Int = 0,
     var foul: Int = 0,
     var touche: Boolean = false

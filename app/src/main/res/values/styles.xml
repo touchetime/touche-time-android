@@ -23,9 +23,7 @@
     </style>
 
     <style name="AlertDialogStyle" parent="Theme.AppCompat.Dialog">
-<!--        <item name="android:windowIsTranslucent">true</item>-->
         <item name="android:windowBackground">@color/color_background_winner_dialog_fragment</item>
-<!--        <item name="android:windowFullscreen">true</item>-->
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowIsFloating">false</item>

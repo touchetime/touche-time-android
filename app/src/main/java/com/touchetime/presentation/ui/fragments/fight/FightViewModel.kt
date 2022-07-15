@@ -4,18 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.touchetime.R
 import com.touchetime.presentation.model.Athlete
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.state.AthleteState
+import com.touchetime.presentation.state.ColorState
 import com.touchetime.presentation.state.StyleState
 import kotlinx.coroutines.launch
 
 class FightViewModel : ViewModel() {
 
-    var athleteRedUpdated = Athlete(color = R.string.red)
+    var athleteRedUpdated = Athlete(color = ColorState.RED)
         private set
-    var athleteBlueUpdated = Athlete(color = R.string.blue)
+    var athleteBlueUpdated = Athlete(color = ColorState.BLUE)
         private set
 
     private val _athleteRed =
