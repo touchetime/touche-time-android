@@ -8,6 +8,7 @@ import com.touchetime.presentation.model.Athlete
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.state.AthleteState
 import com.touchetime.presentation.state.ColorState
+import com.touchetime.presentation.state.ScoreState
 import com.touchetime.presentation.state.StyleState
 import kotlinx.coroutines.launch
 
@@ -66,8 +67,8 @@ class FightViewModel : ViewModel() {
         this.timerRound = value
     }
 
-    fun setupAddScoreRed() {
-        ++athleteRedUpdated.score
+    fun setupAddScoreRed(scoreState: ScoreState) {
+        athleteRedUpdated.score += scoreState.value
 
         _athleteRed.value = AthleteState.AthleteAddScore(
             athleteRedUpdated.score
@@ -113,8 +114,8 @@ class FightViewModel : ViewModel() {
         }
     }
 
-    fun setupAddScoreBlue() {
-        ++athleteBlueUpdated.score
+    fun setupAddScoreBlue(scoreState: ScoreState) {
+        athleteBlueUpdated.score += scoreState.value
 
         _athleteBlue.value = AthleteState.AthleteAddScore(
             athleteBlueUpdated.score
