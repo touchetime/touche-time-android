@@ -81,7 +81,7 @@ class ScoreBoardView @JvmOverloads constructor(
         viewBinding.foul.text = value
     }
 
-    fun setupChangeScoreClickable(value: Boolean) {
+    fun setupScoreClickable(value: Boolean) {
         viewBinding.addScore.isClickable = value
         viewBinding.removeScore.isClickable = value
     }

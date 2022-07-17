@@ -33,6 +33,29 @@ class FightViewModel : ViewModel() {
     var shouldStartInterval: Boolean = false
     var timerRound: Long? = null
 
+    fun resetFight() {
+        resetAthleteRed()
+        resetAthleteBlue()
+    }
+
+    private fun resetAthleteBlue() {
+        athleteBlueUpdated.apply {
+            score = 0
+            foul = 0
+            touche = false
+        }
+        _athleteBlue.value = AthleteState.AthleteDefault(athleteBlueUpdated)
+    }
+
+    private fun resetAthleteRed() {
+        athleteRedUpdated.apply {
+            score = 0
+            foul = 0
+            touche = false
+        }
+        _athleteRed.value = AthleteState.AthleteDefault(athleteRedUpdated)
+    }
+
     fun setupFight(fight: Fight) {
         viewModelScope.launch {
             _fight.setValue(fight)
