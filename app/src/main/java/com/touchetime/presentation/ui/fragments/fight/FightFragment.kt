@@ -2,7 +2,6 @@ package com.touchetime.presentation.ui.fragments.fight
 
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -91,7 +90,6 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
                 is AthleteState.AthleteDefault -> {}
                 is AthleteState.AthleteAddScore -> {
                     updateScoreBlue(it.score.toString())
-                    Log.d("EITAAA", "Pontuacao adicionada, valor total: ${it.score} ///// Estado atual:  AthleteAddScore")
                 }
                 is AthleteState.AthleteRemoveScore -> {
                     updateScoreBlue(it.score.toString())
@@ -103,7 +101,6 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
                     updateFoulBlue(it.foul.toString())
                 }
                 is AthleteState.AthleteAddTouche, is AthleteState.AthleteWin -> {
-                    Log.d("EITAAA", "Touche, valor experado: ${viewModel.athleteBlueUpdated} -- nao entrou no state AthleteAddScore ///// Estado atual: AthleteAddTouche")
                     showWinnerFullscreenDialog(
                         viewModel.athleteBlueUpdated,
                         { viewModel.setupAddScoreBlue() },

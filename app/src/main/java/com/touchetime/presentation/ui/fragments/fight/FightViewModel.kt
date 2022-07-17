@@ -35,7 +35,7 @@ class FightViewModel : ViewModel() {
 
     fun setupFight(fight: Fight) {
         viewModelScope.launch {
-            _fight.postValue(fight)
+            _fight.setValue(fight)
         }
     }
 
@@ -44,147 +44,107 @@ class FightViewModel : ViewModel() {
     }
 
     fun setupAddScoreRed() {
-        viewModelScope.launch {
-            ++athleteRedUpdated.score
+        ++athleteRedUpdated.score
 
-            _athleteRed.postValue(
-                AthleteState.AthleteAddScore(
-                    athleteRedUpdated.score
-                )
-            )
+        _athleteRed.value = AthleteState.AthleteAddScore(
+            athleteRedUpdated.score
+        )
 
-            checkIfAthleteWin(athleteRedUpdated, athleteBlueUpdated)
-        }
+        checkIfAthleteWin(athleteRedUpdated, athleteBlueUpdated)
     }
 
     fun setupRemoveScoreRed() {
-        viewModelScope.launch {
-            if (athleteRedUpdated.score > 0) {
-                --athleteRedUpdated.score
+        if (athleteRedUpdated.score > 0) {
+            --athleteRedUpdated.score
 
-                _athleteRed.postValue(
-                    AthleteState.AthleteRemoveScore(
-                        athleteRedUpdated.score
-                    )
-                )
-
-                checkIfAthleteWin(athleteRedUpdated, athleteBlueUpdated)
-                checkIfAthleteWin(athleteBlueUpdated, athleteRedUpdated)
-            }
-        }
-    }
-
-    fun setupToucheRed() {
-        viewModelScope.launch {
-            athleteRedUpdated.touche = true
-
-            _athleteRed.postValue(
-                AthleteState.AthleteAddTouche(true)
-            )
-        }
-    }
-
-    fun setupAddFoulRed() {
-        viewModelScope.launch {
-            ++athleteRedUpdated.foul
-
-            _athleteRed.postValue(
-                AthleteState.AthleteAddFoul(
-                    athleteRedUpdated.foul
-                )
-            )
-        }
-    }
-
-    fun setupRemoveFoulRed() {
-        viewModelScope.launch {
-            if (athleteRedUpdated.foul > 0) {
-                --athleteRedUpdated.foul
-
-                _athleteRed.postValue(
-                    AthleteState.AthleteRemoveFoul(
-                        athleteRedUpdated.foul
-                    )
-                )
-            }
-        }
-    }
-
-    fun setupAddScoreBlue() {
-        viewModelScope.launch {
-            ++athleteBlueUpdated.score
-
-            _athleteBlue.postValue(
-                AthleteState.AthleteAddScore(
-                    athleteBlueUpdated.score
-                )
+            _athleteRed.value = AthleteState.AthleteRemoveScore(
+                athleteRedUpdated.score
             )
 
+            checkIfAthleteWin(athleteRedUpdated, athleteBlueUpdated)
             checkIfAthleteWin(athleteBlueUpdated, athleteRedUpdated)
         }
     }
 
+    fun setupToucheRed() {
+        athleteRedUpdated.touche = true
+
+        _athleteRed.value = AthleteState.AthleteAddTouche(true)
+    }
+
+    fun setupAddFoulRed() {
+        ++athleteRedUpdated.foul
+
+        _athleteRed.value = AthleteState.AthleteAddFoul(
+            athleteRedUpdated.foul
+        )
+    }
+
+    fun setupRemoveFoulRed() {
+        if (athleteRedUpdated.foul > 0) {
+            --athleteRedUpdated.foul
+
+            _athleteRed.value = AthleteState.AthleteRemoveFoul(
+                athleteRedUpdated.foul
+            )
+        }
+    }
+
+    fun setupAddScoreBlue() {
+        ++athleteBlueUpdated.score
+
+        _athleteBlue.value = AthleteState.AthleteAddScore(
+            athleteBlueUpdated.score
+        )
+
+        checkIfAthleteWin(athleteBlueUpdated, athleteRedUpdated)
+    }
+
     fun setupRemoveScoreBlue() {
-        viewModelScope.launch {
-            if (athleteBlueUpdated.score > 0) {
-                --athleteBlueUpdated.score
+        if (athleteBlueUpdated.score > 0) {
+            --athleteBlueUpdated.score
 
-                _athleteBlue.postValue(
-                    AthleteState.AthleteRemoveScore(
-                        athleteBlueUpdated.score
-                    )
-                )
+            _athleteBlue.value = AthleteState.AthleteRemoveScore(
+                athleteBlueUpdated.score
+            )
 
-                checkIfAthleteWin(athleteBlueUpdated, athleteRedUpdated)
-                checkIfAthleteWin(athleteRedUpdated, athleteBlueUpdated)
-            }
+            checkIfAthleteWin(athleteBlueUpdated, athleteRedUpdated)
+            checkIfAthleteWin(athleteRedUpdated, athleteBlueUpdated)
         }
     }
 
     fun setupToucheBlue() {
-        viewModelScope.launch {
-            athleteBlueUpdated.touche = true
+        athleteBlueUpdated.touche = true
 
-            _athleteBlue.postValue(
-                AthleteState.AthleteAddTouche(true)
-            )
-        }
+        _athleteBlue.value = AthleteState.AthleteAddTouche(true)
     }
 
     fun setupAddFoulBlue() {
-        viewModelScope.launch {
-            ++athleteBlueUpdated.foul
+        ++athleteBlueUpdated.foul
 
-            _athleteBlue.postValue(
-                AthleteState.AthleteAddFoul(
-                    athleteBlueUpdated.foul
-                )
-            )
-        }
+        _athleteBlue.value = AthleteState.AthleteAddFoul(
+            athleteBlueUpdated.foul
+        )
     }
 
     fun setupRemoveFoulBlue() {
-        viewModelScope.launch {
-            if (athleteBlueUpdated.foul > 0) {
-                --athleteBlueUpdated.foul
+        if (athleteBlueUpdated.foul > 0) {
+            --athleteBlueUpdated.foul
 
-                _athleteBlue.postValue(
-                    AthleteState.AthleteRemoveFoul(
-                        athleteBlueUpdated.foul
-                    )
-                )
-            }
+            _athleteBlue.value = AthleteState.AthleteRemoveFoul(
+                athleteBlueUpdated.foul
+            )
         }
     }
 
     private fun checkIfAthleteWin(athleteWinner: Athlete, athleteLoser: Athlete) {
         if (checkTechnicalSuperiority(athleteWinner, athleteLoser)) {
             if (athleteWinner.color == athleteRedUpdated.color) {
-                _athleteRed.postValue(
+                _athleteRed.setValue(
                     AthleteState.AthleteWin(true)
                 )
             } else {
-                _athleteBlue.postValue(
+                _athleteBlue.setValue(
                     AthleteState.AthleteWin(true)
                 )
             }
