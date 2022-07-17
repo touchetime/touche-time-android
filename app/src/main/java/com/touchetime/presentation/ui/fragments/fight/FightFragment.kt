@@ -78,10 +78,8 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
 
                     showWinnerFullscreenDialog(
                         viewModel.athleteRedUpdated,
-                        { viewModel.setupAddScoreRed() },
-                        { viewModel.setupRemoveScoreRed() },
-                        {},
-                        ::fightEnded
+                        ::fightEnded,
+                        {}
                     )
                 }
             }
@@ -107,10 +105,8 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
 
                     showWinnerFullscreenDialog(
                         viewModel.athleteBlueUpdated,
-                        { viewModel.setupAddScoreBlue() },
-                        { viewModel.setupRemoveScoreBlue() },
-                        {},
-                        ::fightEnded
+                        ::fightEnded,
+                        {}
                     )
                 }
             }

@@ -12,8 +12,6 @@ import com.touchetime.presentation.state.ColorState
 
 class WinnerDialogFullscreen(
     private val athlete: Athlete,
-    val addScore: () -> Unit,
-    val removeScore: () -> Unit,
     val closeFight: () -> Unit,
     val restartFight: () -> Unit,
 ) : DialogFragmentTransparentBackground() {
@@ -66,48 +64,6 @@ class WinnerDialogFullscreen(
         viewBinding.toolbar.setupBack {
             closeFight()
             dismiss()
-        }
-
-        viewBinding.red.apply {
-            this.setupAddScore {
-                addScoreRedInDialog()
-            }
-            this.setupRemoveScore {
-                removeScoreRedInDialog()
-            }
-        }
-
-        viewBinding.blue.apply {
-            this.setupAddScore {
-                addScoreBlueInDialog()
-            }
-            this.setupRemoveScore {
-                removeScoreBlueInDialog()
-            }
-        }
-    }
-
-    private fun addScoreRedInDialog() {
-        ++athlete.score
-        viewBinding.red.updateScore(athlete.score.toString())
-    }
-
-    private fun removeScoreRedInDialog() {
-        if (athlete.score > 1) {
-            --athlete.score
-            viewBinding.red.updateScore(athlete.score.toString())
-        }
-    }
-
-    private fun addScoreBlueInDialog() {
-        ++athlete.score
-        viewBinding.blue.updateScore(athlete.score.toString())
-    }
-
-    private fun removeScoreBlueInDialog() {
-        if (athlete.score > 1) {
-            --athlete.score
-            viewBinding.blue.updateScore(athlete.score.toString())
         }
     }
 }
