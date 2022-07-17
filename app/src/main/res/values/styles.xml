@@ -121,7 +121,7 @@
         <item name="android:paddingEnd">@dimen/spacing_normal</item>
     </style>
 
-    <style name="ButtonScore">
+    <style name="ButtonScore" parent="@style/DmSansBoldLargeWhite">
         <item name="android:layout_width">@dimen/spacing_xx_large</item>
         <item name="android:layout_height">@dimen/spacing_xx_large</item>
     </style>

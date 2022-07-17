@@ -11,10 +11,12 @@ import androidx.fragment.app.viewModels
 import com.touchetime.R
 import com.touchetime.databinding.FragmentFightBinding
 import com.touchetime.presentation.common.RegressiveCounter
+import com.touchetime.presentation.model.Athlete
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.state.AthleteState
 import com.touchetime.presentation.ui.activity.main.MainActivity
 import com.touchetime.presentation.ui.fragments.home.HomeFragment
+import com.touchetime.presentation.util.showMoreScoreDialogFullscreen
 import com.touchetime.presentation.util.showWinnerFullscreenDialog
 
 class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
@@ -149,6 +151,7 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
     private fun setupRed() {
         viewBinding.red.apply {
             this.setupAddScore { viewModel.setupAddScoreRed() }
+            this.openMoreScore { openMoreScore(viewModel.athleteRedUpdated) }
             this.setupRemoveScore { viewModel.setupRemoveScoreRed() }
             this.setupTouche { viewModel.setupToucheRed() }
             this.setupAddFoul { viewModel.setupAddFoulRed() }
@@ -159,11 +162,16 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
     private fun setupBlue() {
         viewBinding.blue.apply {
             this.setupAddScore { viewModel.setupAddScoreBlue() }
+            this.openMoreScore { }
             this.setupRemoveScore { viewModel.setupRemoveScoreBlue() }
             this.setupTouche { viewModel.setupToucheBlue() }
             this.setupAddFoul { viewModel.setupAddFoulBlue() }
             this.setupRemoveFoul { viewModel.setupRemoveFoulBlue() }
         }
+    }
+
+    private fun openMoreScore(athlete: Athlete) {
+        showMoreScoreDialogFullscreen(athlete, {}, {}, {})
     }
 
     private fun setupScoreClickable(value: Boolean) {

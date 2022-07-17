@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="@dimen/spacing_large">
+
+    <com.touchetime.presentation.common.ToolbarView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.touchetime.presentation.common.ScoreBoardView
+        android:id="@+id/red"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_middle"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        tools:visibility="visible" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/more_score_container_red"
+        style="@style/ScoreboardContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/red"
+        app:layout_constraintEnd_toEndOf="@id/red"
+        app:layout_constraintStart_toStartOf="@id/red"
+        app:layout_constraintTop_toTopOf="@id/red"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/close"
+            style="@style/ButtonScore"
+            android:layout_marginBottom="@dimen/spacing_middle"
+            android:background="@drawable/background_score_red"
+            android:src="@drawable/ic_close_24dp"
+            app:layout_constraintBottom_toTopOf="@id/remove_more_score"
+            app:layout_constraintEnd_toEndOf="@+id/remove_more_score" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/five_score"
+            style="@style/ButtonScore"
+            android:layout_width="@dimen/button_more_score_size"
+            android:layout_height="@dimen/button_more_score_size"
+            android:layout_marginEnd="@dimen/spacing_normal"
+            android:layout_marginBottom="@dimen/spacing_small"
+            android:background="@drawable/background_score_red"
+            android:text="5"
+            app:layout_constraintBottom_toTopOf="@+id/close"
+            app:layout_constraintEnd_toEndOf="@+id/close" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/four_score"
+            style="@style/ButtonScore"
+            android:layout_width="@dimen/button_more_score_size"
+            android:layout_height="@dimen/button_more_score_size"
+            android:layout_marginEnd="@dimen/spacing_normal"
+            android:background="@drawable/background_score_red"
+            android:text="4"
+            app:layout_constraintBottom_toBottomOf="@+id/close"
+            app:layout_constraintEnd_toStartOf="@id/close"
+            app:layout_constraintTop_toTopOf="@id/close" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/two_score"
+            style="@style/ButtonScore"
+            android:layout_width="@dimen/button_more_score_size"
+            android:layout_height="@dimen/button_more_score_size"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_normal"
+            android:background="@drawable/background_score_red"
+            android:text="2"
+            app:layout_constraintEnd_toEndOf="@id/close"
+            app:layout_constraintTop_toBottomOf="@+id/close" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/remove_more_score"
+            style="@style/ButtonScore"
+            android:layout_marginBottom="@dimen/spacing_normal"
+            android:src="@drawable/ic_remove"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/more_score_container_red"
+            app:layout_constraintEnd_toEndOf="@id/more_score_container_red"
+            tools:background="@drawable/background_score_blue"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

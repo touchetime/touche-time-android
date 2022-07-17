@@ -86,6 +86,13 @@ class ScoreBoardView @JvmOverloads constructor(
         viewBinding.removeScore.isClickable = value
     }
 
+    fun openMoreScore(callback: () -> Unit) {
+        viewBinding.addScore.setOnLongClickListener {
+            callback()
+            true
+        }
+    }
+
     private fun buildScoreBoard(
         @DrawableRes background: Int,
         @DrawableRes backgroundScore: Int,

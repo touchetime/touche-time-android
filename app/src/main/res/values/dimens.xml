@@ -38,4 +38,5 @@
     <dimen name="font_title_small">13sp</dimen>
     <dimen name="font_title_tiny">9sp</dimen>
     <dimen name="font_title_tinier">4sp</dimen>
+    <dimen name="button_more_score_size">56dp</dimen>
 </resources>
