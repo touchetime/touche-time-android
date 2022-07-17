@@ -74,6 +74,8 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
                     updateFoulRed(it.foul.toString())
                 }
                 is AthleteState.AthleteAddTouche, is AthleteState.AthleteWin -> {
+                    stopChangeScore()
+
                     showWinnerFullscreenDialog(
                         viewModel.athleteRedUpdated,
                         { viewModel.setupAddScoreRed() },
@@ -101,6 +103,8 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
                     updateFoulBlue(it.foul.toString())
                 }
                 is AthleteState.AthleteAddTouche, is AthleteState.AthleteWin -> {
+                    stopChangeScore()
+
                     showWinnerFullscreenDialog(
                         viewModel.athleteBlueUpdated,
                         { viewModel.setupAddScoreBlue() },
@@ -151,6 +155,13 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
             this.setupTouche { viewModel.setupToucheBlue() }
             this.setupAddFoul { viewModel.setupAddFoulBlue() }
             this.setupRemoveFoul { viewModel.setupRemoveFoulBlue() }
+        }
+    }
+
+    private fun stopChangeScore() {
+        viewBinding.apply {
+            red.setupChangeScoreClickable(false)
+            blue.setupChangeScoreClickable(false)
         }
     }
 

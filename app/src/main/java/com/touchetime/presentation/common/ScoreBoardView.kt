@@ -81,6 +81,11 @@ class ScoreBoardView @JvmOverloads constructor(
         viewBinding.foul.text = value
     }
 
+    fun setupChangeScoreClickable(value: Boolean) {
+        viewBinding.addScore.isClickable = value
+        viewBinding.removeScore.isClickable = value
+    }
+
     private fun buildScoreBoard(
         @DrawableRes background: Int,
         @DrawableRes backgroundScore: Int,
