@@ -162,7 +162,7 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
     private fun setupBlue() {
         viewBinding.blue.apply {
             this.setupAddScore { viewModel.setupAddScoreBlue() }
-            this.openMoreScore { }
+            this.openMoreScore { openMoreScore(viewModel.athleteBlueUpdated) }
             this.setupRemoveScore { viewModel.setupRemoveScoreBlue() }
             this.setupTouche { viewModel.setupToucheBlue() }
             this.setupAddFoul { viewModel.setupAddFoulBlue() }

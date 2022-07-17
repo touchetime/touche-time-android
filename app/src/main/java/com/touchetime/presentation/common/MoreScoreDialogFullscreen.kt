@@ -31,30 +31,52 @@ class MoreScoreDialogFullscreen(
         super.onViewCreated(view, savedInstanceState)
 
         setupVisibilityScore()
-        setupListener()
+        setupRedListener()
+        setupBlueListener()
     }
 
     private fun setupVisibilityScore() {
         if (athlete.color == ColorState.RED) {
             viewBinding.moreScoreContainerRed.isVisible = true
         } else {
+            viewBinding.moreScoreContainerBlue.isVisible = true
         }
     }
 
-    private fun setupListener() {
+    private fun setupRedListener() {
         viewBinding.apply {
-            this.close.setOnClickListener {
+            this.closeRed.setOnClickListener {
                 dismiss()
             }
-            this.twoScore.setOnClickListener {
+            this.twoScoreRed.setOnClickListener {
                 twoScore()
                 dismiss()
             }
-            this.fourScore.setOnClickListener {
+            this.fourScoreRed.setOnClickListener {
                 fourScore()
                 dismiss()
             }
-            this.fiveScore.setOnClickListener {
+            this.fiveScoreRed.setOnClickListener {
+                fiveScore()
+                dismiss()
+            }
+        }
+    }
+
+    private fun setupBlueListener() {
+        viewBinding.apply {
+            this.closeBlue.setOnClickListener {
+                dismiss()
+            }
+            this.twoScoreBlue.setOnClickListener {
+                twoScore()
+                dismiss()
+            }
+            this.fourScoreBlue.setOnClickListener {
+                fourScore()
+                dismiss()
+            }
+            this.fiveScoreBlue.setOnClickListener {
                 fiveScore()
                 dismiss()
             }
