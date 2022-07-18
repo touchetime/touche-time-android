@@ -152,7 +152,7 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
         viewBinding.red.apply {
             this.setupAddScore { viewModel.setupAddScoreRed(ScoreState.ONE) }
             this.openMoreScore { openMoreScoreRed() }
-            this.setupRemoveScore { viewModel.setupRemoveScoreRed() }
+            this.setupRemoveScore { viewModel.setupRemoveScoreRed(ScoreState.ONE) }
             this.setupTouche { viewModel.setupToucheRed() }
             this.setupAddFoul { viewModel.setupAddFoulRed() }
             this.setupRemoveFoul { viewModel.setupRemoveFoulRed() }
@@ -163,7 +163,7 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
         viewBinding.blue.apply {
             this.setupAddScore { viewModel.setupAddScoreBlue(ScoreState.ONE) }
             this.openMoreScore { openMoreScoreBlue() }
-            this.setupRemoveScore { viewModel.setupRemoveScoreBlue() }
+            this.setupRemoveScore { viewModel.setupRemoveScoreBlue(ScoreState.ONE) }
             this.setupTouche { viewModel.setupToucheBlue() }
             this.setupAddFoul { viewModel.setupAddFoulBlue() }
             this.setupRemoveFoul { viewModel.setupRemoveFoulBlue() }

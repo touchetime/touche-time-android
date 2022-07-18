@@ -77,9 +77,9 @@ class FightViewModel : ViewModel() {
         checkIfAthleteWin(athleteRedUpdated, athleteBlueUpdated)
     }
 
-    fun setupRemoveScoreRed() {
-        if (athleteRedUpdated.score > 0) {
-            --athleteRedUpdated.score
+    fun setupRemoveScoreRed(scoreState: ScoreState) {
+        if (athleteRedUpdated.score - scoreState.value >= 0) {
+            athleteRedUpdated.score -= scoreState.value
 
             _athleteRed.value = AthleteState.AthleteRemoveScore(
                 athleteRedUpdated.score
@@ -124,9 +124,9 @@ class FightViewModel : ViewModel() {
         checkIfAthleteWin(athleteBlueUpdated, athleteRedUpdated)
     }
 
-    fun setupRemoveScoreBlue() {
-        if (athleteBlueUpdated.score > 0) {
-            --athleteBlueUpdated.score
+    fun setupRemoveScoreBlue(scoreState: ScoreState) {
+        if (athleteBlueUpdated.score - scoreState.value >= 0) {
+            athleteBlueUpdated.score -= scoreState.value
 
             _athleteBlue.value = AthleteState.AthleteRemoveScore(
                 athleteBlueUpdated.score
