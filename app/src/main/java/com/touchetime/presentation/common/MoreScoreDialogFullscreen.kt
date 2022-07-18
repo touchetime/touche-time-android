@@ -8,12 +8,14 @@ import androidx.core.view.isVisible
 import com.touchetime.databinding.MoreScoreDialogFullscreenBinding
 import com.touchetime.presentation.model.Athlete
 import com.touchetime.presentation.state.ColorState
+import com.touchetime.presentation.state.ScoreTypeState
 
 class MoreScoreDialogFullscreen(
     private val athlete: Athlete,
+    private val scoreTypeState: ScoreTypeState,
     val twoScore: () -> Unit,
     val fourScore: () -> Unit,
-    val fiveScore: () -> Unit,
+    val fiveScore: () -> Unit
 ) : DialogFragmentTransparentBackground() {
 
     private lateinit var viewBinding: MoreScoreDialogFullscreenBinding
@@ -30,54 +32,116 @@ class MoreScoreDialogFullscreen(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupVisibilityScore()
-        setupRedListener()
-        setupBlueListener()
+        setupMoreScoreVisibility()
+        setupAddMoreScoreRed()
+        setupRemoveMoreScoreRed()
+        setupAddMoreScoreBlue()
+        setupRemoveMoreScoreBlue()
     }
 
-    private fun setupVisibilityScore() {
-        if (athlete.color == ColorState.RED) {
-            viewBinding.moreScoreContainerRed.isVisible = true
+    private fun setupMoreScoreVisibility() {
+        if (scoreTypeState == ScoreTypeState.ADD) {
+            if (athlete.color == ColorState.RED) {
+                viewBinding.addMoreScoreRed.apply {
+                    setupBackgroundColor(athlete)
+                    isVisible = true
+                }
+            } else {
+                viewBinding.addMoreScoreBlue.apply {
+                    setupBackgroundColor(athlete)
+                    isVisible = true
+                }
+            }
         } else {
-            viewBinding.moreScoreContainerBlue.isVisible = true
-        }
-    }
-
-    private fun setupRedListener() {
-        viewBinding.apply {
-            this.closeRed.setOnClickListener {
-                dismiss()
-            }
-            this.twoScoreRed.setOnClickListener {
-                twoScore()
-                dismiss()
-            }
-            this.fourScoreRed.setOnClickListener {
-                fourScore()
-                dismiss()
-            }
-            this.fiveScoreRed.setOnClickListener {
-                fiveScore()
-                dismiss()
+            if (athlete.color == ColorState.RED) {
+                viewBinding.removeMoreScoreRed.apply {
+                    setupBackgroundColor(athlete)
+                    isVisible = true
+                }
+            } else {
+                viewBinding.removeMoreScoreBlue.apply {
+                    setupBackgroundColor(athlete)
+                    isVisible = true
+                }
             }
         }
     }
 
-    private fun setupBlueListener() {
-        viewBinding.apply {
-            this.closeBlue.setOnClickListener {
+    private fun setupAddMoreScoreRed() {
+        viewBinding.addMoreScoreRed.apply {
+            this.setupClose {
                 dismiss()
             }
-            this.twoScoreBlue.setOnClickListener {
-                twoScore()
+            this.setupFiveScore {
+                fiveScore()
                 dismiss()
             }
-            this.fourScoreBlue.setOnClickListener {
+            this.setupFourScore {
                 fourScore()
                 dismiss()
             }
-            this.fiveScoreBlue.setOnClickListener {
+            this.setupTwoScore {
+                twoScore()
+                dismiss()
+            }
+        }
+    }
+
+    private fun setupRemoveMoreScoreRed() {
+        viewBinding.removeMoreScoreRed.apply {
+            this.setupClose {
+                dismiss()
+            }
+            this.setupFiveScore {
                 fiveScore()
+                dismiss()
+            }
+            this.setupFourScore {
+                fourScore()
+                dismiss()
+            }
+            this.setupTwoScore {
+                twoScore()
+                dismiss()
+            }
+        }
+    }
+
+    private fun setupAddMoreScoreBlue() {
+        viewBinding.addMoreScoreBlue.apply {
+            this.setupClose {
+                dismiss()
+            }
+            this.setupFiveScore {
+                fiveScore()
+                dismiss()
+            }
+            this.setupFourScore {
+                fourScore()
+                dismiss()
+            }
+            this.setupTwoScore {
+                twoScore()
+                dismiss()
+            }
+        }
+    }
+
+    private fun setupRemoveMoreScoreBlue() {
+        viewBinding.removeMoreScoreBlue.apply {
+            this.setupClose {
+                dismiss()
+            }
+            this.setupFiveScore {
+                fiveScore()
+                dismiss()
+            }
+            this.setupFourScore {
+                fourScore()
+                dismiss()
+            }
+            this.setupTwoScore {
+                twoScore()
                 dismiss()
             }
         }

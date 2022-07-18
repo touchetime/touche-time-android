@@ -11,9 +11,11 @@ import androidx.fragment.app.viewModels
 import com.touchetime.R
 import com.touchetime.databinding.FragmentFightBinding
 import com.touchetime.presentation.common.RegressiveCounter
+import com.touchetime.presentation.model.Athlete
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.state.AthleteState
 import com.touchetime.presentation.state.ScoreState
+import com.touchetime.presentation.state.ScoreTypeState
 import com.touchetime.presentation.ui.activity.main.MainActivity
 import com.touchetime.presentation.ui.fragments.home.HomeFragment
 import com.touchetime.presentation.util.showMoreScoreDialogFullscreen
@@ -129,7 +131,8 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
 
     private fun fightEnded() {
         mainActivity?.navigateToFragment(
-            HomeFragment.newInstance(), HomeFragment::class.java.name
+            HomeFragment.newInstance(),
+            HomeFragment::class.java.name
         )
     }
 
@@ -150,9 +153,10 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
 
     private fun setupRed() {
         viewBinding.red.apply {
-            this.setupAddScore { viewModel.setupAddScoreRed(ScoreState.ONE) }
-            this.openMoreScore { openMoreScoreRed() }
-            this.setupRemoveScore { viewModel.setupRemoveScoreRed(ScoreState.ONE) }
+            this.setupAddScore { setupAddScoreRed(ScoreState.ONE) }
+            this.openAddMoreScore { openAddMoreScoreRed() }
+            this.setupRemoveScore { setupRemoveScoreRed(ScoreState.ONE) }
+            this.openRemoveMoreScore { openRemoveMoreScoreRed() }
             this.setupTouche { viewModel.setupToucheRed() }
             this.setupAddFoul { viewModel.setupAddFoulRed() }
             this.setupRemoveFoul { viewModel.setupRemoveFoulRed() }
@@ -161,30 +165,85 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
 
     private fun setupBlue() {
         viewBinding.blue.apply {
-            this.setupAddScore { viewModel.setupAddScoreBlue(ScoreState.ONE) }
-            this.openMoreScore { openMoreScoreBlue() }
-            this.setupRemoveScore { viewModel.setupRemoveScoreBlue(ScoreState.ONE) }
+            this.setupAddScore { setupAddScoreBlue(ScoreState.ONE) }
+            this.openAddMoreScore { openAddMoreScoreBlue() }
+            this.setupRemoveScore { setupRemoveScoreBlue(ScoreState.ONE) }
+            this.openRemoveMoreScore { openRemoveMoreScoreBlue() }
             this.setupTouche { viewModel.setupToucheBlue() }
             this.setupAddFoul { viewModel.setupAddFoulBlue() }
             this.setupRemoveFoul { viewModel.setupRemoveFoulBlue() }
         }
     }
 
-    private fun openMoreScoreRed() {
-        showMoreScoreDialogFullscreen(
+    private fun openAddMoreScoreRed() {
+        showMoreScore(
             viewModel.athleteRedUpdated,
-            { viewModel.setupAddScoreRed(ScoreState.TWO) },
-            { viewModel.setupAddScoreRed(ScoreState.FOUR) },
-            { viewModel.setupAddScoreRed(ScoreState.FIVE) }
+            ScoreTypeState.ADD,
+            { setupAddScoreRed(ScoreState.TWO) },
+            { setupAddScoreRed(ScoreState.FOUR) },
+            { setupAddScoreRed(ScoreState.FIVE) }
         )
     }
 
-    private fun openMoreScoreBlue() {
-        showMoreScoreDialogFullscreen(
+    private fun openRemoveMoreScoreRed() {
+        showMoreScore(
+            viewModel.athleteRedUpdated,
+            ScoreTypeState.REMOVE,
+            { setupRemoveScoreRed(ScoreState.TWO) },
+            { setupRemoveScoreRed(ScoreState.FOUR) },
+            { setupRemoveScoreRed(ScoreState.FIVE) }
+        )
+    }
+
+    private fun openAddMoreScoreBlue() {
+        showMoreScore(
             viewModel.athleteBlueUpdated,
-            { viewModel.setupAddScoreBlue(ScoreState.TWO) },
-            { viewModel.setupAddScoreBlue(ScoreState.FOUR) },
-            { viewModel.setupAddScoreBlue(ScoreState.FIVE) }
+            ScoreTypeState.ADD,
+            { setupAddScoreBlue(ScoreState.TWO) },
+            { setupAddScoreBlue(ScoreState.FOUR) },
+            { setupAddScoreBlue(ScoreState.FIVE) }
+        )
+    }
+
+    private fun openRemoveMoreScoreBlue() {
+        showMoreScore(
+            viewModel.athleteBlueUpdated,
+            ScoreTypeState.REMOVE,
+            { setupRemoveScoreBlue(ScoreState.TWO) },
+            { setupRemoveScoreBlue(ScoreState.FOUR) },
+            { setupRemoveScoreBlue(ScoreState.FIVE) }
+        )
+    }
+
+    private fun setupAddScoreRed(scoreState: ScoreState) {
+        viewModel.setupAddScoreRed(scoreState)
+    }
+
+    private fun setupAddScoreBlue(scoreState: ScoreState) {
+        viewModel.setupAddScoreBlue(scoreState)
+    }
+
+    private fun setupRemoveScoreRed(scoreState: ScoreState) {
+        viewModel.setupRemoveScoreRed(scoreState)
+    }
+
+    private fun setupRemoveScoreBlue(scoreState: ScoreState) {
+        viewModel.setupRemoveScoreBlue(scoreState)
+    }
+
+    private fun showMoreScore(
+        athlete: Athlete,
+        scoreTypeState: ScoreTypeState,
+        twoScore: () -> Unit,
+        fourScore: () -> Unit,
+        fiveScore: () -> Unit
+    ) {
+        showMoreScoreDialogFullscreen(
+            athlete,
+            scoreTypeState,
+            twoScore,
+            fourScore,
+            fiveScore
         )
     }
 
@@ -206,7 +265,8 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
 
     private fun setupTime(minutes: String, seconds: String) {
         viewBinding.regressiveCounter.setupMinutes(
-            minutes, seconds
+            minutes,
+            seconds
         )
     }
 

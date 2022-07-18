@@ -20,4 +20,12 @@
         <item name="android:layout_marginEnd">@dimen/spacing_small</item>
     </style>
 
+    <!-- More Score Dialog FullScreen -->
+    <style name="AddMoreScoreInMoreScoreDialog" parent="ScoreboardContainer">
+        <item name="android:layout_marginBottom">4dp</item>
+    </style>
+
+    <style name="RemoveMoreScoreInMoreScoreDialog" parent="ScoreboardContainer">
+        <item name="android:layout_marginBottom">-48dp</item>
+    </style>
 </resources>

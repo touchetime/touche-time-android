@@ -42,4 +42,7 @@
     <string name="free_style">Estilo Livre</string>
     <string name="continue_fight">Continuar</string>
     <string name="restart_fight">Reiniciar luta</string>
+    <string name="five_score">5</string>
+    <string name="four_score">4</string>
+    <string name="two_score">2</string>
 </resources>

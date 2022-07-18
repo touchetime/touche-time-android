@@ -130,4 +130,13 @@
     <style name="TextChronometer">
         <!--        <item name="android:layout_marginEnd">3dp</item>-->
     </style>
+
+    <!-- More Score Dialog FullScreen -->
+    <style name="AddMoreScoreInMoreScoreDialog" parent="ScoreboardContainer">
+        <item name="android:layout_marginBottom">-4dp</item>
+    </style>
+
+    <style name="RemoveMoreScoreInMoreScoreDialog" parent="ScoreboardContainer">
+        <item name="android:layout_marginBottom">-40dp</item>
+    </style>
 </resources>
