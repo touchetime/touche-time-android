@@ -1,6 +1,6 @@
-package com.touchetime.presentation.util
+package com.touchetime.presentation.util // ktlint-disable filename
 
-fun String.changeToTwoCase(): String {
+fun String.formatToTwoCase(): String {
     return if (this.length < 2) {
         "0$this"
     } else {

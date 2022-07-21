@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.touchetime.Constants
 import com.touchetime.R
 import com.touchetime.databinding.FragmentFightBinding
 import com.touchetime.presentation.common.RegressiveCounter
@@ -19,7 +20,6 @@ import com.touchetime.presentation.state.ScoreState
 import com.touchetime.presentation.state.ScoreTypeState
 import com.touchetime.presentation.ui.activity.main.MainActivity
 import com.touchetime.presentation.ui.fragments.home.HomeFragment
-import com.touchetime.presentation.util.Constants
 import com.touchetime.presentation.util.showMoreScoreDialogFullscreen
 import com.touchetime.presentation.util.showWinnerFullscreenDialog
 
@@ -52,8 +52,7 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
         setupRoundObserver()
         setupScoreboard()
         setupPlayPause()
-        setupRed()
-        setupBlue()
+        setupListeners()
     }
 
     private fun readArgs() {
@@ -181,6 +180,11 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
         }
     }
 
+    private fun setupListeners() {
+        setupRed()
+        setupBlue()
+    }
+
     private fun setupRed() {
         viewBinding.red.apply {
             this.setupAddScore { setupAddScoreRed(ScoreState.ONE) }
@@ -294,8 +298,8 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
 
     private fun setupScoreClickable(value: Boolean) {
         viewBinding.apply {
-            red.setupScoreClickable(value)
-            blue.setupScoreClickable(value)
+            red.setupScoreEnabled(value)
+            blue.setupScoreEnabled(value)
         }
     }
 
@@ -307,6 +311,13 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
     }
 
     private fun startRegressiveCounter(timerRound: Long) {
+        viewBinding.apply {
+            red.setupToucheClickable(true)
+            blue.setupToucheClickable(true)
+        }
+
+        setupScoreClickable(true)
+
         regressiveCounter = RegressiveCounter(
             time = timerRound,
             regressiveCounterCallback = this

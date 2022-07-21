@@ -4,14 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.touchetime.Constants.FREE_STYLE_SUPERIORITY
+import com.touchetime.Constants.GRECO_ROMAN_SUPERIORITY
+import com.touchetime.Constants.TIME_ROUND_TREE_MINUTES
+import com.touchetime.Constants.TIME_ROUND_TWO_MINUTES
 import com.touchetime.presentation.model.Athlete
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.model.Score
-import com.touchetime.presentation.state.* // ktlint-disable no-wildcard-imports
-import com.touchetime.presentation.util.Constants.FREE_STYLE_SUPERIORITY
-import com.touchetime.presentation.util.Constants.GRECO_ROMAN_SUPERIORITY
-import com.touchetime.presentation.util.Constants.TIME_ROUND_TREE_MINUTES
-import com.touchetime.presentation.util.Constants.TIME_ROUND_TWO_MINUTES
+import com.touchetime.presentation.state.AthleteState
+import com.touchetime.presentation.state.CategoryState
+import com.touchetime.presentation.state.ColorState
+import com.touchetime.presentation.state.RoundState
+import com.touchetime.presentation.state.ScoreState
+import com.touchetime.presentation.state.StyleState
 import com.touchetime.presentation.util.getTimeChronometer
 import kotlinx.coroutines.launch
 import java.util.*

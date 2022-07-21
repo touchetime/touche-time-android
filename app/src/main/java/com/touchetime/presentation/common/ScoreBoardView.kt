@@ -22,6 +22,10 @@ class ScoreBoardView @JvmOverloads constructor(
         true
     )
 
+    init {
+        setupScoreEnabled(false)
+    }
+
     fun setupScore(score: Int) {
         viewBinding.score.text = score.toString()
     }
@@ -87,9 +91,13 @@ class ScoreBoardView @JvmOverloads constructor(
         viewBinding.foul.text = value
     }
 
-    fun setupScoreClickable(value: Boolean) {
-        viewBinding.addScore.isClickable = value
-        viewBinding.removeScore.isClickable = value
+    fun setupToucheClickable(value: Boolean) {
+        viewBinding.touche.isEnabled = value
+    }
+
+    fun setupScoreEnabled(value: Boolean) {
+        viewBinding.addScore.isEnabled = value
+        viewBinding.removeScore.isEnabled = value
     }
 
     fun openAddMoreScore(callback: () -> Unit) {

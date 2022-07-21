@@ -50,6 +50,7 @@
             android:id="@+id/add_score"
             style="@style/ButtonScore"
             android:layout_marginBottom="@dimen/spacing_small"
+            android:clickable="false"
             android:src="@drawable/ic_add"
             tools:background="@drawable/background_score_blue" />
 
@@ -75,6 +76,7 @@
         android:id="@+id/touche"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:enabled="false"
         android:stateListAnimator="@null"
         android:text="@string/touche"
         android:textAppearance="@style/InterBoldNormalWhite"

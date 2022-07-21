@@ -1,7 +1,8 @@
 package com.touchetime.presentation.common
 
 import android.os.CountDownTimer
-import com.touchetime.presentation.util.changeToTwoCase
+import com.touchetime.Constants.DELAY
+import com.touchetime.presentation.util.formatToTwoCase
 
 class RegressiveCounter(
     time: Long,
@@ -13,18 +14,14 @@ class RegressiveCounter(
         val seconds = (millisUntilFinished / 1000 % 60).toString()
 
         regressiveCounterCallback.onTick(
-            minutes.changeToTwoCase(),
-            seconds.changeToTwoCase(),
+            minutes.formatToTwoCase(),
+            seconds.formatToTwoCase(),
             millisUntilFinished
         )
     }
 
     override fun onFinish() {
         regressiveCounterCallback.finish()
-    }
-
-    companion object {
-        const val DELAY = 1000L
     }
 
     interface RegressiveCounterCallback {
