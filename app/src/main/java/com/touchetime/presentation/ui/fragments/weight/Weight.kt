@@ -8,7 +8,7 @@ import com.touchetime.presentation.state.StyleState
 object Weight {
 
     fun getListWeight(
-        fight: Fight,
+        fight: Fight
     ): List<WeightSelect> {
         return when (fight.category) {
             CategoryState.CHILDREN_1 -> {
@@ -79,134 +79,134 @@ object Weight {
 
     // Senior, U23 and U20
     private val defaultGrecoRoman: List<WeightSelect> = listOf(
-        WeightSelect(55, false),
-        WeightSelect(60, false),
-        WeightSelect(63, false),
-        WeightSelect(67, false),
-        WeightSelect(72, false),
-        WeightSelect(77, false),
-        WeightSelect(82, false),
-        WeightSelect(87, false),
-        WeightSelect(97, false),
-        WeightSelect(130, false),
+        WeightSelect("-55Kg", false),
+        WeightSelect("-60Kg", false),
+        WeightSelect("-63Kg", false),
+        WeightSelect("-67Kg", false),
+        WeightSelect("-72Kg", false),
+        WeightSelect("-77Kg", false),
+        WeightSelect("-82Kg", false),
+        WeightSelect("-87Kg", false),
+        WeightSelect("-97Kg", false),
+        WeightSelect("-130Kg", false)
     )
 
     private val defaultWomanWrestling: List<WeightSelect> = listOf(
-        WeightSelect(50, false),
-        WeightSelect(53, false),
-        WeightSelect(55, false),
-        WeightSelect(57, false),
-        WeightSelect(59, false),
-        WeightSelect(62, false),
-        WeightSelect(65, false),
-        WeightSelect(68, false),
-        WeightSelect(72, false),
-        WeightSelect(76, false),
+        WeightSelect("-50Kg", false),
+        WeightSelect("-53Kg", false),
+        WeightSelect("-55Kg", false),
+        WeightSelect("-57Kg", false),
+        WeightSelect("-59Kg", false),
+        WeightSelect("-62Kg", false),
+        WeightSelect("-65Kg", false),
+        WeightSelect("-68Kg", false),
+        WeightSelect("-72Kg", false),
+        WeightSelect("-76Kg", false)
     )
 
     private val defaultFreeStyle: List<WeightSelect> = listOf(
-        WeightSelect(57, false),
-        WeightSelect(61, false),
-        WeightSelect(65, false),
-        WeightSelect(70, false),
-        WeightSelect(74, false),
-        WeightSelect(79, false),
-        WeightSelect(86, false),
-        WeightSelect(92, false),
-        WeightSelect(97, false),
-        WeightSelect(125, false),
+        WeightSelect("-57Kg", false),
+        WeightSelect("-61Kg", false),
+        WeightSelect("-65Kg", false),
+        WeightSelect("-70Kg", false),
+        WeightSelect("-74Kg", false),
+        WeightSelect("-79Kg", false),
+        WeightSelect("-86Kg", false),
+        WeightSelect("-82Kg", false),
+        WeightSelect("-97Kg", false),
+        WeightSelect("-125Kg", false)
     )
 
     // U17
     private val u17GrecoRomanAndFreeStyle: List<WeightSelect> = listOf(
-        WeightSelect(41, false),
-        WeightSelect(45, false),
-        WeightSelect(48, false),
-        WeightSelect(51, false),
-        WeightSelect(55, false),
-        WeightSelect(60, false),
-        WeightSelect(65, false),
-        WeightSelect(71, false),
-        WeightSelect(80, false),
-        WeightSelect(92, false),
-        WeightSelect(110, false),
+        WeightSelect("-41Kg", false),
+        WeightSelect("-45Kg", false),
+        WeightSelect("-48Kg", false),
+        WeightSelect("-51Kg", false),
+        WeightSelect("-55Kg", false),
+        WeightSelect("-60Kg", false),
+        WeightSelect("-65Kg", false),
+        WeightSelect("-71Kg", false),
+        WeightSelect("-80Kg", false),
+        WeightSelect("-92Kg", false),
+        WeightSelect("-110Kg", false)
     )
 
     private val u17WomanWrestling: List<WeightSelect> = listOf(
-        WeightSelect(40, false),
-        WeightSelect(43, false),
-        WeightSelect(46, false),
-        WeightSelect(49, false),
-        WeightSelect(53, false),
-        WeightSelect(57, false),
-        WeightSelect(61, false),
-        WeightSelect(65, false),
-        WeightSelect(69, false),
-        WeightSelect(73, false),
+        WeightSelect("-40Kg", false),
+        WeightSelect("-43Kg", false),
+        WeightSelect("-46Kg", false),
+        WeightSelect("-49Kg", false),
+        WeightSelect("-53Kg", false),
+        WeightSelect("-57Kg", false),
+        WeightSelect("-61Kg", false),
+        WeightSelect("-65Kg", false),
+        WeightSelect("-96Kg", false),
+        WeightSelect("-73Kg", false)
     )
 
     // U15
     private val u15GrecoRomanAndFreeStyle: List<WeightSelect> = listOf(
-        WeightSelect(38, false),
-        WeightSelect(41, false),
-        WeightSelect(44, false),
-        WeightSelect(52, false),
-        WeightSelect(57, false),
-        WeightSelect(62, false),
-        WeightSelect(68, false),
-        WeightSelect(75, false),
-        WeightSelect(85, false),
+        WeightSelect("-38Kg", false),
+        WeightSelect("-41Kg", false),
+        WeightSelect("-44Kg", false),
+        WeightSelect("-52Kg", false),
+        WeightSelect("-57Kg", false),
+        WeightSelect("-62Kg", false),
+        WeightSelect("-68Kg", false),
+        WeightSelect("-75Kg", false),
+        WeightSelect("-85Kg", false)
     )
 
     private val u15WomanWrestling: List<WeightSelect> = listOf(
-        WeightSelect(33, false),
-        WeightSelect(36, false),
-        WeightSelect(39, false),
-        WeightSelect(42, false),
-        WeightSelect(46, false),
-        WeightSelect(50, false),
-        WeightSelect(54, false),
-        WeightSelect(58, false),
-        WeightSelect(62, false),
-        WeightSelect(66, false),
+        WeightSelect("-33Kg", false),
+        WeightSelect("-36Kg", false),
+        WeightSelect("-39Kg", false),
+        WeightSelect("-42Kg", false),
+        WeightSelect("-46Kg", false),
+        WeightSelect("-50Kg", false),
+        WeightSelect("-54Kg", false),
+        WeightSelect("-58Kg", false),
+        WeightSelect("-62Kg", false),
+        WeightSelect("-66Kg", false)
     )
 
     // Children 3
     private val children3AllWeight: List<WeightSelect> = listOf(
-        WeightSelect(28, false),
-        WeightSelect(31, false),
-        WeightSelect(34, false),
-        WeightSelect(38, false),
-        WeightSelect(42, false),
-        WeightSelect(47, false),
-        WeightSelect(52, false),
-        WeightSelect(55, false),
-        WeightSelect(0, false), // When the weight is 0, should get the last weight and add +
+        WeightSelect("-28Kg", false),
+        WeightSelect("-31Kg", false),
+        WeightSelect("-34Kg", false),
+        WeightSelect("-38Kg", false),
+        WeightSelect("-42Kg", false),
+        WeightSelect("-47Kg", false),
+        WeightSelect("-52Kg", false),
+        WeightSelect("-55Kg", false),
+        WeightSelect("+55Kg", false)
     )
 
     // Children 2
     private val children2AllWeight: List<WeightSelect> = listOf(
-        WeightSelect(28, false),
-        WeightSelect(30, false),
-        WeightSelect(33, false),
-        WeightSelect(36, false),
-        WeightSelect(40, false),
-        WeightSelect(45, false),
-        WeightSelect(50, false),
-        WeightSelect(55, false),
-        WeightSelect(0, false), // When the weight is 0, should get the last weight and add +
+        WeightSelect("-28Kg", false),
+        WeightSelect("-30Kg", false),
+        WeightSelect("-33Kg", false),
+        WeightSelect("-36Kg", false),
+        WeightSelect("-40Kg", false),
+        WeightSelect("-45Kg", false),
+        WeightSelect("-50Kg", false),
+        WeightSelect("-55Kg", false),
+        WeightSelect("+55Kg", false)
     )
 
     // Children 1
     private val children1AllWeight: List<WeightSelect> = listOf(
-        WeightSelect(23, false),
-        WeightSelect(26, false),
-        WeightSelect(29, false),
-        WeightSelect(32, false),
-        WeightSelect(36, false),
-        WeightSelect(40, false),
-        WeightSelect(45, false),
-        WeightSelect(50, false),
-        WeightSelect(0, false), // When the weight is 0, should get the last weight and add +
+        WeightSelect("-23Kg", false),
+        WeightSelect("-36Kg", false),
+        WeightSelect("-39Kg", false),
+        WeightSelect("-32Kg", false),
+        WeightSelect("-36Kg", false),
+        WeightSelect("-40Kg", false),
+        WeightSelect("-45Kg", false),
+        WeightSelect("-50Kg", false),
+        WeightSelect("+50Kg", false)
     )
 }

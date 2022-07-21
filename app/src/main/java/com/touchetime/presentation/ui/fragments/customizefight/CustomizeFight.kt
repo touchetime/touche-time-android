@@ -134,7 +134,7 @@ class CustomizeFight : Fragment() {
                     )
                 } else {
                     WeightFragment.show(
-                        childFragmentManager,
+                        childFragmentManager
                     )
                 }
             }
@@ -199,7 +199,7 @@ class CustomizeFight : Fragment() {
         }
 
         viewModel.weightSelected.observe(viewLifecycleOwner) {
-            viewBinding.weight.setupItemSelectedVisibility(it, true)
+            viewBinding.weight.setupItemSelectedVisibility(weightSelected = it)
 
             checkButtonVisibility()
         }
@@ -251,7 +251,7 @@ class CustomizeFight : Fragment() {
     }
 
     private fun setupWeightSelected(bundle: Bundle) {
-        (bundle.getSerializable(WeightFragment.WEIGHT) as? Int)?.let {
+        (bundle.getSerializable(WeightFragment.WEIGHT) as? String)?.let {
             viewModel.setupWeightSelected(it)
         }
     }

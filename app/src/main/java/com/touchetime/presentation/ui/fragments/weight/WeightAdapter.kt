@@ -11,7 +11,7 @@ import com.touchetime.presentation.model.WeightSelect
 import com.touchetime.presentation.util.inflate
 
 class WeightAdapter(
-    private val onItemClicked: (params: Int) -> Unit
+    private val onItemClicked: (weight: String) -> Unit
 ) : ListAdapter<WeightSelect, WeightAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -25,27 +25,23 @@ class WeightAdapter(
 
     inner class ViewHolder(
         view: View,
-        private val onItemClicked: (position: Int) -> Unit,
+        private val onItemClicked: (weight: String) -> Unit
     ) : RecyclerView.ViewHolder(view) {
         private val viewBinding = BottomSheetItemBinding.bind(view)
-        private lateinit var param: WeightSelect
+        private lateinit var weightSelect: WeightSelect
 
         fun bind(weightSelected: WeightSelect) {
-            param = weightSelected
+            weightSelect = weightSelected
             viewBinding.apply {
                 this.text.isSelected = weightSelected.isSelected
                 this.background.isSelected = weightSelected.isSelected
-                this.text.text = if (weightSelected.value == 0) {
-                    "+${currentList[currentList.size - 2].value}kg"
-                } else {
-                    "-${weightSelected.value}Kg"
-                }
+                this.text.text = weightSelected.value
             }
         }
 
         init {
             view.setOnClickListener {
-                onItemClicked(param.value)
+                onItemClicked(weightSelect.value)
             }
         }
     }

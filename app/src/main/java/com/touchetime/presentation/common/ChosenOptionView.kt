@@ -14,7 +14,9 @@ class ChosenOptionView @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val viewBinding = com.touchetime.databinding.ChosenOptionViewBinding.inflate(
-        LayoutInflater.from(context), this, true
+        LayoutInflater.from(context),
+        this,
+        true
     )
 
     fun setupParams(@StringRes title: Int, @StringRes description: Int) {
@@ -39,14 +41,11 @@ class ChosenOptionView @JvmOverloads constructor(
         }
     }
 
-    fun setupItemSelectedVisibility(@StringRes itemSelected: Int?, isNumber: Boolean = false) {
+    fun setupItemSelectedVisibility(@StringRes itemSelected: Int? = null, weightSelected: String? = null) {
         viewBinding.apply {
-            objectSelected.isVisible = itemSelected != null
-            textItemSelected.text = if (isNumber) {
-                "-${itemSelected}Kg"
-            } else {
-                itemSelected?.let { context.getString(it) }
-            }
+            objectSelected.isVisible = itemSelected != null || weightSelected != null
+            textItemSelected.text =
+                itemSelected?.let { context.getString(it) } ?: weightSelected
         }
     }
 }

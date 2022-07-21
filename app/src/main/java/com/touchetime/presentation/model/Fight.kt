@@ -10,5 +10,5 @@ data class Fight(
     var nameFight: String? = null,
     var category: CategoryState = CategoryState.DEFAULT,
     var style: StyleState = StyleState.DEFAULT,
-    var weight: Int? = null
+    var weight: String? = null
 ) : Parcelable

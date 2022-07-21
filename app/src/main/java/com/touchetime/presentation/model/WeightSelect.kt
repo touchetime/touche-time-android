@@ -1,6 +1,6 @@
 package com.touchetime.presentation.model
 
 data class WeightSelect(
-    val value: Int,
+    val value: String,
     var isSelected: Boolean = false
 )
