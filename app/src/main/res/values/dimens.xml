@@ -10,6 +10,7 @@
     <dimen name="bottom_sheet_thumb_indicator_width">64dp</dimen>
     <dimen name="bottom_sheet_thumb_indicator_height">4dp</dimen>
     <dimen name="bottom_sheet_thumb_indicator_top_offset">14dp</dimen>
+    <dimen name="customize_fight_distance">66dp</dimen>
 
     <dimen name="font_chronometer_scoreboard_size">96sp</dimen>
     <dimen name="font_foul_size">40sp</dimen>

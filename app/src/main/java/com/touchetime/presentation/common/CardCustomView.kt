@@ -16,7 +16,9 @@ class CardCustomView @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val viewBinding = CardCustomViewBinding.inflate(
-        LayoutInflater.from(context), this, true
+        LayoutInflater.from(context),
+        this,
+        true
     )
 
     fun setupParams(@StringRes title: Int, @StringRes description: Int, @DrawableRes icon: Int) {

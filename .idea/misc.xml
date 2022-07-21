@@ -13,6 +13,7 @@
         <entry key="app/src/main/res/drawable/background_item_selected.xml" value="0.2965" />
         <entry key="app/src/main/res/drawable/background_point_chronometer.xml" value="0.14" />
         <entry key="app/src/main/res/drawable/background_score_blue.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/background_score_circle_gray.xml" value="0.3055" />
         <entry key="app/src/main/res/drawable/background_score_red.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/background_scoreboard_blue.xml" value="0.196" />
         <entry key="app/src/main/res/drawable/background_scoreboard_red.xml" value="0.196" />
@@ -41,6 +42,7 @@
         <entry key="app/src/main/res/layout/card_custom_view.xml" value="0.31145833333333334" />
         <entry key="app/src/main/res/layout/chosen_option_view.xml" value="0.25" />
         <entry key="app/src/main/res/layout/chronometer_view.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/customize_object_view.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.24027362120564344" />
         <entry key="app/src/main/res/layout/fragment_customize_fight.xml" value="0.24711415134672937" />
         <entry key="app/src/main/res/layout/fragment_fight.xml" value="0.25" />
