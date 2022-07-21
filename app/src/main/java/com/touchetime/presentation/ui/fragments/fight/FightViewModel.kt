@@ -11,12 +11,7 @@ import com.touchetime.Constants.TIME_ROUND_TWO_MINUTES
 import com.touchetime.presentation.model.Athlete
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.model.Score
-import com.touchetime.presentation.state.AthleteState
-import com.touchetime.presentation.state.CategoryState
-import com.touchetime.presentation.state.ColorState
-import com.touchetime.presentation.state.RoundState
-import com.touchetime.presentation.state.ScoreState
-import com.touchetime.presentation.state.StyleState
+import com.touchetime.presentation.state.*
 import com.touchetime.presentation.util.getTimeChronometer
 import kotlinx.coroutines.launch
 import java.util.*
@@ -78,7 +73,7 @@ class FightViewModel : ViewModel() {
 
     fun setupChronometer() {
         when (_fight.value?.category) {
-            CategoryState.DEFAULT, CategoryState.U23, CategoryState.U20 -> {
+            CategoryState.DEFAULT, CategoryState.SENIOR, CategoryState.U23, CategoryState.U20, CategoryState.MASTER -> {
                 setupTimerRounder(TIME_ROUND_TREE_MINUTES)
                 setupTimeChronometer(TIME_ROUND_TREE_MINUTES)
             }

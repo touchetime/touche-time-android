@@ -17,7 +17,7 @@
 
     <!-- Chronometer View -->
     <style name="TextChronometer">
-        <item name="android:layout_marginEnd">@dimen/spacing_small</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_tiny</item>
     </style>
 
     <!-- More Score Dialog FullScreen -->

@@ -14,7 +14,9 @@ class ChronometerView @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val viewBinding = ChronometerViewBinding.inflate(
-        LayoutInflater.from(context), this, true
+        LayoutInflater.from(context),
+        this,
+        true
     )
 
     fun setupMinutes(minutes: String, seconds: String) {

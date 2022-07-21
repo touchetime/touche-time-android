@@ -5,6 +5,7 @@ import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.touchetime.Constants
@@ -30,6 +31,11 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
         get() = activity as? MainActivity
     private lateinit var regressiveCounter: CountDownTimer
     private val viewModel: FightViewModel by viewModels()
+    private val backPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            navigateToHome()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +49,8 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        activity?.onBackPressedDispatcher?.addCallback(backPressedCallback)
+
         readArgs()
         setupToolbar()
         setupRedObserver()
@@ -55,6 +63,11 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
         setupListeners()
     }
 
+    override fun onDestroyView() {
+        backPressedCallback.remove()
+        super.onDestroyView()
+    }
+
     private fun readArgs() {
         (arguments?.getParcelable<Fight>(ARGS))?.let {
             viewModel.setupFight(it)
@@ -64,7 +77,7 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
     private fun setupToolbar() {
         viewBinding.toolbar.apply {
             this.setupParams(title = getString(R.string.card_custom_view_title_1))
-            this.setupBack { returnToLastScreen() }
+            this.setupBack { navigateToHome() }
         }
     }
 
@@ -216,6 +229,7 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
 
     private fun restartFight() {
         viewModel.resetFight()
+        setupRegressiveCounterIsRunning(false)
     }
 
     private fun openAddMoreScoreRed() {
@@ -366,6 +380,13 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
         setupTime(
             time.substring(0, 2),
             time.substring(3, 5)
+        )
+    }
+
+    private fun navigateToHome() {
+        mainActivity?.navigateToFragment(
+            HomeFragment.newInstance(),
+            HomeFragment::class.java.name
         )
     }
 
