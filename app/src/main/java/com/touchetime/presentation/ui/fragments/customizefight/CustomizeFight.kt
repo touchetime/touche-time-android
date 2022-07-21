@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.touchetime.R
 import com.touchetime.databinding.FragmentCustomizeFightBinding
+import com.touchetime.presentation.common.BaseFragment
 import com.touchetime.presentation.state.CategoryState
 import com.touchetime.presentation.state.StyleState
 import com.touchetime.presentation.ui.activity.main.MainActivity
@@ -17,7 +18,7 @@ import com.touchetime.presentation.ui.fragments.fight.FightFragment
 import com.touchetime.presentation.ui.fragments.style.StyleFragment
 import com.touchetime.presentation.ui.fragments.weight.WeightFragment
 
-class CustomizeFight : Fragment() {
+class CustomizeFight : BaseFragment() {
 
     private lateinit var viewBinding: FragmentCustomizeFightBinding
     private val viewModel: CustomizeFightViewModel by viewModels()
@@ -254,10 +255,6 @@ class CustomizeFight : Fragment() {
         (bundle.getSerializable(WeightFragment.WEIGHT) as? String)?.let {
             viewModel.setupWeightSelected(it)
         }
-    }
-
-    private fun returnToLastScreen() {
-        parentFragmentManager.popBackStackImmediate()
     }
 
     companion object {

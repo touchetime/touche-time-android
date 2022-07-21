@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.touchetime.Constants
 import com.touchetime.R
 import com.touchetime.databinding.FragmentFightBinding
+import com.touchetime.presentation.common.BaseFragment
 import com.touchetime.presentation.common.RegressiveCounter
 import com.touchetime.presentation.model.Athlete
 import com.touchetime.presentation.model.Fight
@@ -23,7 +23,7 @@ import com.touchetime.presentation.ui.fragments.home.HomeFragment
 import com.touchetime.presentation.util.showMoreScoreDialogFullscreen
 import com.touchetime.presentation.util.showWinnerFullscreenDialog
 
-class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
+class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallback {
 
     private lateinit var viewBinding: FragmentFightBinding
     private val mainActivity: MainActivity?
@@ -218,10 +218,6 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
 
     private fun restartFight() {
         viewModel.resetFight()
-    }
-
-    private fun returnToLastScreen() {
-        parentFragmentManager.popBackStackImmediate()
     }
 
     private fun openAddMoreScoreRed() {
