@@ -1,4 +1,4 @@
-package com.touchetime.presentation.ui.fragments.customizefight
+package com.touchetime.presentation.ui.fragments.createfight
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.touchetime.R
-import com.touchetime.databinding.FragmentCustomizeFightBinding
+import com.touchetime.databinding.FragmentCreateFightBinding
 import com.touchetime.presentation.common.BaseFragment
 import com.touchetime.presentation.state.CategoryState
 import com.touchetime.presentation.state.StyleState
@@ -18,10 +18,10 @@ import com.touchetime.presentation.ui.fragments.fight.FightFragment
 import com.touchetime.presentation.ui.fragments.style.StyleFragment
 import com.touchetime.presentation.ui.fragments.weight.WeightFragment
 
-class CustomizeFight : BaseFragment() {
+class CreateFight : BaseFragment() {
 
-    private lateinit var viewBinding: FragmentCustomizeFightBinding
-    private val viewModel: CustomizeFightViewModel by viewModels()
+    private lateinit var viewBinding: FragmentCreateFightBinding
+    private val viewModel: CreateFightViewModel by viewModels()
     private val mainActivity: MainActivity?
         get() = activity as? MainActivity
     private val resultKeys = arrayOf(
@@ -40,7 +40,7 @@ class CustomizeFight : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewBinding = FragmentCustomizeFightBinding.inflate(inflater, container, false)
+        viewBinding = FragmentCreateFightBinding.inflate(inflater, container, false)
         return viewBinding.root
     }
 
@@ -258,6 +258,6 @@ class CustomizeFight : BaseFragment() {
     }
 
     companion object {
-        fun newInstance() = CustomizeFight()
+        fun newInstance() = CreateFight()
     }
 }

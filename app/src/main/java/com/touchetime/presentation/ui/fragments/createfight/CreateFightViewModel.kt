@@ -1,4 +1,4 @@
-package com.touchetime.presentation.ui.fragments.customizefight
+package com.touchetime.presentation.ui.fragments.createfight
 
 import android.content.Context
 import androidx.lifecycle.LiveData
@@ -10,7 +10,7 @@ import com.touchetime.presentation.state.CategoryState
 import com.touchetime.presentation.state.StyleState
 import kotlinx.coroutines.launch
 
-class CustomizeFightViewModel : ViewModel() {
+class CreateFightViewModel : ViewModel() {
 
     var fight = Fight()
         private set

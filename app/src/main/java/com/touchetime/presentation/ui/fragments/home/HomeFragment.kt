@@ -11,7 +11,7 @@ import com.touchetime.databinding.FragmentHomeBinding
 import com.touchetime.presentation.common.BaseFragment
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.ui.activity.main.MainActivity
-import com.touchetime.presentation.ui.fragments.customizefight.CustomizeFight
+import com.touchetime.presentation.ui.fragments.createfight.CreateFight
 import com.touchetime.presentation.ui.fragments.fight.FightFragment
 
 class HomeFragment : BaseFragment() {
@@ -66,8 +66,8 @@ class HomeFragment : BaseFragment() {
     private fun setupMainFightListener() {
         viewBinding.mainFight.setOnClickListener {
             navigateToFragment(
-                CustomizeFight.newInstance(),
-                CustomizeFight::class.java.name
+                CreateFight.newInstance(),
+                CreateFight::class.java.name
             )
         }
     }
