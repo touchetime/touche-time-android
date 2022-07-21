@@ -14,10 +14,12 @@ import com.touchetime.presentation.common.RegressiveCounter
 import com.touchetime.presentation.model.Athlete
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.state.AthleteState
+import com.touchetime.presentation.state.RoundState
 import com.touchetime.presentation.state.ScoreState
 import com.touchetime.presentation.state.ScoreTypeState
 import com.touchetime.presentation.ui.activity.main.MainActivity
 import com.touchetime.presentation.ui.fragments.home.HomeFragment
+import com.touchetime.presentation.util.Constants
 import com.touchetime.presentation.util.showMoreScoreDialogFullscreen
 import com.touchetime.presentation.util.showWinnerFullscreenDialog
 
@@ -42,17 +44,16 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
         super.onViewCreated(view, savedInstanceState)
 
         readArgs()
-        setupTimeRound(TIME_ROUND)
         setupToolbar()
-        setupObservers()
+        setupRedObserver()
+        setupBlueObserver()
+        setupFightObserver()
+        setupTimeObserver()
+        setupRoundObserver()
         setupScoreboard()
+        setupPlayPause()
         setupRed()
         setupBlue()
-        setupChronometer(
-            R.string.tree_minutes,
-            R.string.zero_minutes
-        )
-        setupPlayPause()
     }
 
     private fun readArgs() {
@@ -61,7 +62,14 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
         }
     }
 
-    private fun setupObservers() {
+    private fun setupToolbar() {
+        viewBinding.toolbar.apply {
+            this.setupParams(title = getString(R.string.card_custom_view_title_1))
+            this.setupBack { returnToLastScreen() }
+        }
+    }
+
+    private fun setupRedObserver() {
         viewModel.athleteRed.observe(viewLifecycleOwner) {
             when (it) {
                 is AthleteState.AthleteDefault -> {
@@ -83,6 +91,7 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
                 }
                 is AthleteState.AthleteAddTouche, is AthleteState.AthleteWin -> {
                     setupScoreClickable(false)
+                    pauseRegressiveCounter()
 
                     showWinnerFullscreenDialog(
                         viewModel.athleteRedUpdated,
@@ -92,7 +101,9 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
                 }
             }
         }
+    }
 
+    private fun setupBlueObserver() {
         viewModel.athleteBlue.observe(viewLifecycleOwner) {
             when (it) {
                 is AthleteState.AthleteDefault -> {
@@ -114,6 +125,7 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
                 }
                 is AthleteState.AthleteAddTouche, is AthleteState.AthleteWin -> {
                     setupScoreClickable(false)
+                    pauseRegressiveCounter()
 
                     showWinnerFullscreenDialog(
                         viewModel.athleteBlueUpdated,
@@ -123,21 +135,25 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
                 }
             }
         }
+    }
 
+    private fun setupFightObserver() {
         viewModel.fight.observe(viewLifecycleOwner) {
+            viewModel.setupChronometer()
             viewBinding.toolbar.setupParams(title = it.nameFight)
         }
     }
 
-    private fun fightEnded() {
-        mainActivity?.navigateToFragment(
-            HomeFragment.newInstance(),
-            HomeFragment::class.java.name
-        )
+    private fun setupTimeObserver() {
+        viewModel.time.observe(viewLifecycleOwner) {
+            adjustTimeAndUpdateChronometer(it)
+        }
     }
 
-    private fun restartFight() {
-        viewModel.resetFight()
+    private fun setupRoundObserver() {
+        viewModel.round.observe(viewLifecycleOwner) {
+            setupRound(it)
+        }
     }
 
     private fun setupScoreboard() {
@@ -147,8 +163,22 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
         }
     }
 
-    private fun returnToLastScreen() {
-        parentFragmentManager.popBackStackImmediate()
+    private fun setupPlayPause() {
+        viewBinding.regressiveCounter.apply {
+            this.setupPlayPause {
+                if (this.isRunning()) {
+                    setupRegressiveCounterIsRunning(false)
+                    pauseRegressiveCounter()
+                } else {
+                    setupRegressiveCounterIsRunning(true)
+                    startRegressiveCounter(viewModel.timerRound)
+
+                    if (viewModel.shouldStartInterval && !viewModel.shouldStartSecondRound) {
+                        this.setupPlayPauseVisibility(false)
+                    }
+                }
+            }
+        }
     }
 
     private fun setupRed() {
@@ -173,6 +203,21 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
             this.setupAddFoul { viewModel.setupAddFoulBlue() }
             this.setupRemoveFoul { viewModel.setupRemoveFoulBlue() }
         }
+    }
+
+    private fun fightEnded() {
+        mainActivity?.navigateToFragment(
+            HomeFragment.newInstance(),
+            HomeFragment::class.java.name
+        )
+    }
+
+    private fun restartFight() {
+        viewModel.resetFight()
+    }
+
+    private fun returnToLastScreen() {
+        parentFragmentManager.popBackStackImmediate()
     }
 
     private fun openAddMoreScoreRed() {
@@ -254,38 +299,11 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
         }
     }
 
-    private fun setupChronometer(minutes: Int, seconds: Int) {
-        context?.let {
-            setupTime(
-                it.getString(minutes),
-                it.getString(seconds)
-            )
-        }
-    }
-
     private fun setupTime(minutes: String, seconds: String) {
         viewBinding.regressiveCounter.setupMinutes(
             minutes,
             seconds
         )
-    }
-
-    private fun setupPlayPause() {
-        viewBinding.regressiveCounter.apply {
-            this.setupPlayPause {
-                if (this.isRunning()) {
-                    setupRegressiveCounterIsRunning(false)
-                    pauseRegressiveCounter()
-                } else {
-                    setupRegressiveCounterIsRunning(true)
-                    viewModel.timerRound?.let { startRegressiveCounter(it) }
-
-                    if (viewModel.shouldStartInterval && !viewModel.shouldStartSecondRound) {
-                        this.setupPlayPauseVisibility(false)
-                    }
-                }
-            }
-        }
     }
 
     private fun startRegressiveCounter(timerRound: Long) {
@@ -299,19 +317,8 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
         regressiveCounter.cancel()
     }
 
-    private fun setupRound(round: Int) {
-        viewBinding.regressiveCounter.setupRound(round)
-    }
-
-    private fun setupTimeRound(value: Long) {
-        viewModel.setupTimerRounder(value)
-    }
-
-    private fun setupToolbar() {
-        viewBinding.toolbar.apply {
-            this.setupParams(title = getString(R.string.card_custom_view_title_1))
-            this.setupBack { returnToLastScreen() }
-        }
+    private fun setupRound(roundState: RoundState) {
+        viewBinding.regressiveCounter.setupRound(roundState.value)
     }
 
     private fun setupRegressiveCounterIsRunning(value: Boolean) {
@@ -334,27 +341,47 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
         viewBinding.blue.updateFoul(value)
     }
 
+    private fun finishFight() {
+        viewModel.finishFight()
+    }
+
+    private fun prepareChronometerToSecondRound() {
+        viewModel.apply {
+            setupShouldStartSecondRound(true)
+            setupChronometer()
+            setupRound(RoundState.ROUND_TWO)
+        }
+    }
+
+    private fun prepareChronometerToInterval() {
+        viewModel.apply {
+            setupShouldStartInterval(true)
+            setupRound(RoundState.INTERVAL)
+            setupTimeChronometer(Constants.TIME_INTERVAL)
+            setupTimerRounder(Constants.TIME_INTERVAL)
+        }
+    }
+
+    private fun adjustTimeAndUpdateChronometer(time: String) {
+        setupTime(
+            time.substring(0, 2),
+            time.substring(3, 5)
+        )
+    }
+
     override fun onTick(minutes: String, seconds: String, millisUntilFinished: Long) {
-        setupTimeRound(millisUntilFinished)
+        viewModel.setupTimerRounder(millisUntilFinished)
         setupTime(minutes, seconds)
     }
 
     override fun finish() {
-        viewModel.shouldStartFirstRound = true
-
         if (viewModel.shouldStartSecondRound) {
-            // TODO: To finish fight
+            finishFight()
         } else {
             if (viewModel.shouldStartInterval) {
-                viewModel.shouldStartSecondRound = true
-                setupRound(R.string.round_two)
-                setupTimeRound(TIME_ROUND)
-                setupChronometer(R.string.tree_minutes, R.string.zero_minutes)
+                prepareChronometerToSecondRound()
             } else {
-                viewModel.shouldStartInterval = true
-                setupRound(R.string.interval)
-                setupTimeRound(TIME_INTERVAL)
-                setupChronometer(R.string.zero_minutes, R.string.tree_ten_minutes)
+                prepareChronometerToInterval()
             }
         }
 
@@ -366,8 +393,6 @@ class FightFragment : Fragment(), RegressiveCounter.RegressiveCounterCallback {
 
     companion object {
         private const val ARGS = "ARGS"
-        private const val TIME_ROUND = 11000L // 10000L - 180000L
-        private const val TIME_INTERVAL = 5000L // 5000L - 30000L
 
         private fun newInstance(fight: Fight) = FightFragment().apply {
             arguments = bundleOf(
