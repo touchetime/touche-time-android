@@ -34,6 +34,18 @@ class ChronometerView @JvmOverloads constructor(
         }
     }
 
+    fun setupReset(callback: () -> Unit) {
+        viewBinding.reset.setOnClickListener {
+            callback()
+        }
+    }
+
+    fun setupEdit(callback: () -> Unit) {
+        viewBinding.edit.setOnClickListener {
+            callback()
+        }
+    }
+
     fun isRunning(): Boolean = viewBinding.playOrPause.isSelected
 
     fun setupIsRunning(value: Boolean) {

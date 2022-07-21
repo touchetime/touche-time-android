@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.touchetime.Constants
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.state.CategoryState
 import com.touchetime.presentation.state.StyleState
@@ -27,6 +28,7 @@ class CreateFightViewModel : ViewModel() {
         viewModelScope.launch {
             _categorySelected.postValue(categoryState)
             fight.category = categoryState
+            setupTimeRounds(categoryState)
         }
     }
 
@@ -49,5 +51,16 @@ class CreateFightViewModel : ViewModel() {
             "${context.getString(fight.category.value)} | ${context.getString(fight.style.value)} ${fight.weight}"
 
         fight.nameFight = nameFight
+    }
+
+    private fun setupTimeRounds(categoryState: CategoryState) {
+        when (categoryState) {
+            CategoryState.U20, CategoryState.U23, CategoryState.SENIOR, CategoryState.MASTER, CategoryState.DEFAULT -> {
+                fight.timeRound = Constants.TIME_ROUND_TREE_MINUTES
+            }
+            else -> {
+                fight.timeRound = Constants.TIME_ROUND_TWO_MINUTES
+            }
+        }
     }
 }

@@ -12,6 +12,7 @@ import com.touchetime.Constants
 import com.touchetime.R
 import com.touchetime.databinding.FragmentFightBinding
 import com.touchetime.presentation.common.BaseFragment
+import com.touchetime.presentation.common.ChronometerView
 import com.touchetime.presentation.common.RegressiveCounter
 import com.touchetime.presentation.model.Athlete
 import com.touchetime.presentation.model.Fight
@@ -20,6 +21,7 @@ import com.touchetime.presentation.state.RoundState
 import com.touchetime.presentation.state.ScoreState
 import com.touchetime.presentation.state.ScoreTypeState
 import com.touchetime.presentation.ui.activity.main.MainActivity
+import com.touchetime.presentation.ui.fragments.customizefight.CustomizeFightFragment
 import com.touchetime.presentation.ui.fragments.home.HomeFragment
 import com.touchetime.presentation.util.showMoreScoreDialogFullscreen
 import com.touchetime.presentation.util.showWinnerFullscreenDialog
@@ -59,7 +61,7 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
         setupTimeObserver()
         setupRoundObserver()
         setupScoreboard()
-        setupPlayPause()
+        setupRegressiveChronometerListener()
         setupListeners()
     }
 
@@ -173,21 +175,11 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
         }
     }
 
-    private fun setupPlayPause() {
+    private fun setupRegressiveChronometerListener() {
         viewBinding.regressiveCounter.apply {
-            this.setupPlayPause {
-                if (this.isRunning()) {
-                    setupRegressiveCounterIsRunning(false)
-                    pauseRegressiveCounter()
-                } else {
-                    setupRegressiveCounterIsRunning(true)
-                    startRegressiveCounter(viewModel.timerRound)
-
-                    if (viewModel.shouldStartInterval && !viewModel.shouldStartSecondRound) {
-                        this.setupPlayPauseVisibility(false)
-                    }
-                }
-            }
+            this.setupPlayPause { regressiveChronometerPlayPause() }
+            this.setupReset { }
+            this.setupEdit { viewModel.fight.value?.let { CustomizeFightFragment.show(it, childFragmentManager) } }
         }
     }
 
@@ -388,6 +380,20 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
             HomeFragment.newInstance(),
             HomeFragment::class.java.name
         )
+    }
+
+    private fun ChronometerView.regressiveChronometerPlayPause() {
+        if (this.isRunning()) {
+            setupRegressiveCounterIsRunning(false)
+            pauseRegressiveCounter()
+        } else {
+            setupRegressiveCounterIsRunning(true)
+            startRegressiveCounter(viewModel.timerRound)
+
+            if (viewModel.shouldStartInterval && !viewModel.shouldStartSecondRound) {
+                this.setupPlayPauseVisibility(false)
+            }
+        }
     }
 
     override fun onTick(minutes: String, seconds: String, millisUntilFinished: Long) {

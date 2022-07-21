@@ -14,7 +14,8 @@
     <com.touchetime.presentation.common.CustomizeObjectView
         android:id="@+id/superiority_technical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_x_large" />
 
     <com.touchetime.presentation.common.CustomizeObjectView
         android:id="@+id/rounds"

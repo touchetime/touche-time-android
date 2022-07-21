@@ -47,6 +47,9 @@
     <string name="two_score">2</string>
     <string name="zero">0</string>
     <string name="superiority_technical">Superioridade técnica</string>
+    <string name="rounds">Rounds</string>
+    <string name="time_rounds">Tempo de cada round</string>
+    <string name="time_intervals">Tempo dos intervalos</string>
     <string name="custom_your_fight">Personalize sua luta</string>
     <string name="finish">Concluir</string>
 </resources>

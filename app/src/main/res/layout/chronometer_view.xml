@@ -166,6 +166,17 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/reset"
+        android:layout_width="@dimen/spacing_xxx_large"
+        android:layout_height="@dimen/spacing_xxx_large"
+        android:background="@drawable/background_circle_gray"
+        android:src="@drawable/ic_reset"
+        android:layout_marginEnd="@dimen/spacing_middle"
+        app:layout_constraintBottom_toBottomOf="@+id/play_or_pause"
+        app:layout_constraintEnd_toStartOf="@+id/play_or_pause"
+        app:layout_constraintTop_toTopOf="@+id/play_or_pause" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/play_or_pause"
         android:layout_width="@dimen/play_pause_height"
         android:layout_height="@dimen/play_pause_height"
@@ -175,5 +186,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/chronometer_container" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/edit"
+        android:layout_width="@dimen/spacing_xxx_large"
+        android:layout_height="@dimen/spacing_xxx_large"
+        android:background="@drawable/background_circle_gray"
+        android:src="@drawable/ic_edit"
+        android:layout_marginStart="@dimen/spacing_middle"
+        app:layout_constraintBottom_toBottomOf="@+id/play_or_pause"
+        app:layout_constraintStart_toEndOf="@+id/play_or_pause"
+        app:layout_constraintTop_toTopOf="@+id/play_or_pause" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
