@@ -74,7 +74,6 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
                 is AthleteState.AthleteDefault -> {
                     updateScoreRed(it.athlete.score.toString())
                     updateFoulRed(it.athlete.foul.toString())
-                    setupScoreClickable(true)
                 }
                 is AthleteState.AthleteAddScore -> {
                     updateScoreRed(it.score.toString())
@@ -108,7 +107,6 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
                 is AthleteState.AthleteDefault -> {
                     updateScoreBlue(it.athlete.score.toString())
                     updateFoulBlue(it.athlete.foul.toString())
-                    setupScoreClickable(true)
                 }
                 is AthleteState.AthleteAddScore -> {
                     updateScoreBlue(it.score.toString())
@@ -294,8 +292,8 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
 
     private fun setupScoreClickable(value: Boolean) {
         viewBinding.apply {
-            red.setupScoreEnabled(value)
-            blue.setupScoreEnabled(value)
+            red.setupActivateListener(value)
+            blue.setupActivateListener(value)
         }
     }
 
@@ -307,11 +305,6 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
     }
 
     private fun startRegressiveCounter(timerRound: Long) {
-        viewBinding.apply {
-            red.setupToucheClickable(true)
-            blue.setupToucheClickable(true)
-        }
-
         setupScoreClickable(true)
 
         regressiveCounter = RegressiveCounter(

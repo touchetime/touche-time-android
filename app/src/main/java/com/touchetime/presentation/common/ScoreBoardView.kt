@@ -23,7 +23,7 @@ class ScoreBoardView @JvmOverloads constructor(
     )
 
     init {
-        setupScoreEnabled(false)
+        setupActivateListener(false)
     }
 
     fun setupScore(score: Int) {
@@ -60,25 +60,33 @@ class ScoreBoardView @JvmOverloads constructor(
 
     fun setupAddScore(callback: () -> Unit) {
         viewBinding.addScore.setOnClickListener {
-            callback()
+            if (it.isEnabled) {
+                callback()
+            }
         }
     }
 
     fun setupRemoveScore(callback: () -> Unit) {
         viewBinding.removeScore.setOnClickListener {
-            callback()
+            if (it.isEnabled) {
+                callback()
+            }
         }
     }
 
     fun setupAddFoul(callback: () -> Unit) {
         viewBinding.foulContainer.setOnClickListener {
-            callback()
+            if (it.isEnabled) {
+                callback()
+            }
         }
     }
 
     fun setupRemoveFoul(callback: () -> Unit) {
         viewBinding.foulContainer.setOnLongClickListener {
-            callback()
+            if (it.isEnabled) {
+                callback()
+            }
             true
         }
     }
@@ -91,13 +99,11 @@ class ScoreBoardView @JvmOverloads constructor(
         viewBinding.foul.text = value
     }
 
-    fun setupToucheClickable(value: Boolean) {
-        viewBinding.touche.isEnabled = value
-    }
-
-    fun setupScoreEnabled(value: Boolean) {
+    fun setupActivateListener(value: Boolean) {
         viewBinding.addScore.isEnabled = value
         viewBinding.removeScore.isEnabled = value
+        viewBinding.foulContainer.isEnabled = value
+        viewBinding.touche.isEnabled = value
     }
 
     fun openAddMoreScore(callback: () -> Unit) {

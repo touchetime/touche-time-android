@@ -132,15 +132,21 @@ class FightViewModel : ViewModel() {
 
     fun setupAddFoulRed() {
         ++athleteRedUpdated.foul
+        setupAddScoreRed(ScoreState.ONE)
 
         _athleteRed.value = AthleteState.AthleteAddFoul(
             athleteRedUpdated.foul
         )
+
+        if (athleteRedUpdated.foul == 3) {
+            _athleteRed.value = AthleteState.AthleteWin(true)
+        }
     }
 
     fun setupRemoveFoulRed() {
         if (athleteRedUpdated.foul > 0) {
             --athleteRedUpdated.foul
+            setupRemoveScoreRed(ScoreState.ONE)
 
             _athleteRed.value = AthleteState.AthleteRemoveFoul(
                 athleteRedUpdated.foul
@@ -181,15 +187,21 @@ class FightViewModel : ViewModel() {
 
     fun setupAddFoulBlue() {
         ++athleteBlueUpdated.foul
+        setupAddScoreBlue(ScoreState.ONE)
 
         _athleteBlue.value = AthleteState.AthleteAddFoul(
             athleteBlueUpdated.foul
         )
+
+        if (athleteBlueUpdated.foul == 3) {
+            _athleteBlue.value = AthleteState.AthleteWin(true)
+        }
     }
 
     fun setupRemoveFoulBlue() {
         if (athleteBlueUpdated.foul > 0) {
             --athleteBlueUpdated.foul
+            setupRemoveScoreBlue(ScoreState.ONE)
 
             _athleteBlue.value = AthleteState.AthleteRemoveFoul(
                 athleteBlueUpdated.foul

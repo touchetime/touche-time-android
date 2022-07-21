@@ -33,7 +33,7 @@
             style="@style/InterBoldXLargeWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0" />
+            android:text="@string/zero" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -50,7 +50,6 @@
             android:id="@+id/add_score"
             style="@style/ButtonScore"
             android:layout_marginBottom="@dimen/spacing_small"
-            android:clickable="false"
             android:src="@drawable/ic_add"
             tools:background="@drawable/background_score_blue" />
 
@@ -76,7 +75,6 @@
         android:id="@+id/touche"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:enabled="false"
         android:stateListAnimator="@null"
         android:text="@string/touche"
         android:textAppearance="@style/InterBoldNormalWhite"
@@ -90,7 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
-        android:text="0"
+        android:text="@string/zero"
         android:textSize="@dimen/font_score_size_small_screen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/score_container" />
