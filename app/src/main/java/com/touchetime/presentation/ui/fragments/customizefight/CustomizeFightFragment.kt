@@ -11,6 +11,7 @@ import com.touchetime.R
 import com.touchetime.databinding.FragmentCustomizeFightBinding
 import com.touchetime.presentation.common.BottomSheetDialogTransparentBackgroundFragment
 import com.touchetime.presentation.model.Fight
+import com.touchetime.presentation.util.getTimeChronometer
 
 class CustomizeFightFragment : BottomSheetDialogTransparentBackgroundFragment() {
 
@@ -73,19 +74,19 @@ class CustomizeFightFragment : BottomSheetDialogTransparentBackgroundFragment() 
 
     private fun setupTimeRound() {
         viewBinding.timeRound.apply {
-            this.setupTitle(R.string.rounds)
+            this.setupTitle(R.string.time_rounds)
             this.removeValue { }
             this.addValue { }
-            this.updateValue(viewModel.fight.numberRounds.toString())
+            this.updateValue(getTimeChronometer(viewModel.fight.timeRound))
         }
     }
 
     private fun setupTimeInterval() {
         viewBinding.timeInterval.apply {
-            this.setupTitle(R.string.rounds)
+            this.setupTitle(R.string.time_intervals)
             this.removeValue { }
             this.addValue { }
-            this.updateValue(viewModel.fight.numberRounds.toString())
+            this.updateValue(getTimeChronometer(viewModel.fight.timeInterval))
         }
     }
 

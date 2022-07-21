@@ -36,6 +36,7 @@ class CreateFightViewModel : ViewModel() {
         viewModelScope.launch {
             _styleSelected.postValue(styleSelected)
             fight.style = styleSelected
+            setupSuperiorityTechnical(styleSelected)
         }
     }
 
@@ -62,5 +63,15 @@ class CreateFightViewModel : ViewModel() {
                 fight.timeRound = Constants.TIME_ROUND_TWO_MINUTES
             }
         }
+    }
+
+    private fun setupSuperiorityTechnical(styleSelected: StyleState) {
+        val superiorityTechnical = if (styleSelected == StyleState.GRECO_ROMAN) {
+            Constants.GRECO_ROMAN_SUPERIORITY
+        } else {
+            Constants.FREE_STYLE_SUPERIORITY
+        }
+
+        fight.superiorityTechnical = superiorityTechnical
     }
 }

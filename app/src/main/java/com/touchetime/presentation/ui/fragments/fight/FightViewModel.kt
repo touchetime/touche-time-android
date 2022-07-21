@@ -3,9 +3,6 @@ package com.touchetime.presentation.ui.fragments.fight
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.touchetime.Constants.FREE_STYLE_SUPERIORITY
-import com.touchetime.Constants.GRECO_ROMAN_SUPERIORITY
 import com.touchetime.Constants.TIME_ROUND_TREE_MINUTES
 import com.touchetime.Constants.TIME_ROUND_TWO_MINUTES
 import com.touchetime.presentation.model.Athlete
@@ -13,7 +10,6 @@ import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.model.Score
 import com.touchetime.presentation.state.*
 import com.touchetime.presentation.util.getTimeChronometer
-import kotlinx.coroutines.launch
 import java.util.*
 
 class FightViewModel : ViewModel() {
@@ -36,7 +32,7 @@ class FightViewModel : ViewModel() {
         MutableLiveData<AthleteState>(AthleteState.AthleteDefault(athleteRedUpdated))
     private val _athleteBlue =
         MutableLiveData<AthleteState>(AthleteState.AthleteDefault(athleteBlueUpdated))
-    private val _fight = MutableLiveData<Fight>()
+    private val _fight = MutableLiveData(Fight())
     private val _time = MutableLiveData(getTimeChronometer(TIME_ROUND_TREE_MINUTES))
     private val _round = MutableLiveData(RoundState.ROUND_ONE)
 
@@ -85,9 +81,7 @@ class FightViewModel : ViewModel() {
     }
 
     fun setupFight(fight: Fight) {
-        viewModelScope.launch {
-            _fight.setValue(fight)
-        }
+        _fight.value = fight
     }
 
     fun setupTimerRounder(value: Long) {
@@ -264,12 +258,11 @@ class FightViewModel : ViewModel() {
         setupChronometer()
     }
 
-    private fun checkTechnicalSuperiority(athleteWinner: Athlete, athleteLoser: Athlete): Boolean =
-        if (isGrecoRoman()) {
-            athleteWinner.score - athleteLoser.score >= GRECO_ROMAN_SUPERIORITY
-        } else {
-            athleteWinner.score - athleteLoser.score >= FREE_STYLE_SUPERIORITY
-        }
+    private fun checkTechnicalSuperiority(athleteWinner: Athlete, athleteLoser: Athlete): Boolean {
+        return _fight.value?.let {
+            athleteWinner.score - athleteLoser.score >= it.superiorityTechnical
+        } ?: false
+    }
 
     private fun isGrecoRoman(): Boolean = _fight.value?.style == StyleState.GRECO_ROMAN
 
