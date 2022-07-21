@@ -55,12 +55,20 @@ class FightViewModel : ViewModel() {
     }
 
     fun finishFight() {
-        if (athleteRedUpdated.foul > athleteBlueUpdated.foul) {
-            _athleteRed.value = AthleteState.AthleteWin(true)
-        } else if (athleteRedUpdated.foul < athleteBlueUpdated.foul) {
-            _athleteBlue.value = AthleteState.AthleteWin(true)
+        if (athleteRedUpdated.score != athleteBlueUpdated.score) {
+            if (athleteRedUpdated.score > athleteBlueUpdated.score) {
+                _athleteRed.value = AthleteState.AthleteWin(true)
+            } else {
+                _athleteBlue.value = AthleteState.AthleteWin(true)
+            }
         } else {
-            checkWinnerForLastScore()
+            if (athleteRedUpdated.foul > athleteBlueUpdated.foul) {
+                _athleteRed.value = AthleteState.AthleteWin(true)
+            } else if (athleteRedUpdated.foul < athleteBlueUpdated.foul) {
+                _athleteBlue.value = AthleteState.AthleteWin(true)
+            } else {
+                checkWinnerForLastScore()
+            }
         }
     }
 
