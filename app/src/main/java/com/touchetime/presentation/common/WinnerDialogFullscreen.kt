@@ -13,7 +13,7 @@ import com.touchetime.presentation.state.ColorState
 class WinnerDialogFullscreen(
     private val athlete: Athlete,
     val closeFight: () -> Unit,
-    val restartFight: () -> Unit,
+    val restartFight: () -> Unit
 ) : DialogFragmentTransparentBackground() {
 
     private lateinit var viewBinding: WinnerDialogFullscreenBinding
@@ -45,12 +45,14 @@ class WinnerDialogFullscreen(
                 isVisible = true
                 setupColor(athlete.color.value)
                 setupScore(athlete.score)
+                setupFoul(athlete.foul)
             }
         } else {
             viewBinding.blue.apply {
                 isVisible = true
                 setupColor(athlete.color.value)
                 setupScore(athlete.score)
+                setupFoul(athlete.foul)
             }
         }
     }

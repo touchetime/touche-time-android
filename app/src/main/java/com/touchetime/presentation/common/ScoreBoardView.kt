@@ -17,11 +17,17 @@ class ScoreBoardView @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val viewBinding = ScoreboardViewBinding.inflate(
-        LayoutInflater.from(context), this, true
+        LayoutInflater.from(context),
+        this,
+        true
     )
 
     fun setupScore(score: Int) {
         viewBinding.score.text = score.toString()
+    }
+
+    fun setupFoul(foul: Int) {
+        viewBinding.foul.text = foul.toString()
     }
 
     fun setupColor(@StringRes color: Int) {
