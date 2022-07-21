@@ -38,13 +38,15 @@
         <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.196" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.2556648140230868" />
+        <entry key="app/src/main/res/layout/bottom_sheet_default.xml" value="0.1" />
         <entry key="app/src/main/res/layout/bottom_sheet_item.xml" value="0.5781466113416321" />
         <entry key="app/src/main/res/layout/card_custom_view.xml" value="0.31145833333333334" />
         <entry key="app/src/main/res/layout/chosen_option_view.xml" value="0.25" />
         <entry key="app/src/main/res/layout/chronometer_view.xml" value="0.33" />
         <entry key="app/src/main/res/layout/customize_object_view.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.24027362120564344" />
-        <entry key="app/src/main/res/layout/fragment_customize_fight.xml" value="0.24711415134672937" />
+        <entry key="app/src/main/res/layout/fragment_create_fight.xml" value="0.25309961522017954" />
+        <entry key="app/src/main/res/layout/fragment_customize_fight.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_fight.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/more_score_custom_view.xml" value="0.24283882000855067" />

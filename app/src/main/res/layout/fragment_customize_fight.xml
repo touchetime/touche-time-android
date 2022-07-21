@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.touchetime.presentation.common.DefaultBottomSheetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/spacing_large">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/DmSansBoldLargeWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:text="@string/custom_your_fight" />
+
+    <com.touchetime.presentation.common.CustomizeObjectView
+        android:id="@+id/superiority_technical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.touchetime.presentation.common.CustomizeObjectView
+        android:id="@+id/rounds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_x_large" />
+
+    <com.touchetime.presentation.common.CustomizeObjectView
+        android:id="@+id/time_round"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_x_large" />
+
+    <com.touchetime.presentation.common.CustomizeObjectView
+        android:id="@+id/time_interval"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_x_large" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/finish"
+        style="@style/ButtonAppCompat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/spacing_x_large"
+        android:background="@drawable/background_button_orange"
+        android:text="@string/finish"
+        android:textColor="@color/text_color_button" />
+
+</com.touchetime.presentation.common.DefaultBottomSheetLayout>
