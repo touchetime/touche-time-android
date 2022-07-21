@@ -30,6 +30,12 @@ class FightViewModel : ViewModel() {
         private set
     var athleteBlueUpdated = Athlete(color = ColorState.BLUE)
         private set
+    var shouldStartSecondRound: Boolean = false
+        private set
+    var shouldStartInterval: Boolean = false
+        private set
+    var timerRound: Long = TIME_ROUND_TREE_MINUTES
+        private set
 
     private val _athleteRed =
         MutableLiveData<AthleteState>(AthleteState.AthleteDefault(athleteRedUpdated))
@@ -44,13 +50,6 @@ class FightViewModel : ViewModel() {
     val fight: LiveData<Fight> = _fight
     val time: LiveData<String> = _time
     val round: LiveData<RoundState> = _round
-
-    var shouldStartSecondRound: Boolean = false
-        private set
-    var shouldStartInterval: Boolean = false
-        private set
-    var timerRound: Long = TIME_ROUND_TREE_MINUTES
-        private set
 
     fun resetFight() {
         resetAthleteRed()
