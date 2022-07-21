@@ -15,11 +15,7 @@ import com.touchetime.presentation.common.BaseFragment
 import com.touchetime.presentation.common.ChronometerView
 import com.touchetime.presentation.common.RegressiveCounter
 import com.touchetime.presentation.model.Athlete
-import com.touchetime.presentation.model.Fight
-import com.touchetime.presentation.state.AthleteState
-import com.touchetime.presentation.state.RoundState
-import com.touchetime.presentation.state.ScoreState
-import com.touchetime.presentation.state.ScoreTypeState
+import com.touchetime.presentation.state.*
 import com.touchetime.presentation.ui.activity.main.MainActivity
 import com.touchetime.presentation.ui.fragments.customizefight.CustomizeFightFragment
 import com.touchetime.presentation.ui.fragments.home.HomeFragment
@@ -71,8 +67,18 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
     }
 
     private fun readArgs() {
-        (arguments?.getParcelable<Fight>(ARGS))?.let {
-            viewModel.setupFight(it)
+        (arguments?.getParcelable<FightState>(ARGS))?.let {
+            setupCustomFightVisibility(it)
+
+            val fight = when (it) {
+                is FightState.MainFight -> {
+                    it.fight
+                }
+                is FightState.CustomFight -> {
+                    it.fight
+                }
+            }
+            viewModel.setupFight(fight)
         }
     }
 
@@ -179,7 +185,14 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
         viewBinding.regressiveCounter.apply {
             this.setupPlayPause { regressiveChronometerPlayPause() }
             this.setupReset { }
-            this.setupEdit { viewModel.fight.value?.let { CustomizeFightFragment.show(it, childFragmentManager) } }
+            this.setupEdit {
+                viewModel.fight.value?.let {
+                    CustomizeFightFragment.show(
+                        it,
+                        childFragmentManager
+                    )
+                }
+            }
         }
     }
 
@@ -382,6 +395,10 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
         )
     }
 
+    private fun setupCustomFightVisibility(fightState: FightState) {
+        viewBinding.regressiveCounter.setupCustomVisibility(fightState is FightState.CustomFight)
+    }
+
     private fun ChronometerView.regressiveChronometerPlayPause() {
         if (this.isRunning()) {
             setupRegressiveCounterIsRunning(false)
@@ -421,12 +438,12 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
     companion object {
         private const val ARGS = "ARGS"
 
-        private fun newInstance(fight: Fight) = FightFragment().apply {
+        private fun newInstance(fightState: FightState) = FightFragment().apply {
             arguments = bundleOf(
-                ARGS to fight
+                ARGS to fightState
             )
         }
 
-        fun show(fightName: Fight) = newInstance(fightName)
+        fun show(fightState: FightState) = newInstance(fightState)
     }
 }

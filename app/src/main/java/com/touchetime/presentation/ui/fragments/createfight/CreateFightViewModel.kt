@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.touchetime.Constants
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.state.CategoryState
+import com.touchetime.presentation.state.FightState
 import com.touchetime.presentation.state.StyleState
 import kotlinx.coroutines.launch
 
@@ -23,6 +24,8 @@ class CreateFightViewModel : ViewModel() {
     val categorySelected: LiveData<CategoryState> = _categorySelected
     val styleSelected: LiveData<StyleState> = _styleSelected
     val weightSelected: LiveData<String> = _weightSelected
+
+    fun getFightState(): FightState = FightState.MainFight(fight)
 
     fun setupCategorySelected(categoryState: CategoryState) {
         viewModelScope.launch {

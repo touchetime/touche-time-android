@@ -169,12 +169,14 @@
         android:id="@+id/reset"
         android:layout_width="@dimen/spacing_xxx_large"
         android:layout_height="@dimen/spacing_xxx_large"
+        android:layout_marginEnd="@dimen/spacing_middle"
         android:background="@drawable/background_circle_gray"
         android:src="@drawable/ic_reset"
-        android:layout_marginEnd="@dimen/spacing_middle"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/play_or_pause"
         app:layout_constraintEnd_toStartOf="@+id/play_or_pause"
-        app:layout_constraintTop_toTopOf="@+id/play_or_pause" />
+        app:layout_constraintTop_toTopOf="@+id/play_or_pause"
+        tools:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/play_or_pause"
@@ -191,11 +193,13 @@
         android:id="@+id/edit"
         android:layout_width="@dimen/spacing_xxx_large"
         android:layout_height="@dimen/spacing_xxx_large"
+        android:layout_marginStart="@dimen/spacing_middle"
         android:background="@drawable/background_circle_gray"
         android:src="@drawable/ic_edit"
-        android:layout_marginStart="@dimen/spacing_middle"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/play_or_pause"
         app:layout_constraintStart_toEndOf="@+id/play_or_pause"
-        app:layout_constraintTop_toTopOf="@+id/play_or_pause" />
+        app:layout_constraintTop_toTopOf="@+id/play_or_pause"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

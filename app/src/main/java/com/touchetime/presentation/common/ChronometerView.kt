@@ -28,6 +28,13 @@ class ChronometerView @JvmOverloads constructor(
         }
     }
 
+    fun setupCustomVisibility(value: Boolean) {
+        viewBinding.apply {
+            reset.isVisible = value
+            edit.isVisible = value
+        }
+    }
+
     fun setupPlayPause(callback: () -> Unit) {
         viewBinding.playOrPause.setOnClickListener {
             callback()
