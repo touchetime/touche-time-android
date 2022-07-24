@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.touchetime.databinding.CustomizeObjectViewBinding
+import com.touchetime.presentation.util.formatToTwoCase
 
 class CustomizeObjectView @JvmOverloads constructor(
     context: Context,
@@ -24,7 +25,7 @@ class CustomizeObjectView @JvmOverloads constructor(
     }
 
     fun updateValue(value: String) {
-        viewBinding.value.text = value
+        viewBinding.value.text = value.formatToTwoCase()
     }
 
     fun removeValue(callback: () -> Unit) {
@@ -33,9 +34,23 @@ class CustomizeObjectView @JvmOverloads constructor(
         }
     }
 
+    fun removeLongValue(callback: () -> Unit) {
+        viewBinding.remove.setOnLongClickListener {
+            callback()
+            true
+        }
+    }
+
     fun addValue(callback: () -> Unit) {
         viewBinding.add.setOnClickListener {
             callback()
+        }
+    }
+
+    fun addLongValue(callback: () -> Unit) {
+        viewBinding.add.setOnLongClickListener {
+            callback()
+            true
         }
     }
 }

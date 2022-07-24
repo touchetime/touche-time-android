@@ -12,7 +12,7 @@ import com.touchetime.presentation.common.BaseFragment
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.state.FightState
 import com.touchetime.presentation.ui.activity.main.MainActivity
-import com.touchetime.presentation.ui.fragments.createfight.CreateFight
+import com.touchetime.presentation.ui.fragments.createfight.CreateFightFragment
 import com.touchetime.presentation.ui.fragments.fight.FightFragment
 
 class HomeFragment : BaseFragment() {
@@ -67,8 +67,8 @@ class HomeFragment : BaseFragment() {
     private fun setupMainFightListener() {
         viewBinding.mainFight.setOnClickListener {
             navigateToFragment(
-                CreateFight.newInstance(),
-                CreateFight::class.java.name
+                CreateFightFragment.newInstance(),
+                CreateFightFragment::class.java.name
             )
         }
     }

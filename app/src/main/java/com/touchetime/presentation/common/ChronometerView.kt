@@ -19,12 +19,12 @@ class ChronometerView @JvmOverloads constructor(
         true
     )
 
-    fun setupMinutes(minutes: String, seconds: String) {
+    fun setupMinutes(time: String) {
         viewBinding.apply {
-            this.tenMinutes.text = minutes.substring(0, 1)
-            this.minutes.text = minutes.substring(1)
-            this.tenSeconds.text = seconds.substring(0, 1)
-            this.seconds.text = seconds.substring(1)
+            this.tenMinutes.text = time.substring(0, 1)
+            this.minutes.text = time.substring(1, 2)
+            this.tenSeconds.text = time.substring(3, 4)
+            this.seconds.text = time.substring(4)
         }
     }
 

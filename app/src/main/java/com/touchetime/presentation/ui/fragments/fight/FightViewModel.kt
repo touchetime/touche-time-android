@@ -4,12 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.touchetime.Constants.TIME_ROUND_TREE_MINUTES
-import com.touchetime.Constants.TIME_ROUND_TWO_MINUTES
 import com.touchetime.presentation.model.Athlete
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.model.Score
 import com.touchetime.presentation.state.*
-import com.touchetime.presentation.util.getTimeChronometer
 import java.util.*
 
 class FightViewModel : ViewModel() {
@@ -33,13 +31,13 @@ class FightViewModel : ViewModel() {
     private val _athleteBlue =
         MutableLiveData<AthleteState>(AthleteState.AthleteDefault(athleteBlueUpdated))
     private val _fight = MutableLiveData(Fight())
-    private val _time = MutableLiveData(getTimeChronometer(TIME_ROUND_TREE_MINUTES))
+    private val _time = MutableLiveData(TIME_ROUND_TREE_MINUTES)
     private val _round = MutableLiveData(RoundState.ROUND_ONE)
 
     val athleteRed: LiveData<AthleteState> = _athleteRed
     val athleteBlue: LiveData<AthleteState> = _athleteBlue
     val fight: LiveData<Fight> = _fight
-    val time: LiveData<String> = _time
+    val time: LiveData<Long> = _time
     val round: LiveData<RoundState> = _round
 
     fun resetFight() {
@@ -67,15 +65,27 @@ class FightViewModel : ViewModel() {
         }
     }
 
+    fun updateFight(fight: Fight) {
+        _fight.value = fight
+    }
+
     fun setupChronometer() {
         when (_fight.value?.category) {
-            CategoryState.DEFAULT, CategoryState.SENIOR, CategoryState.U23, CategoryState.U20, CategoryState.MASTER -> {
+            CategoryState.SENIOR, CategoryState.U23, CategoryState.U20, CategoryState.MASTER -> {
                 setupTimerRounder(TIME_ROUND_TREE_MINUTES)
-                setupTimeChronometer(TIME_ROUND_TREE_MINUTES)
+                _fight.value?.timeRound?.let { setupTimeChronometer(it) }
+            }
+            CategoryState.DEFAULT -> {
+                _fight.value?.let {
+                    setupTimerRounder(it.timeRound)
+                    setupTimeChronometer(it.timeRound)
+                }
             }
             else -> {
-                setupTimerRounder(TIME_ROUND_TWO_MINUTES)
-                setupTimeChronometer(TIME_ROUND_TWO_MINUTES)
+                _fight.value?.let {
+                    setupTimerRounder(it.timeRound)
+                    setupTimeChronometer(it.timeRound)
+                }
             }
         }
     }
@@ -199,7 +209,7 @@ class FightViewModel : ViewModel() {
     }
 
     fun setupTimeChronometer(value: Long) {
-        _time.value = getTimeChronometer(value)
+        _time.value = value
     }
 
     fun setupShouldStartInterval(value: Boolean) {

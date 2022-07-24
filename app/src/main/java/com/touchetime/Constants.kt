@@ -7,4 +7,6 @@ object Constants {
     const val TIME_ROUND_TREE_MINUTES = 180000L
     const val TIME_ROUND_TWO_MINUTES = 120000L
     const val TIME_INTERVAL = 30000L
+    const val TEN_SECONDS = 10000L
+    const val ONE_MINUTE = 60000L
 }

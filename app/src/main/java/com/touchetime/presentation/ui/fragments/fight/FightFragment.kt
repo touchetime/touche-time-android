@@ -8,27 +8,31 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
-import com.touchetime.Constants
 import com.touchetime.R
 import com.touchetime.databinding.FragmentFightBinding
 import com.touchetime.presentation.common.BaseFragment
 import com.touchetime.presentation.common.ChronometerView
 import com.touchetime.presentation.common.RegressiveCounter
 import com.touchetime.presentation.model.Athlete
-import com.touchetime.presentation.state.*
+import com.touchetime.presentation.model.Fight
+import com.touchetime.presentation.state.* // ktlint-disable no-wildcard-imports
 import com.touchetime.presentation.ui.activity.main.MainActivity
 import com.touchetime.presentation.ui.fragments.customizefight.CustomizeFightFragment
 import com.touchetime.presentation.ui.fragments.home.HomeFragment
+import com.touchetime.presentation.util.formatLongToTimeString
 import com.touchetime.presentation.util.showMoreScoreDialogFullscreen
 import com.touchetime.presentation.util.showWinnerFullscreenDialog
 
 class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallback {
 
     private lateinit var viewBinding: FragmentFightBinding
+    private val viewModel: FightViewModel by viewModels()
     private val mainActivity: MainActivity?
         get() = activity as? MainActivity
+    private val resultKeys = arrayOf(
+        CustomizeFightFragment.FIGHT_UPDATED
+    )
     private lateinit var regressiveCounter: CountDownTimer
-    private val viewModel: FightViewModel by viewModels()
     private val backPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             navigateToHome()
@@ -51,6 +55,7 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
 
         readArgs()
         setupToolbar()
+        setupResultKeysListeners()
         setupRedObserver()
         setupBlueObserver()
         setupFightObserver()
@@ -86,6 +91,32 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
         viewBinding.toolbar.apply {
             this.setupParams(title = getString(R.string.card_custom_view_title_1))
             this.setupBack { navigateToHome() }
+        }
+    }
+
+    private fun setupResultKeysListeners() {
+        resultKeys.forEach {
+            when (it) {
+                CustomizeFightFragment.FIGHT_UPDATED
+                -> childFragmentManager
+                else -> activity?.supportFragmentManager
+            }?.setFragmentResultListener(
+                it,
+                viewLifecycleOwner,
+                ::handleResultKey
+            )
+        }
+    }
+
+    private fun handleResultKey(key: String, bundle: Bundle) {
+        when (key) {
+            CustomizeFightFragment.FIGHT_UPDATED -> updateFight(bundle)
+        }
+    }
+
+    private fun updateFight(bundle: Bundle) {
+        (bundle.getParcelable<Fight>(CustomizeFightFragment.FIGHT))?.let {
+            viewModel.updateFight(it)
         }
     }
 
@@ -164,7 +195,7 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
 
     private fun setupTimeObserver() {
         viewModel.time.observe(viewLifecycleOwner) {
-            adjustTimeAndUpdateChronometer(it)
+            setupTime(it)
         }
     }
 
@@ -184,7 +215,7 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
     private fun setupRegressiveChronometerListener() {
         viewBinding.regressiveCounter.apply {
             this.setupPlayPause { regressiveChronometerPlayPause() }
-            this.setupReset { }
+            this.setupReset { restartFight() }
             this.setupEdit {
                 viewModel.fight.value?.let {
                     CustomizeFightFragment.show(
@@ -316,11 +347,8 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
         }
     }
 
-    private fun setupTime(minutes: String, seconds: String) {
-        viewBinding.regressiveCounter.setupMinutes(
-            minutes,
-            seconds
-        )
+    private fun setupTime(time: Long) {
+        viewBinding.regressiveCounter.setupMinutes(formatLongToTimeString(time))
     }
 
     private fun startRegressiveCounter(timerRound: Long) {
@@ -341,7 +369,10 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
     }
 
     private fun setupRegressiveCounterIsRunning(value: Boolean) {
-        viewBinding.regressiveCounter.setupIsRunning(value)
+        viewBinding.regressiveCounter.apply {
+            setupIsRunning(value)
+            setupCustomVisibility(!value)
+        }
     }
 
     private fun updateScoreRed(value: String) {
@@ -376,16 +407,11 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
         viewModel.apply {
             setupShouldStartInterval(true)
             setupRound(RoundState.INTERVAL)
-            setupTimeChronometer(Constants.TIME_INTERVAL)
-            setupTimerRounder(Constants.TIME_INTERVAL)
+            viewModel.fight.value?.timeInterval?.let {
+                setupTimeChronometer(it)
+                setupTimerRounder(it)
+            }
         }
-    }
-
-    private fun adjustTimeAndUpdateChronometer(time: String) {
-        setupTime(
-            time.substring(0, 2),
-            time.substring(3, 5)
-        )
     }
 
     private fun navigateToHome() {
@@ -413,9 +439,9 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
         }
     }
 
-    override fun onTick(minutes: String, seconds: String, millisUntilFinished: Long) {
+    override fun onTick(millisUntilFinished: Long) {
         viewModel.setupTimerRounder(millisUntilFinished)
-        setupTime(minutes, seconds)
+        setupTime(millisUntilFinished)
     }
 
     override fun finish() {

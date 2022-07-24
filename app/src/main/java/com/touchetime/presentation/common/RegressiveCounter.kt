@@ -2,7 +2,6 @@ package com.touchetime.presentation.common
 
 import android.os.CountDownTimer
 import com.touchetime.Constants.DELAY
-import com.touchetime.presentation.util.formatToTwoCase
 
 class RegressiveCounter(
     time: Long,
@@ -10,14 +9,7 @@ class RegressiveCounter(
 ) : CountDownTimer(time, DELAY) {
 
     override fun onTick(millisUntilFinished: Long) {
-        val minutes = (millisUntilFinished / 1000 / 60).toString()
-        val seconds = (millisUntilFinished / 1000 % 60).toString()
-
-        regressiveCounterCallback.onTick(
-            minutes.formatToTwoCase(),
-            seconds.formatToTwoCase(),
-            millisUntilFinished
-        )
+        regressiveCounterCallback.onTick(millisUntilFinished)
     }
 
     override fun onFinish() {
@@ -25,7 +17,7 @@ class RegressiveCounter(
     }
 
     interface RegressiveCounterCallback {
-        fun onTick(minutes: String, seconds: String, millisUntilFinished: Long)
+        fun onTick(millisUntilFinished: Long)
         fun finish()
     }
 }

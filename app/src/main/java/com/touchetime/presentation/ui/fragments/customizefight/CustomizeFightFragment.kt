@@ -11,7 +11,8 @@ import com.touchetime.R
 import com.touchetime.databinding.FragmentCustomizeFightBinding
 import com.touchetime.presentation.common.BottomSheetDialogTransparentBackgroundFragment
 import com.touchetime.presentation.model.Fight
-import com.touchetime.presentation.util.getTimeChronometer
+import com.touchetime.presentation.state.TimeState
+import com.touchetime.presentation.util.formatLongToTimeString
 
 class CustomizeFightFragment : BottomSheetDialogTransparentBackgroundFragment() {
 
@@ -36,6 +37,7 @@ class CustomizeFightFragment : BottomSheetDialogTransparentBackgroundFragment() 
 
         readArgs()
         setupListener()
+        setupFightObserver()
         setupSuperiorityTechnical()
         setupRounds()
         setupTimeRound()
@@ -50,48 +52,71 @@ class CustomizeFightFragment : BottomSheetDialogTransparentBackgroundFragment() 
 
     private fun setupListener() {
         viewBinding.finish.setOnClickListener {
+            parentFragmentManager.setFragmentResult(
+                FIGHT_UPDATED,
+                bundleOf(
+                    FIGHT to viewModel.fight.value
+                )
+            )
             dismiss()
+        }
+    }
+
+    private fun setupFightObserver() {
+        viewModel.fight.observe(viewLifecycleOwner) {
+            showValueUpdated(it)
         }
     }
 
     private fun setupSuperiorityTechnical() {
         viewBinding.superiorityTechnical.apply {
             this.setupTitle(R.string.superiority_technical)
-            this.removeValue { }
-            this.addValue { }
-            this.updateValue(viewModel.fight.superiorityTechnical.toString())
+            this.removeValue { viewModel.removeSuperiorityTechnical() }
+            this.addValue { viewModel.addSuperiorityTechnical() }
         }
     }
 
     private fun setupRounds() {
         viewBinding.rounds.apply {
             this.setupTitle(R.string.rounds)
-            this.removeValue { }
-            this.addValue { }
-            this.updateValue(viewModel.fight.numberRounds.toString())
+            this.removeValue { viewModel.removeRounds() }
+            this.addValue { viewModel.addRounds() }
         }
     }
 
     private fun setupTimeRound() {
         viewBinding.timeRound.apply {
             this.setupTitle(R.string.time_rounds)
-            this.removeValue { }
-            this.addValue { }
-            this.updateValue(getTimeChronometer(viewModel.fight.timeRound))
+            this.removeValue { viewModel.removeTimeRound(TimeState.TEN_SECONDS) }
+            this.removeLongValue { viewModel.removeTimeRound(TimeState.ONE_MINUTES) }
+            this.addValue { viewModel.addTimeRound(TimeState.TEN_SECONDS) }
+            this.addLongValue { viewModel.addTimeRound(TimeState.ONE_MINUTES) }
         }
     }
 
     private fun setupTimeInterval() {
         viewBinding.timeInterval.apply {
             this.setupTitle(R.string.time_intervals)
-            this.removeValue { }
-            this.addValue { }
-            this.updateValue(getTimeChronometer(viewModel.fight.timeInterval))
+            this.removeValue { viewModel.removeTimeInterval(TimeState.TEN_SECONDS) }
+            this.removeLongValue { viewModel.removeTimeInterval(TimeState.ONE_MINUTES) }
+            this.addValue { viewModel.addTimeInterval(TimeState.TEN_SECONDS) }
+            this.addLongValue { viewModel.addTimeInterval(TimeState.ONE_MINUTES) }
+        }
+    }
+
+    private fun showValueUpdated(fight: Fight) {
+        viewBinding.apply {
+            superiorityTechnical.updateValue(fight.superiorityTechnical.toString())
+            rounds.updateValue(fight.numberRounds.toString())
+            timeRound.updateValue(formatLongToTimeString(fight.timeRound))
+            timeInterval.updateValue(formatLongToTimeString(fight.timeInterval))
         }
     }
 
     companion object {
         private const val ARGS = "ARGS"
+        const val FIGHT = "FIGHT"
+        const val FIGHT_UPDATED = "FIGHT_UPDATED"
 
         private fun newInstance(fight: Fight) = CustomizeFightFragment().apply {
             arguments = bundleOf(

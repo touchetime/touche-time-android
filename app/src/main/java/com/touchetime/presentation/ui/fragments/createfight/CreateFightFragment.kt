@@ -18,7 +18,7 @@ import com.touchetime.presentation.ui.fragments.fight.FightFragment
 import com.touchetime.presentation.ui.fragments.style.StyleFragment
 import com.touchetime.presentation.ui.fragments.weight.WeightFragment
 
-class CreateFight : BaseFragment() {
+class CreateFightFragment : BaseFragment() {
 
     private lateinit var viewBinding: FragmentCreateFightBinding
     private val viewModel: CreateFightViewModel by viewModels()
@@ -258,6 +258,6 @@ class CreateFight : BaseFragment() {
     }
 
     companion object {
-        fun newInstance() = CreateFight()
+        fun newInstance() = CreateFightFragment()
     }
 }
