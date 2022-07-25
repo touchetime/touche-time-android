@@ -10,7 +10,6 @@ import com.touchetime.R
 import com.touchetime.databinding.FragmentHomeBinding
 import com.touchetime.presentation.common.BaseFragment
 import com.touchetime.presentation.model.Fight
-import com.touchetime.presentation.state.FightState
 import com.touchetime.presentation.ui.activity.main.MainActivity
 import com.touchetime.presentation.ui.fragments.createfight.CreateFightFragment
 import com.touchetime.presentation.ui.fragments.fight.FightFragment
@@ -75,8 +74,13 @@ class HomeFragment : BaseFragment() {
 
     private fun setupCustomFightListener() {
         viewBinding.customFight.setOnClickListener {
+            val fight = Fight(
+                nameFight = getString(R.string.custom_fight),
+                isCustom = true
+            )
+
             navigateToFragment(
-                FightFragment.show(FightState.CustomFight(Fight(nameFight = getString(R.string.custom_fight)))),
+                FightFragment.show(fight),
                 FightFragment::class.java.name
             )
         }

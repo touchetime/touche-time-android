@@ -7,7 +7,7 @@ import com.touchetime.Constants.TIME_ROUND_TREE_MINUTES
 import com.touchetime.presentation.model.Athlete
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.model.Score
-import com.touchetime.presentation.state.*
+import com.touchetime.presentation.state.* // ktlint-disable no-wildcard-imports
 import java.util.*
 
 class FightViewModel : ViewModel() {
@@ -19,20 +19,20 @@ class FightViewModel : ViewModel() {
         private set
     var athleteBlueUpdated = Athlete(color = ColorState.BLUE)
         private set
-    var shouldStartSecondRound: Boolean = false
-        private set
-    var shouldStartInterval: Boolean = false
+    var roundIsFinished: Boolean = true
         private set
     var timerRound: Long = TIME_ROUND_TREE_MINUTES
+        private set
+    var currentRound: Int = 1
         private set
 
     private val _athleteRed =
         MutableLiveData<AthleteState>(AthleteState.AthleteDefault(athleteRedUpdated))
     private val _athleteBlue =
         MutableLiveData<AthleteState>(AthleteState.AthleteDefault(athleteBlueUpdated))
-    private val _fight = MutableLiveData(Fight())
+    private val _fight = MutableLiveData<Fight>()
     private val _time = MutableLiveData(TIME_ROUND_TREE_MINUTES)
-    private val _round = MutableLiveData(RoundState.ROUND_ONE)
+    private val _round = MutableLiveData(RoundState.ROUND)
 
     val athleteRed: LiveData<AthleteState> = _athleteRed
     val athleteBlue: LiveData<AthleteState> = _athleteBlue
@@ -45,6 +45,7 @@ class FightViewModel : ViewModel() {
         resetAthleteBlue()
         resetScoreList()
         resetChronometer()
+        currentRound = 1
     }
 
     fun finishFight() {
@@ -69,7 +70,7 @@ class FightViewModel : ViewModel() {
         _fight.value = fight
     }
 
-    fun setupChronometer() {
+    fun setupChronometerToRound() {
         when (_fight.value?.category) {
             CategoryState.SENIOR, CategoryState.U23, CategoryState.U20, CategoryState.MASTER -> {
                 setupTimerRounder(TIME_ROUND_TREE_MINUTES)
@@ -212,16 +213,16 @@ class FightViewModel : ViewModel() {
         _time.value = value
     }
 
-    fun setupShouldStartInterval(value: Boolean) {
-        shouldStartInterval = value
-    }
-
-    fun setupShouldStartSecondRound(value: Boolean) {
-        shouldStartSecondRound = value
-    }
-
     fun setupRound(roundState: RoundState) {
         _round.value = roundState
+    }
+
+    fun setupIsInRound(value: Boolean) {
+        roundIsFinished = value
+    }
+
+    fun updateCurrentRound() {
+        ++currentRound
     }
 
     private fun checkIfAthleteWin(athleteWinner: Athlete, athleteLoser: Athlete) {
@@ -262,10 +263,9 @@ class FightViewModel : ViewModel() {
     }
 
     private fun resetChronometer() {
-        setupShouldStartInterval(false)
-        setupShouldStartSecondRound(false)
-        setupRound(RoundState.ROUND_ONE)
-        setupChronometer()
+        setupIsInRound(false)
+        setupRound(RoundState.ROUND)
+        setupChronometerToRound()
     }
 
     private fun checkTechnicalSuperiority(athleteWinner: Athlete, athleteLoser: Athlete): Boolean {
@@ -273,8 +273,6 @@ class FightViewModel : ViewModel() {
             athleteWinner.score - athleteLoser.score >= it.superiorityTechnical
         } ?: false
     }
-
-    private fun isGrecoRoman(): Boolean = _fight.value?.style == StyleState.GRECO_ROMAN
 
     private fun checkWinnerForLastScore() {
         if (scoreRedHistory.isEmpty() && scoreRedHistory.isNotEmpty()) {

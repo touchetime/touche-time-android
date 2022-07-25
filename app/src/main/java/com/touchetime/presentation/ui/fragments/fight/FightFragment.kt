@@ -15,10 +15,14 @@ import com.touchetime.presentation.common.ChronometerView
 import com.touchetime.presentation.common.RegressiveCounter
 import com.touchetime.presentation.model.Athlete
 import com.touchetime.presentation.model.Fight
-import com.touchetime.presentation.state.* // ktlint-disable no-wildcard-imports
+import com.touchetime.presentation.state.AthleteState
+import com.touchetime.presentation.state.RoundState
+import com.touchetime.presentation.state.ScoreState
+import com.touchetime.presentation.state.ScoreTypeState
 import com.touchetime.presentation.ui.activity.main.MainActivity
 import com.touchetime.presentation.ui.fragments.customizefight.CustomizeFightFragment
 import com.touchetime.presentation.ui.fragments.home.HomeFragment
+import com.touchetime.presentation.util.buildRoundString
 import com.touchetime.presentation.util.formatLongToTimeString
 import com.touchetime.presentation.util.showMoreScoreDialogFullscreen
 import com.touchetime.presentation.util.showWinnerFullscreenDialog
@@ -72,18 +76,9 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
     }
 
     private fun readArgs() {
-        (arguments?.getParcelable<FightState>(ARGS))?.let {
-            setupCustomFightVisibility(it)
-
-            val fight = when (it) {
-                is FightState.MainFight -> {
-                    it.fight
-                }
-                is FightState.CustomFight -> {
-                    it.fight
-                }
-            }
-            viewModel.setupFight(fight)
+        (arguments?.getParcelable<Fight>(ARGS))?.let {
+            checkCustomFightVisibility(it)
+            viewModel.setupFight(it)
         }
     }
 
@@ -188,7 +183,7 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
 
     private fun setupFightObserver() {
         viewModel.fight.observe(viewLifecycleOwner) {
-            viewModel.setupChronometer()
+            viewModel.setupChronometerToRound()
             viewBinding.toolbar.setupParams(title = it.nameFight)
         }
     }
@@ -365,7 +360,14 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
     }
 
     private fun setupRound(roundState: RoundState) {
-        viewBinding.regressiveCounter.setupRound(roundState.value)
+        val text = if (roundState == RoundState.ROUND) {
+            getString(roundState.state)
+                .buildRoundString(viewModel.currentRound)
+        } else {
+            getString(roundState.state)
+        }
+
+        viewBinding.regressiveCounter.setupRound(text)
     }
 
     private fun setupRegressiveCounterIsRunning(value: Boolean) {
@@ -391,23 +393,20 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
         viewBinding.blue.updateFoul(value)
     }
 
-    private fun finishFight() {
-        viewModel.finishFight()
-    }
-
-    private fun prepareChronometerToSecondRound() {
+    private fun setupChronometerRound() {
         viewModel.apply {
-            setupShouldStartSecondRound(true)
-            setupChronometer()
-            setupRound(RoundState.ROUND_TWO)
+            updateCurrentRound()
+            setupRound(RoundState.ROUND)
+            setupIsInRound(true)
+            setupChronometerToRound()
         }
     }
 
-    private fun prepareChronometerToInterval() {
+    private fun setupChronometerInterval() {
         viewModel.apply {
-            setupShouldStartInterval(true)
             setupRound(RoundState.INTERVAL)
-            viewModel.fight.value?.timeInterval?.let {
+            setupIsInRound(false)
+            fight.value?.timeInterval?.let {
                 setupTimeChronometer(it)
                 setupTimerRounder(it)
             }
@@ -421,8 +420,8 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
         )
     }
 
-    private fun setupCustomFightVisibility(fightState: FightState) {
-        viewBinding.regressiveCounter.setupCustomVisibility(fightState is FightState.CustomFight)
+    private fun checkCustomFightVisibility(fight: Fight) {
+        viewBinding.regressiveCounter.setupCustomVisibility(fight.isCustom)
     }
 
     private fun ChronometerView.regressiveChronometerPlayPause() {
@@ -432,10 +431,6 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
         } else {
             setupRegressiveCounterIsRunning(true)
             startRegressiveCounter(viewModel.timerRound)
-
-            if (viewModel.shouldStartInterval && !viewModel.shouldStartSecondRound) {
-                this.setupPlayPauseVisibility(false)
-            }
         }
     }
 
@@ -445,14 +440,18 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
     }
 
     override fun finish() {
-        if (viewModel.shouldStartSecondRound) {
-            finishFight()
-        } else {
-            if (viewModel.shouldStartInterval) {
-                prepareChronometerToSecondRound()
+        viewModel.apply {
+            if (currentRound == fight.value?.numberRounds) {
+                finishFight()
             } else {
-                prepareChronometerToInterval()
+                if (roundIsFinished) {
+                    setupChronometerInterval()
+                } else {
+                    setupChronometerRound()
+                }
             }
+
+            fight.value?.let { checkCustomFightVisibility(it) }
         }
 
         viewBinding.regressiveCounter.apply {
@@ -464,12 +463,12 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
     companion object {
         private const val ARGS = "ARGS"
 
-        private fun newInstance(fightState: FightState) = FightFragment().apply {
+        private fun newInstance(fight: Fight) = FightFragment().apply {
             arguments = bundleOf(
-                ARGS to fightState
+                ARGS to fight
             )
         }
 
-        fun show(fightState: FightState) = newInstance(fightState)
+        fun show(fight: Fight) = newInstance(fight)
     }
 }

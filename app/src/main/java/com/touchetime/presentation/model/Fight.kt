@@ -12,6 +12,7 @@ data class Fight(
     var category: CategoryState = CategoryState.DEFAULT,
     var style: StyleState = StyleState.DEFAULT,
     var weight: String? = null,
+    val isCustom: Boolean = false,
     var superiorityTechnical: Int = Constants.FREE_STYLE_SUPERIORITY,
     var numberRounds: Int = 2,
     var timeRound: Long = Constants.TIME_ROUND_TREE_MINUTES,

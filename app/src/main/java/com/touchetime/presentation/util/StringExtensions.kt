@@ -7,3 +7,7 @@ fun String.formatToTwoCase(): String {
         this
     }
 }
+
+fun String.buildRoundString(value: Int): String {
+    return "$this $value"
+}

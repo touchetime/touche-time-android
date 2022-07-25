@@ -59,8 +59,8 @@ class ChronometerView @JvmOverloads constructor(
         viewBinding.playOrPause.isSelected = value
     }
 
-    fun setupRound(round: Int) {
-        viewBinding.round.text = context.getString(round)
+    fun setupRound(round: String) {
+        viewBinding.round.text = round
     }
 
     fun setupPlayPauseVisibility(value: Boolean) {

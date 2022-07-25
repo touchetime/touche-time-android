@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Touche Time</string>
     <string name="home_title_1">CRIAR LUTA</string>
     <string name="home_title_2">Defina as regras da sua luta</string>
@@ -16,8 +16,7 @@
     <string name="category">Categoria</string>
     <string name="style">Estilo</string>
     <string name="weight">Peso</string>
-    <string name="round_one">ROUND 1</string>
-    <string name="round_two">ROUND 2</string>
+    <string name="round" tools:ignore="ExtraTranslation">ROUND</string>
     <string name="interval">INTERVALO</string>
     <string name="tree_minutes">03</string>
     <string name="zero_minutes">00</string>

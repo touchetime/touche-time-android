@@ -151,7 +151,7 @@ class CreateFightFragment : BaseFragment() {
             setupFightName()
 
             navigateToFragment(
-                FightFragment.show(viewModel.getFightState()),
+                FightFragment.show(viewModel.fight),
                 FightFragment::class.java.name
             )
         }
