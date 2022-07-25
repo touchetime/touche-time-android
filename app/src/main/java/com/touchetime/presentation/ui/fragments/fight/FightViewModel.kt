@@ -68,6 +68,7 @@ class FightViewModel : ViewModel() {
 
     fun updateFight(fight: Fight) {
         _fight.value = fight
+        resetFight()
     }
 
     fun setupChronometerToRound() {
