@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import com.touchetime.data.sharedpreferences.OnBoardingSharedPreferences
 import com.touchetime.databinding.ActivitySplashScreenBinding
 import com.touchetime.presentation.ui.activity.main.MainActivity
+import com.touchetime.presentation.ui.activity.onboarding.OnBoardingActivity
 import com.touchetime.presentation.util.setupFullScreenSystemUiFlags
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -25,7 +27,14 @@ class SplashScreenActivity : AppCompatActivity() {
     private fun goToMainScreen() {
         Handler(Looper.getMainLooper()).postDelayed({
             startActivity(
-                Intent(baseContext, MainActivity::class.java).apply {
+                Intent(
+                    baseContext,
+                    if (OnBoardingSharedPreferences(this).wasVisible) {
+                        MainActivity::class.java
+                    } else {
+                        OnBoardingActivity::class.java
+                    }
+                ).apply {
                     putExtras(intent)
                     data = intent.data
                 }

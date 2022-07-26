@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     fun navigateToFragment(
         fragment: Fragment,
-        tag: String,
+        tag: String
     ) {
         supportFragmentManager
             .beginTransaction()

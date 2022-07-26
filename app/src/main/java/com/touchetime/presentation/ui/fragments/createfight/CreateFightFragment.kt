@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.touchetime.R
@@ -24,16 +23,11 @@ class CreateFightFragment : BaseFragment() {
     private val viewModel: CreateFightViewModel by viewModels()
     private val mainActivity: MainActivity?
         get() = activity as? MainActivity
-    private val resultKeys = arrayOf(
-        CategoryFragment.CATEGORY_SELECTED,
-        StyleFragment.STYLE_SELECTED,
-        WeightFragment.WEIGHT_SELECTED
-    )
-    private val backPressedCallback = object : OnBackPressedCallback(true) {
-        override fun handleOnBackPressed() {
-            returnToLastScreen()
-        }
-    }
+//    private val resultKeys = arrayOf(
+//        CategoryFragment.CATEGORY_SELECTED,
+//        StyleFragment.STYLE_SELECTED,
+//        WeightFragment.WEIGHT_SELECTED
+//    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,8 +41,6 @@ class CreateFightFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        activity?.onBackPressedDispatcher?.addCallback(backPressedCallback)
-
         setupToolbar()
         setupCategory()
         setupStyle()
@@ -56,11 +48,6 @@ class CreateFightFragment : BaseFragment() {
         setupGoFight()
         setupResultKeysListeners()
         setupObservers()
-    }
-
-    override fun onDestroyView() {
-        backPressedCallback.remove()
-        super.onDestroyView()
     }
 
     private fun setupToolbar() {

@@ -33,9 +33,6 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
     private val viewModel: FightViewModel by viewModels()
     private val mainActivity: MainActivity?
         get() = activity as? MainActivity
-    private val resultKeys = arrayOf(
-        CustomizeFightFragment.FIGHT_UPDATED
-    )
     private lateinit var regressiveCounter: CountDownTimer
     private val backPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
@@ -411,13 +408,6 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
                 setupTimerRounder(it)
             }
         }
-    }
-
-    private fun navigateToHome() {
-        mainActivity?.navigateToFragment(
-            HomeFragment.newInstance(),
-            HomeFragment::class.java.name
-        )
     }
 
     private fun checkCustomFightVisibility(fight: Fight) {

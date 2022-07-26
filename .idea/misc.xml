@@ -47,8 +47,10 @@
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.24027362120564344" />
         <entry key="app/src/main/res/layout/fragment_create_fight.xml" value="0.25309961522017954" />
         <entry key="app/src/main/res/layout/fragment_customize_fight.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_default_on_boarding.xml" value="0.26378794356562635" />
         <entry key="app/src/main/res/layout/fragment_fight.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_on_boarding.xml" value="0.26464300983326206" />
         <entry key="app/src/main/res/layout/more_score_custom_view.xml" value="0.24283882000855067" />
         <entry key="app/src/main/res/layout/more_score_dialog_fullscreen.xml" value="0.18691588785046728" />
         <entry key="app/src/main/res/layout/scoreboard_view.xml" value="0.25" />
