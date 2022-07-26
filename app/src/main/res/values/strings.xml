@@ -16,15 +16,12 @@
     <string name="category">Categoria</string>
     <string name="style">Estilo</string>
     <string name="weight">Peso</string>
-    <string name="round" tools:ignore="ExtraTranslation">ROUND</string>
+    <string name="round">ROUND</string>
     <string name="interval">INTERVALO</string>
-    <string name="tree_minutes">03</string>
-    <string name="zero_minutes">00</string>
-    <string name="tree_ten_minutes">30</string>
     <string name="chosen_option_view_title_1">Escolha a categoria</string>
     <string name="chosen_option_view_description_1">Escolha entre as categorias de idade oficiais da UWW</string>
     <string name="chosen_option_view_title_2">Escolha o estilo</string>
-    <string name="chosen_option_view_description_2">Escolha entre Estilo Livre, Greco-Romana e Livre Feminino</string>
+    <string name="chosen_option_view_description_2">Escolha entre Estilo Livre, Greco Romana e Livre Feminino</string>
     <string name="chosen_option_view_title_3">Escolha o peso</string>
     <string name="customize_fight_description">Escolha todos os padrões de acordo com a UWW</string>
     <string name="childrens_1">Infantil I</string>
@@ -36,7 +33,7 @@
     <string name="u23">U-23</string>
     <string name="senior">Sênior</string>
     <string name="master">Veteranos</string>
-    <string name="greco_roman">Greco-Romana</string>
+    <string name="greco_roman">Greco Romana</string>
     <string name="woman_wrestling">Estilo Feminino</string>
     <string name="free_style">Estilo Livre</string>
     <string name="continue_fight">Continuar</string>
