@@ -3,9 +3,9 @@ package com.touchetime.presentation.ui.fragments.customizefight
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.touchetime.Constants
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.state.TimeState
+import com.touchetime.utils.Constants
 
 class CustomizeFightViewModel : ViewModel() {
 

@@ -2,7 +2,7 @@ package com.touchetime.data.sharedpreferences
 
 import android.content.Context
 import androidx.core.content.edit
-import com.touchetime.Constants
+import com.touchetime.utils.Constants
 
 class OnBoardingSharedPreferences(context: Context) {
     private val sharedPreferences =

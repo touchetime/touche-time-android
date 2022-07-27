@@ -5,10 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.touchetime.Constants
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.state.CategoryState
 import com.touchetime.presentation.state.StyleState
+import com.touchetime.utils.Constants
 import kotlinx.coroutines.launch
 
 class CreateFightViewModel : ViewModel() {

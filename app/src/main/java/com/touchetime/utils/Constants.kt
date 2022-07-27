@@ -1,4 +1,4 @@
-package com.touchetime
+package com.touchetime.utils
 
 object Constants {
     const val DELAY = 1000L

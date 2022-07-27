@@ -1,7 +1,7 @@
 package com.touchetime.presentation.common
 
 import android.os.CountDownTimer
-import com.touchetime.Constants.DELAY
+import com.touchetime.utils.Constants.DELAY
 
 class RegressiveCounter(
     time: Long,
