@@ -23,11 +23,6 @@ class CreateFightFragment : BaseFragment() {
     private val viewModel: CreateFightViewModel by viewModels()
     private val mainActivity: MainActivity?
         get() = activity as? MainActivity
-//    private val resultKeys = arrayOf(
-//        CategoryFragment.CATEGORY_SELECTED,
-//        StyleFragment.STYLE_SELECTED,
-//        WeightFragment.WEIGHT_SELECTED
-//    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -149,7 +144,10 @@ class CreateFightFragment : BaseFragment() {
     }
 
     private fun navigateToFragment(fragment: Fragment, key: String) {
-        mainActivity?.navigateToFragment(fragment, key)
+        mainActivity?.navigateToFragment(
+            fragment,
+            key
+        )
     }
 
     private fun setupResultKeysListeners() {
