@@ -31,14 +31,19 @@ class ScreenTreeOnBoardingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupOnBoardingWasVisible()
+        setupItemsVisibility()
+        setupListener()
+    }
 
-        viewBinding.button.apply {
-            isVisible = true
+    private fun setupItemsVisibility() {
+        viewBinding.button.isVisible = true
+        viewBinding.skip.isVisible = false
+    }
 
-            setOnClickListener {
-                startActivity(Intent(requireContext(), MainActivity::class.java))
-            }
+    private fun setupListener() {
+        viewBinding.button.setOnClickListener {
+            setupOnBoardingWasVisible()
+            startActivity(Intent(requireContext(), MainActivity::class.java))
         }
     }
 

@@ -48,4 +48,5 @@
     <string name="time_intervals">Tempo dos intervalos</string>
     <string name="custom_your_fight">Personalize sua luta</string>
     <string name="finish">Concluir</string>
+    <string name="skip">Pular</string>
 </resources>
