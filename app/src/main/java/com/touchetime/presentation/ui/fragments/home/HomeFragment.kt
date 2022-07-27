@@ -21,7 +21,7 @@ class HomeFragment : BaseFragment() {
         get() = activity as? MainActivity
     private val backPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-            finishActivity()
+            mainActivity?.finishAffinity()
         }
     }
 
