@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.touchetime.R
 import com.touchetime.databinding.BottomSheetItemBinding
+import com.touchetime.extensions.inflate
 import com.touchetime.presentation.model.StyleSelected
 import com.touchetime.presentation.state.StyleState
-import com.touchetime.presentation.util.inflate
 
 class StyleAdapter(
     private val onItemClicked: (enum: StyleState) -> Unit
@@ -24,7 +24,7 @@ class StyleAdapter(
 
     inner class ViewHolder(
         view: View,
-        private val onItemClicked: (enum: StyleState) -> Unit,
+        private val onItemClicked: (enum: StyleState) -> Unit
     ) : RecyclerView.ViewHolder(view) {
         private val viewBinding = BottomSheetItemBinding.bind(view)
         private lateinit var styleSelected: StyleSelected

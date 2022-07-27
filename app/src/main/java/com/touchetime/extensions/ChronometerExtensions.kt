@@ -1,4 +1,4 @@
-package com.touchetime.presentation.util // ktlint-disable filename
+package com.touchetime.extensions // ktlint-disable filename
 
 fun formatLongToTimeString(value: Long): String {
     val minutes = (value / 1000 / 60).toString()

@@ -1,4 +1,4 @@
-package com.touchetime.presentation.util
+package com.touchetime.extensions // ktlint-disable filename
 
 import android.view.LayoutInflater
 import android.view.View

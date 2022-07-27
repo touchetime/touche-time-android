@@ -6,8 +6,8 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.touchetime.databinding.ActivitySplashScreenBinding
+import com.touchetime.extensions.setupFullScreenSystemUiFlags
 import com.touchetime.presentation.ui.activity.onboarding.OnBoardingActivity
-import com.touchetime.presentation.util.setupFullScreenSystemUiFlags
 
 class SplashScreenActivity : AppCompatActivity() {
 

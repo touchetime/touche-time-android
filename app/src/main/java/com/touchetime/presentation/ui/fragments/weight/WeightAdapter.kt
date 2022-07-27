@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.touchetime.R
 import com.touchetime.databinding.BottomSheetItemBinding
+import com.touchetime.extensions.inflate
 import com.touchetime.presentation.model.WeightSelect
-import com.touchetime.presentation.util.inflate
 
 class WeightAdapter(
     private val onItemClicked: (weight: String) -> Unit

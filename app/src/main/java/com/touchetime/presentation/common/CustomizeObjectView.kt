@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.touchetime.databinding.CustomizeObjectViewBinding
-import com.touchetime.presentation.util.formatToTwoCase
+import com.touchetime.extensions.formatToTwoCase
 
 class CustomizeObjectView @JvmOverloads constructor(
     context: Context,

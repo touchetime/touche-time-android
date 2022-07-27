@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.touchetime.R
 import com.touchetime.databinding.BottomSheetItemBinding
+import com.touchetime.extensions.inflate
 import com.touchetime.presentation.model.CategorySelected
 import com.touchetime.presentation.state.CategoryState
-import com.touchetime.presentation.util.inflate
 
 class CategoryAdapter(
     private val onItemClicked: (enum: CategoryState) -> Unit
@@ -24,7 +24,7 @@ class CategoryAdapter(
 
     inner class ViewHolder(
         view: View,
-        private val onItemClicked: (enum: CategoryState) -> Unit,
+        private val onItemClicked: (enum: CategoryState) -> Unit
     ) : RecyclerView.ViewHolder(view) {
         private val viewBinding = BottomSheetItemBinding.bind(view)
         private lateinit var categorySelected: CategorySelected

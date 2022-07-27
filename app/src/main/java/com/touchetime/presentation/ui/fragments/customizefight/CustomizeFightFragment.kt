@@ -9,10 +9,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import com.touchetime.R
 import com.touchetime.databinding.FragmentCustomizeFightBinding
+import com.touchetime.extensions.formatLongToTimeString
 import com.touchetime.presentation.common.BottomSheetDialogTransparentBackgroundFragment
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.state.TimeState
-import com.touchetime.presentation.util.formatLongToTimeString
 
 class CustomizeFightFragment : BottomSheetDialogTransparentBackgroundFragment() {
 

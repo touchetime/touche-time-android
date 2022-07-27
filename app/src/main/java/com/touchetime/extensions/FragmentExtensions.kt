@@ -1,4 +1,4 @@
-package com.touchetime.presentation.util
+package com.touchetime.extensions
 
 import androidx.fragment.app.Fragment
 import com.touchetime.presentation.common.MoreScoreDialogFullscreen

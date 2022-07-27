@@ -10,6 +10,10 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.touchetime.R
 import com.touchetime.databinding.FragmentFightBinding
+import com.touchetime.extensions.buildRoundString
+import com.touchetime.extensions.formatLongToTimeString
+import com.touchetime.extensions.showMoreScoreDialogFullscreen
+import com.touchetime.extensions.showWinnerFullscreenDialog
 import com.touchetime.presentation.common.BaseFragment
 import com.touchetime.presentation.common.ChronometerView
 import com.touchetime.presentation.common.RegressiveCounter
@@ -22,10 +26,6 @@ import com.touchetime.presentation.state.ScoreTypeState
 import com.touchetime.presentation.ui.activity.main.MainActivity
 import com.touchetime.presentation.ui.fragments.customizefight.CustomizeFightFragment
 import com.touchetime.presentation.ui.fragments.home.HomeFragment
-import com.touchetime.presentation.util.buildRoundString
-import com.touchetime.presentation.util.formatLongToTimeString
-import com.touchetime.presentation.util.showMoreScoreDialogFullscreen
-import com.touchetime.presentation.util.showWinnerFullscreenDialog
 
 class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallback {
 
