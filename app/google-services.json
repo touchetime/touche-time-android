@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "137540904324",
+    "project_id": "touche-time-application",
+    "storage_bucket": "touche-time-application.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137540904324:android:275c08974bca24501ee9d1",
+        "android_client_info": {
+          "package_name": "com.touchetime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137540904324-v9aitvk9m6rcummgjs03knv9og81074e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRXTXhPiH2y32IKvC70XF_1hgcj23hoYc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137540904324-v9aitvk9m6rcummgjs03knv9og81074e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
