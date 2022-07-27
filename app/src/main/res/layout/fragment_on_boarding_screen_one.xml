@@ -10,16 +10,14 @@
     <View
         android:id="@+id/background"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/on_boarding_background_size"
         android:layout_marginStart="@dimen/on_boarding_background_icon_margin_start"
-        android:layout_marginTop="@dimen/negative_spacing_xx_large"
-        android:layout_marginBottom="@dimen/negative_spacing_xx_large"
+        android:layout_marginTop="@dimen/on_boarding_background_margin_top"
         android:background="@drawable/background_left_on_boarding_icon"
-        android:translationX="20dp"
-        app:layout_constraintBottom_toBottomOf="@id/icon"
+        android:translationX="@dimen/spacing_large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/icon"
-        app:layout_constraintTop_toTopOf="@id/icon" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
@@ -47,10 +45,10 @@
         android:id="@+id/icon"
         android:layout_width="@dimen/on_boarding_icon_size"
         android:layout_height="@dimen/on_boarding_icon_size"
-        android:layout_marginBottom="@dimen/on_boarding_margin_divider_to_icon"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintBottom_toBottomOf="@id/background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/background"
         app:srcCompat="@drawable/ic_uww" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
