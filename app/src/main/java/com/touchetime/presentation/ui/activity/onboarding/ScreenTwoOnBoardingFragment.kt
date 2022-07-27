@@ -26,8 +26,6 @@ class ScreenTwoOnBoardingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewBinding.text.text = "bbb bbb bbb"
     }
 
     companion object {

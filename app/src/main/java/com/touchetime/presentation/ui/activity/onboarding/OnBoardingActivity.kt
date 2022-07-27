@@ -16,6 +16,7 @@ class OnBoardingActivity : FragmentActivity() {
         setContentView(viewBinding.root)
 
         viewBinding.viewPager.adapter = adapter
+        viewBinding.dotsIndicator.setViewPager2(viewBinding.viewPager)
     }
 
     override fun onBackPressed() {

@@ -40,7 +40,6 @@ class ScreenTreeOnBoardingFragment : Fragment() {
                 startActivity(Intent(requireContext(), MainActivity::class.java))
             }
         }
-        viewBinding.text.text = "ccc ccc ccc"
     }
 
     private fun setupOnBoardingWasVisible() {

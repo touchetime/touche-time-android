@@ -1,12 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Touche Time</string>
     <string name="home_title_1">CREATE FIGHT</string>
-    <string name="home_title_2">Define rules of the fight</string>
+    <string name="home_title_2">Define fighting rules</string>
     <string name="fight_title">Main fight</string>
-    <string name="custom_fight">Personalize fight</string>
+    <string name="custom_fight">Custom fight mode</string>
     <string name="card_custom_view_title_1">Main fight</string>
     <string name="card_custom_view_description_1">Inform athletes names and use the official UWW rules for each category.</string>
-    <string name="card_custom_view_title_2">Personalize fight</string>
+    <string name="card_custom_view_title_2">Custom fight mode</string>
     <string name="card_custom_view_description_2">Define time, technical superiority and quantity of rounds of your struggle.</string>
     <string name="wrestler">WRESTLER</string>
     <string name="blue">Blue</string>
@@ -17,12 +17,12 @@
     <string name="style">Style</string>
     <string name="weight">Weight</string>
     <string name="round">ROUND</string>
-    <string name="interval">INTERVAL</string>
-    <string name="chosen_option_view_title_1">Choose the category</string>
-    <string name="chosen_option_view_description_1">Choose between the category of main fight of UWW</string>
-    <string name="chosen_option_view_title_2">Choose the style</string>
-    <string name="chosen_option_view_description_2">Choose between the Free Style, Greco Roman and Woman Wrestling</string>
-    <string name="chosen_option_view_title_3">Choose the weight</string>
+    <string name="interval">BREAK TIME</string>
+    <string name="chosen_option_view_title_1">Choose category</string>
+    <string name="chosen_option_view_description_1">Choose between category of main fight of UWW</string>
+    <string name="chosen_option_view_title_2">Choose style</string>
+    <string name="chosen_option_view_description_2">Choose between Free Style, Greco Roman and Woman Wrestling</string>
+    <string name="chosen_option_view_title_3">Choose weight</string>
     <string name="customize_fight_description">Choose all standards according to UWW</string>
     <string name="childrens_1">Children I</string>
     <string name="childrens_2">Children II</string>
@@ -44,8 +44,8 @@
     <string name="zero">0</string>
     <string name="superiority_technical">Technical Superiority</string>
     <string name="rounds">Rounds</string>
-    <string name="time_rounds">Time of rounds</string>
-    <string name="time_intervals">Time of intervals</string>
-    <string name="custom_your_fight">Personalize your fight</string>
+    <string name="time_rounds">Duration</string>
+    <string name="time_intervals">Pause time</string>
+    <string name="custom_your_fight">Custom your fight</string>
     <string name="finish">Finish</string>
 </resources>
