@@ -76,6 +76,7 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
         (arguments?.getParcelable<Fight>(ARGS))?.let {
             checkCustomFightVisibility(it)
             viewModel.setupFight(it)
+            viewModel.sendEvent(it)
         }
     }
 

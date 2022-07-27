@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.touchetime.Constants.TIME_ROUND_TREE_MINUTES
+import com.touchetime.analytics.AnalyticsManager
+import com.touchetime.analytics.HomeEvent
 import com.touchetime.presentation.model.Athlete
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.model.Score
@@ -39,6 +41,12 @@ class FightViewModel : ViewModel() {
     val fight: LiveData<Fight> = _fight
     val time: LiveData<Long> = _time
     val round: LiveData<RoundState> = _round
+
+    fun sendEvent(fight: Fight) {
+        AnalyticsManager.sendEvent(
+            HomeEvent.FightEvent(fight)
+        )
+    }
 
     fun resetFight() {
         resetAthleteRed()
