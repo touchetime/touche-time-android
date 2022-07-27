@@ -8,15 +8,13 @@ class OnBoardingActivity : FragmentActivity() {
 
     private lateinit var viewBinding: ActivityOnBoardingBinding
 
-    private val adapter = OnBoardingAdapter(this)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityOnBoardingBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        viewBinding.viewPager.adapter = adapter
-        viewBinding.dotsIndicator.setViewPager2(viewBinding.viewPager)
+        setupAdapter()
+        setupDotsIndicator()
     }
 
     override fun onBackPressed() {
@@ -27,5 +25,13 @@ class OnBoardingActivity : FragmentActivity() {
                 --this.currentItem
             }
         }
+    }
+
+    private fun setupAdapter() {
+        viewBinding.viewPager.adapter = OnBoardingAdapter(this)
+    }
+
+    private fun setupDotsIndicator() {
+        viewBinding.dotsIndicator.setViewPager2(viewBinding.viewPager)
     }
 }

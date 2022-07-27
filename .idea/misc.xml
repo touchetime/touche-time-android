@@ -33,6 +33,7 @@
         <entry key="app/src/main/res/drawable/ic_pause.xml" value="0.2295" />
         <entry key="app/src/main/res/drawable/ic_play_pause.xml" value="0.2295" />
         <entry key="app/src/main/res/drawable/ic_remove.xml" value="0.2685" />
+        <entry key="app/src/main/res/drawable/ic_time.xml" value="0.162" />
         <entry key="app/src/main/res/drawable/ic_users.xml" value="0.143" />
         <entry key="app/src/main/res/drawable/item_chronometer_background.xml" value="0.2295" />
         <entry key="app/src/main/res/drawable/item_chronomether_background.xml" value="0.14" />
@@ -54,7 +55,7 @@
         <entry key="app/src/main/res/layout/fragment_fight.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_on_boarding.xml" value="0.26464300983326206" />
-        <entry key="app/src/main/res/layout/fragment_on_boarding_screen_one.xml" value="0.2578024796921761" />
+        <entry key="app/src/main/res/layout/fragment_on_boarding_screen_one.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_on_boarding_screen_tree.xml" value="0.2569474134245404" />
         <entry key="app/src/main/res/layout/fragment_on_boarding_screen_two.xml" value="0.2569474134245404" />
         <entry key="app/src/main/res/layout/more_score_custom_view.xml" value="0.24283882000855067" />

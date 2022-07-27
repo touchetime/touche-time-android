@@ -13,7 +13,6 @@
     <dimen name="customize_fight_distance">66dp</dimen>
     <dimen name="on_boarding_margin_divider_to_icon">64dp</dimen>
     <dimen name="on_boarding_icon_size">128dp</dimen>
-    <dimen name="on_boarding_background_icon_margin">-32dp</dimen>
     <dimen name="on_boarding_background_icon_margin_start">-52dp</dimen>
     <dimen name="on_boarding_background_margin">80dp</dimen>
 
@@ -34,6 +33,10 @@
     <dimen name="spacing_small">8dp</dimen>
     <dimen name="spacing_tiny">4dp</dimen>
     <dimen name="spacing_tinier">2dp</dimen>
+
+    <dimen name="negative_spacing_normal">-16dp</dimen>
+    <dimen name="negative_spacing_large">-20dp</dimen>
+    <dimen name="negative_spacing_xx_large">-32dp</dimen>
 
     <!-- region FontSize -->
     <dimen name="font_title_big">32sp</dimen>
