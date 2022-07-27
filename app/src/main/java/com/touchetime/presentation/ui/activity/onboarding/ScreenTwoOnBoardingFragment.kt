@@ -6,19 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.touchetime.databinding.FragmentDefaultOnBoardingBinding
+import com.touchetime.databinding.FragmentOnBoardingScreenTwoBinding
 import com.touchetime.presentation.ui.activity.main.MainActivity
 
 class ScreenTwoOnBoardingFragment : Fragment() {
 
-    private lateinit var viewBinding: FragmentDefaultOnBoardingBinding
+    private lateinit var viewBinding: FragmentOnBoardingScreenTwoBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewBinding = FragmentDefaultOnBoardingBinding.inflate(
+        viewBinding = FragmentOnBoardingScreenTwoBinding.inflate(
             inflater,
             container,
             false

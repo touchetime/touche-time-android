@@ -11,6 +11,11 @@
     <dimen name="bottom_sheet_thumb_indicator_height">4dp</dimen>
     <dimen name="bottom_sheet_thumb_indicator_top_offset">14dp</dimen>
     <dimen name="customize_fight_distance">66dp</dimen>
+    <dimen name="on_boarding_margin_divider_to_icon">64dp</dimen>
+    <dimen name="on_boarding_icon_size">128dp</dimen>
+    <dimen name="on_boarding_background_icon_margin">-32dp</dimen>
+    <dimen name="on_boarding_background_icon_margin_start">-52dp</dimen>
+    <dimen name="on_boarding_background_margin">80dp</dimen>
 
     <dimen name="font_chronometer_scoreboard_size">96sp</dimen>
     <dimen name="font_foul_size">40sp</dimen>

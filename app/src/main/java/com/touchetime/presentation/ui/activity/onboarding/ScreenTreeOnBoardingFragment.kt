@@ -5,22 +5,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.touchetime.data.sharedpreferences.OnBoardingSharedPreferences
-import com.touchetime.databinding.FragmentDefaultOnBoardingBinding
+import com.touchetime.databinding.FragmentOnBoardingScreenTreeBinding
 import com.touchetime.presentation.ui.activity.main.MainActivity
 
 class ScreenTreeOnBoardingFragment : Fragment() {
 
-    private lateinit var viewBinding: FragmentDefaultOnBoardingBinding
+    private lateinit var viewBinding: FragmentOnBoardingScreenTreeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewBinding = FragmentDefaultOnBoardingBinding.inflate(
+        viewBinding = FragmentOnBoardingScreenTreeBinding.inflate(
             inflater,
             container,
             false
@@ -31,17 +30,11 @@ class ScreenTreeOnBoardingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupItemsVisibility()
         setupListener()
     }
 
-    private fun setupItemsVisibility() {
-        viewBinding.button.isVisible = true
-        viewBinding.skip.isVisible = false
-    }
-
     private fun setupListener() {
-        viewBinding.button.setOnClickListener {
+        viewBinding.finishOnBoarding.setOnClickListener {
             setupOnBoardingWasVisible()
             startActivity(Intent(requireContext(), MainActivity::class.java))
         }

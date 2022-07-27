@@ -11,7 +11,9 @@
         <entry key="app/src/main/res/drawable/background_card_custom_view.xml" value="0.182" />
         <entry key="app/src/main/res/drawable/background_circle_gray.xml" value="0.2295" />
         <entry key="app/src/main/res/drawable/background_item_selected.xml" value="0.2965" />
+        <entry key="app/src/main/res/drawable/background_left_on_boarding_icon.xml" value="0.316" />
         <entry key="app/src/main/res/drawable/background_point_chronometer.xml" value="0.14" />
+        <entry key="app/src/main/res/drawable/background_right_on_boarding_icon.xml" value="0.316" />
         <entry key="app/src/main/res/drawable/background_score_blue.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/background_score_circle_gray.xml" value="0.3055" />
         <entry key="app/src/main/res/drawable/background_score_red.xml" value="0.1" />
@@ -37,7 +39,7 @@
         <entry key="app/src/main/res/drawable/progress_bar_custom.xml" value="0.161" />
         <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.196" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_on_boarding.xml" value="0.67" />
+        <entry key="app/src/main/res/layout/activity_on_boarding.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.2556648140230868" />
         <entry key="app/src/main/res/layout/bottom_sheet_default.xml" value="0.1" />
         <entry key="app/src/main/res/layout/bottom_sheet_item.xml" value="0.5781466113416321" />
@@ -48,10 +50,13 @@
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.24027362120564344" />
         <entry key="app/src/main/res/layout/fragment_create_fight.xml" value="0.25309961522017954" />
         <entry key="app/src/main/res/layout/fragment_customize_fight.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_default_on_boarding.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_default_on_boarding.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_fight.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_on_boarding.xml" value="0.26464300983326206" />
+        <entry key="app/src/main/res/layout/fragment_on_boarding_screen_one.xml" value="0.2578024796921761" />
+        <entry key="app/src/main/res/layout/fragment_on_boarding_screen_tree.xml" value="0.2569474134245404" />
+        <entry key="app/src/main/res/layout/fragment_on_boarding_screen_two.xml" value="0.2569474134245404" />
         <entry key="app/src/main/res/layout/more_score_custom_view.xml" value="0.24283882000855067" />
         <entry key="app/src/main/res/layout/more_score_dialog_fullscreen.xml" value="0.18691588785046728" />
         <entry key="app/src/main/res/layout/scoreboard_view.xml" value="0.25" />

@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">Touche Time</string>
     <string name="home_title_1">CRIAR LUTA</string>
     <string name="home_title_2">Defina as regras da sua luta</string>
@@ -48,5 +48,11 @@
     <string name="time_intervals">Tempo dos intervalos</string>
     <string name="custom_your_fight">Personalize sua luta</string>
     <string name="finish">Concluir</string>
-    <string name="skip">Pular</string>
+    <string name="skip" translatable="false">Pular</string>
+    <string name="on_boarding_title_1">Crie lutas com regras oficiais</string>
+    <string name="on_boarding_title_2">Personalize sua luta de forma fácil</string>
+    <string name="on_boarding_title_3" translatable="false">Acompanhe o histórico de lutas</string>
+    <string name="on_boarding_description_1">Use todas as regras oficiais da UWW para criar suas lutas com base em categoria, peso e idade.</string>
+    <string name="on_boarding_description_2">Deixe sua luta ou treinamento mais dinâmico, defina tempo, quantidade de rounds e pontuações.</string>
+    <string name="on_boarding_description_3" translatable="false">Aqui será um subtítulo com algumas informações bem importantes.</string>
 </resources>

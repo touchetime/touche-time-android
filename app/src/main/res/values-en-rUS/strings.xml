@@ -48,4 +48,8 @@
     <string name="time_intervals">Pause time</string>
     <string name="custom_your_fight">Custom your fight</string>
     <string name="finish">Finish</string>
+    <string name="on_boarding_title_1">Crie lutas com regras oficiais</string>
+    <string name="on_boarding_title_2">Personalize sua luta de forma fácil</string>
+    <string name="on_boarding_description_1">Use todas as regras oficiais da UWW para criar suas lutas com base em categoria, peso e idade.</string>
+    <string name="on_boarding_description_2">Deixe sua luta ou treinamento mais dinâmico, defina tempo, quantidade de rounds e pontuações.</string>
 </resources>
