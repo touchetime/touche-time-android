@@ -7,6 +7,31 @@
     android:clipToPadding="false"
     android:padding="@dimen/spacing_large">
 
+    <com.touchetime.presentation.common.FightCustomView
+        android:id="@+id/fight_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="58dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.touchetime.presentation.common.FightCustomView
+        android:id="@+id/fight_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_large"
+        app:layout_constraintStart_toEndOf="@id/fight_one"
+        app:layout_constraintTop_toTopOf="@id/fight_one" />
+
+    <com.touchetime.presentation.common.FightCustomView
+        android:id="@+id/fight_tree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:translationX="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fight_two" />
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayoutCompat2"
         android:layout_width="match_parent"

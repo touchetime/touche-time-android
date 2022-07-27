@@ -19,11 +19,11 @@ class FightCustomView @JvmOverloads constructor(
     )
 
     fun setupNameFight(value: String) {
-        viewBinding.title.text = value
+        viewBinding.title.text = value.uppercase()
     }
 
     fun setupScore(red: Int, blue: Int) {
-        viewBinding.scoreBlue.text = red.toString()
+        viewBinding.scoreBlue.text = blue.toString()
         viewBinding.scoreRed.text = red.toString()
     }
 }
