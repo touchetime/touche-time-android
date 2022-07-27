@@ -1,13 +1,12 @@
 package com.touchetime.presentation.ui.activity.onboarding
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.touchetime.databinding.FragmentOnBoardingScreenOneBinding
-import com.touchetime.presentation.ui.activity.main.MainActivity
+import com.touchetime.extensions.finishOnBoarding
 
 class ScreenOneOnBoardingFragment : Fragment() {
 
@@ -34,7 +33,7 @@ class ScreenOneOnBoardingFragment : Fragment() {
 
     private fun setupListener() {
         viewBinding.skip.setOnClickListener {
-            startActivity(Intent(requireContext(), MainActivity::class.java))
+            finishOnBoarding(requireContext())
         }
     }
 

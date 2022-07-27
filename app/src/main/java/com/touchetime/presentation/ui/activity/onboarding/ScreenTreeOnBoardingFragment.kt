@@ -1,14 +1,12 @@
 package com.touchetime.presentation.ui.activity.onboarding
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.touchetime.data.sharedpreferences.OnBoardingSharedPreferences
 import com.touchetime.databinding.FragmentOnBoardingScreenTreeBinding
-import com.touchetime.presentation.ui.activity.main.MainActivity
+import com.touchetime.extensions.finishOnBoarding
 
 class ScreenTreeOnBoardingFragment : Fragment() {
 
@@ -35,13 +33,8 @@ class ScreenTreeOnBoardingFragment : Fragment() {
 
     private fun setupListener() {
         viewBinding.finishOnBoarding.setOnClickListener {
-            setupOnBoardingWasVisible()
-            startActivity(Intent(requireContext(), MainActivity::class.java))
+            finishOnBoarding(requireContext())
         }
-    }
-
-    private fun setupOnBoardingWasVisible() {
-        OnBoardingSharedPreferences(requireContext()).wasVisible = true
     }
 
     companion object {
