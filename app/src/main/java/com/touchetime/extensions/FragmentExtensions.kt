@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import com.touchetime.presentation.common.MoreScoreDialogFullscreen
 import com.touchetime.presentation.common.WinnerDialogFullscreen
 import com.touchetime.presentation.model.Athlete
-import com.touchetime.presentation.state.ScoreTypeState
+import com.touchetime.utils.state.ScoreTypeState
 
 fun Fragment.showWinnerFullscreenDialog(
     athlete: Athlete,

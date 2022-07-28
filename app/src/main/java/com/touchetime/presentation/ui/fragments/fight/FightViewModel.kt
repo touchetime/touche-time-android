@@ -3,16 +3,31 @@ package com.touchetime.presentation.ui.fragments.fight
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.touchetime.analytics.AnalyticsManager
 import com.touchetime.analytics.HomeEvent
+import com.touchetime.data.model.FightResponse
+import com.touchetime.domain.usecase.FightUseCase
+import com.touchetime.presentation.mapper.AthleteToAthleteBlueResponseMapper
+import com.touchetime.presentation.mapper.AthleteToAthleteRedResponseMapper
 import com.touchetime.presentation.model.Athlete
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.model.Score
-import com.touchetime.presentation.state.* // ktlint-disable no-wildcard-imports
+import com.touchetime.presentation.state.AthleteState
 import com.touchetime.utils.Constants.TIME_ROUND_TREE_MINUTES
+import com.touchetime.utils.state.CategoryState
+import com.touchetime.utils.state.ColorState
+import com.touchetime.utils.state.RoundState
+import com.touchetime.utils.state.ScoreState
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.*
 
-class FightViewModel : ViewModel() {
+class FightViewModel(
+    private val fightUseCase: FightUseCase,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+) : ViewModel() {
 
     private val scoreRedHistory = mutableListOf<Score>()
     private val scoreBlueHistory = mutableListOf<Score>()
@@ -56,18 +71,18 @@ class FightViewModel : ViewModel() {
         currentRound = 1
     }
 
-    fun finishFight() {
+    fun checkFinishFight() {
         if (athleteRedUpdated.score != athleteBlueUpdated.score) {
             if (athleteRedUpdated.score > athleteBlueUpdated.score) {
-                _athleteRed.value = AthleteState.AthleteWin(true)
+                setupAthleteRedWinner()
             } else {
-                _athleteBlue.value = AthleteState.AthleteWin(true)
+                setupAthleteBlueWinner()
             }
         } else {
             if (athleteRedUpdated.foul > athleteBlueUpdated.foul) {
-                _athleteRed.value = AthleteState.AthleteWin(true)
+                setupAthleteRedWinner()
             } else if (athleteRedUpdated.foul < athleteBlueUpdated.foul) {
-                _athleteBlue.value = AthleteState.AthleteWin(true)
+                setupAthleteBlueWinner()
             } else {
                 checkWinnerForLastScore()
             }
@@ -141,21 +156,21 @@ class FightViewModel : ViewModel() {
 
     fun setupAddFoulRed() {
         ++athleteRedUpdated.foul
-        setupAddScoreRed(ScoreState.ONE)
+        setupAddScoreBlue(ScoreState.ONE)
 
         _athleteRed.value = AthleteState.AthleteAddFoul(
             athleteRedUpdated.foul
         )
 
         if (athleteRedUpdated.foul == 3) {
-            _athleteRed.value = AthleteState.AthleteWin(true)
+            setupAthleteBlueWinner()
         }
     }
 
     fun setupRemoveFoulRed() {
         if (athleteRedUpdated.foul > 0) {
             --athleteRedUpdated.foul
-            setupRemoveScoreRed(ScoreState.ONE)
+            setupRemoveScoreBlue(ScoreState.ONE)
 
             _athleteRed.value = AthleteState.AthleteRemoveFoul(
                 athleteRedUpdated.foul
@@ -196,21 +211,21 @@ class FightViewModel : ViewModel() {
 
     fun setupAddFoulBlue() {
         ++athleteBlueUpdated.foul
-        setupAddScoreBlue(ScoreState.ONE)
+        setupAddScoreRed(ScoreState.ONE)
 
         _athleteBlue.value = AthleteState.AthleteAddFoul(
             athleteBlueUpdated.foul
         )
 
         if (athleteBlueUpdated.foul == 3) {
-            _athleteBlue.value = AthleteState.AthleteWin(true)
+            setupAthleteRedWinner()
         }
     }
 
     fun setupRemoveFoulBlue() {
         if (athleteBlueUpdated.foul > 0) {
             --athleteBlueUpdated.foul
-            setupRemoveScoreBlue(ScoreState.ONE)
+            setupRemoveScoreRed(ScoreState.ONE)
 
             _athleteBlue.value = AthleteState.AthleteRemoveFoul(
                 athleteBlueUpdated.foul
@@ -234,18 +249,51 @@ class FightViewModel : ViewModel() {
         ++currentRound
     }
 
+    fun addFinishFight(athleteWinner: Athlete) {
+        viewModelScope.launch(dispatcher) {
+            _fight.value?.let {
+                val fightResponse = FightResponse(
+                    name = it.nameFight ?: "",
+                    category = it.category.value,
+                    style = it.style.value,
+                    weight = it.weight ?: "",
+                    rounds = it.numberRounds,
+                    timeRound = it.timeRound,
+                    timeInterval = it.timeInterval,
+                    superiorityTechnical = it.superiorityTechnical,
+                    athleteRed = AthleteToAthleteRedResponseMapper().map(athleteRedUpdated),
+                    athleteBlue = AthleteToAthleteBlueResponseMapper().map(athleteBlueUpdated),
+                    athleteWinner = athleteWinner.color,
+                    isTouche = if (athleteWinner.color == ColorState.RED) {
+                        athleteRedUpdated.touche
+                    } else {
+                        athleteBlueUpdated.touche
+                    }
+                )
+
+                fightUseCase.addFight(fightResponse)
+            }
+        }
+    }
+
     private fun checkIfAthleteWin(athleteWinner: Athlete, athleteLoser: Athlete) {
         if (checkTechnicalSuperiority(athleteWinner, athleteLoser)) {
             if (athleteWinner.color == athleteRedUpdated.color) {
-                _athleteRed.setValue(
-                    AthleteState.AthleteWin(true)
-                )
+                setupAthleteRedWinner()
             } else {
                 _athleteBlue.setValue(
                     AthleteState.AthleteWin(true)
                 )
             }
         }
+    }
+
+    private fun setupAthleteRedWinner() {
+        _athleteRed.value = AthleteState.AthleteWin(true)
+    }
+
+    private fun setupAthleteBlueWinner() {
+        _athleteBlue.value = AthleteState.AthleteWin(true)
     }
 
     private fun resetAthleteBlue() {
@@ -285,9 +333,9 @@ class FightViewModel : ViewModel() {
 
     private fun checkWinnerForLastScore() {
         if (scoreRedHistory.isEmpty() && scoreRedHistory.isNotEmpty()) {
-            _athleteBlue.value = AthleteState.AthleteWin(true)
+            setupAthleteBlueWinner()
         } else if (scoreRedHistory.isNotEmpty() && scoreBlueHistory.isEmpty()) {
-            _athleteRed.value = AthleteState.AthleteWin(true)
+            setupAthleteRedWinner()
         } else {
             val response = scoreRedHistory
                 .takeIf { it.isNotEmpty() }
@@ -297,9 +345,9 @@ class FightViewModel : ViewModel() {
 
             if (response != null) {
                 if (response > 0) {
-                    _athleteRed.value = AthleteState.AthleteWin(true)
+                    setupAthleteRedWinner()
                 } else {
-                    _athleteBlue.value = AthleteState.AthleteWin(true)
+                    setupAthleteBlueWinner()
                 }
             }
         }

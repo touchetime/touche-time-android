@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
-import androidx.fragment.app.viewModels
 import com.touchetime.R
 import com.touchetime.databinding.FragmentFightBinding
 import com.touchetime.extensions.buildRoundString
@@ -20,17 +19,18 @@ import com.touchetime.presentation.common.RegressiveCounter
 import com.touchetime.presentation.model.Athlete
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.state.AthleteState
-import com.touchetime.presentation.state.RoundState
-import com.touchetime.presentation.state.ScoreState
-import com.touchetime.presentation.state.ScoreTypeState
 import com.touchetime.presentation.ui.activity.main.MainActivity
 import com.touchetime.presentation.ui.fragments.customizefight.CustomizeFightFragment
 import com.touchetime.presentation.ui.fragments.home.HomeFragment
+import com.touchetime.utils.state.RoundState
+import com.touchetime.utils.state.ScoreState
+import com.touchetime.utils.state.ScoreTypeState
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallback {
 
     private lateinit var viewBinding: FragmentFightBinding
-    private val viewModel: FightViewModel by viewModels()
+    private val viewModel: FightViewModel by viewModel()
     private val mainActivity: MainActivity?
         get() = activity as? MainActivity
     private lateinit var regressiveCounter: CountDownTimer
@@ -133,17 +133,24 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
                     updateFoulRed(it.foul.toString())
                 }
                 is AthleteState.AthleteAddTouche, is AthleteState.AthleteWin -> {
-                    setupScoreClickable(false)
-                    pauseRegressiveCounter()
-
-                    showWinnerFullscreenDialog(
-                        viewModel.athleteRedUpdated,
-                        ::fightEnded,
-                        ::restartFight
-                    )
+                    setupAthleteRedWin()
                 }
             }
         }
+    }
+
+    private fun setupAthleteRedWin() {
+        setupScoreClickable(false)
+        pauseRegressiveCounter()
+
+        val athleteWinner = viewModel.athleteRedUpdated
+        viewModel.addFinishFight(athleteWinner)
+
+        showWinnerFullscreenDialog(
+            athleteWinner,
+            ::fightEnded,
+            ::restartFight
+        )
     }
 
     private fun setupBlueObserver() {
@@ -166,17 +173,24 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
                     updateFoulBlue(it.foul.toString())
                 }
                 is AthleteState.AthleteAddTouche, is AthleteState.AthleteWin -> {
-                    setupScoreClickable(false)
-                    pauseRegressiveCounter()
-
-                    showWinnerFullscreenDialog(
-                        viewModel.athleteBlueUpdated,
-                        ::fightEnded,
-                        ::restartFight
-                    )
+                    setupAthleteBlueWin()
                 }
             }
         }
+    }
+
+    private fun setupAthleteBlueWin() {
+        setupScoreClickable(false)
+        pauseRegressiveCounter()
+
+        val athleteWinner = viewModel.athleteBlueUpdated
+        viewModel.addFinishFight(athleteWinner)
+
+        showWinnerFullscreenDialog(
+            athleteWinner,
+            ::fightEnded,
+            ::restartFight
+        )
     }
 
     private fun setupFightObserver() {
@@ -433,7 +447,7 @@ class FightFragment : BaseFragment(), RegressiveCounter.RegressiveCounterCallbac
     override fun finish() {
         viewModel.apply {
             if (currentRound == fight.value?.numberRounds) {
-                finishFight()
+                checkFinishFight()
             } else {
                 if (roundIsFinished) {
                     setupChronometerInterval()

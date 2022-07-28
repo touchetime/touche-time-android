@@ -6,9 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.touchetime.presentation.model.Fight
-import com.touchetime.presentation.state.CategoryState
-import com.touchetime.presentation.state.StyleState
 import com.touchetime.utils.Constants
+import com.touchetime.utils.state.CategoryState
+import com.touchetime.utils.state.StyleState
 import kotlinx.coroutines.launch
 
 class CreateFightViewModel : ViewModel() {

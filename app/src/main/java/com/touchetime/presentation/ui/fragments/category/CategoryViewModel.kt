@@ -2,7 +2,7 @@ package com.touchetime.presentation.ui.fragments.category
 
 import androidx.lifecycle.ViewModel
 import com.touchetime.presentation.model.CategorySelected
-import com.touchetime.presentation.state.CategoryState
+import com.touchetime.utils.state.CategoryState
 
 class CategoryViewModel : ViewModel() {
 

@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface FightLocalDataSource {
     fun getListFight(): Flow<List<FightResponse>>
-    suspend fun addFight(fightDTO: FightResponse)
+    fun addFight(fight: FightResponse)
 }

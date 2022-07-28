@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 import com.touchetime.R
 import com.touchetime.databinding.MoreScoreCustomViewBinding
 import com.touchetime.presentation.model.Athlete
-import com.touchetime.presentation.state.ColorState
+import com.touchetime.utils.state.ColorState
 
 class MoreScoreCustomView @JvmOverloads constructor(
     context: Context,

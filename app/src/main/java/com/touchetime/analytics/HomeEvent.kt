@@ -1,7 +1,7 @@
 package com.touchetime.analytics
 
 import com.touchetime.presentation.model.Fight
-import com.touchetime.presentation.state.FightState
+import com.touchetime.utils.state.FightState
 
 sealed class HomeEvent(override val name: String) : BaseEvent(name) {
 

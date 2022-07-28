@@ -12,7 +12,7 @@ import com.touchetime.databinding.FragmentCustomizeFightBinding
 import com.touchetime.extensions.formatLongToTimeString
 import com.touchetime.presentation.common.BottomSheetDialogTransparentBackgroundFragment
 import com.touchetime.presentation.model.Fight
-import com.touchetime.presentation.state.TimeState
+import com.touchetime.utils.state.TimeState
 
 class CustomizeFightFragment : BottomSheetDialogTransparentBackgroundFragment() {
 

@@ -9,7 +9,7 @@ import com.touchetime.R
 import com.touchetime.databinding.BottomSheetItemBinding
 import com.touchetime.extensions.inflate
 import com.touchetime.presentation.model.StyleSelected
-import com.touchetime.presentation.state.StyleState
+import com.touchetime.utils.state.StyleState
 
 class StyleAdapter(
     private val onItemClicked: (enum: StyleState) -> Unit

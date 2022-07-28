@@ -1,4 +1,4 @@
-package com.touchetime.presentation.state
+package com.touchetime.utils.state
 
 enum class ScoreState(val value: Int) {
     ONE(1),

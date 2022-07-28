@@ -1,4 +1,4 @@
-package com.touchetime.presentation.state
+package com.touchetime.utils.state
 
 import com.touchetime.utils.Constants
 

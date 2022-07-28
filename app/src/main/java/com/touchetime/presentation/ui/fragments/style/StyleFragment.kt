@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.touchetime.R
 import com.touchetime.databinding.BottomSheetDefaultBinding
 import com.touchetime.presentation.common.BottomSheetDialogTransparentBackgroundFragment
-import com.touchetime.presentation.state.StyleState
+import com.touchetime.utils.state.StyleState
 
 class StyleFragment : BottomSheetDialogTransparentBackgroundFragment() {
 

@@ -2,8 +2,8 @@ package com.touchetime.presentation.ui.fragments.weight
 
 import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.model.WeightSelect
-import com.touchetime.presentation.state.CategoryState
-import com.touchetime.presentation.state.StyleState
+import com.touchetime.utils.state.CategoryState
+import com.touchetime.utils.state.StyleState
 
 object Weight {
 

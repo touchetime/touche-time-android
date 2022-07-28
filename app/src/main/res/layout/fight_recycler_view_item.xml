@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <com.touchetime.presentation.common.FightCustomView
+        android:id="@+id/fight_custom_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_large" />

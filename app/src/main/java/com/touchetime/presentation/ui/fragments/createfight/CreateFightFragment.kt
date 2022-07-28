@@ -9,13 +9,13 @@ import androidx.fragment.app.viewModels
 import com.touchetime.R
 import com.touchetime.databinding.FragmentCreateFightBinding
 import com.touchetime.presentation.common.BaseFragment
-import com.touchetime.presentation.state.CategoryState
-import com.touchetime.presentation.state.StyleState
 import com.touchetime.presentation.ui.activity.main.MainActivity
 import com.touchetime.presentation.ui.fragments.category.CategoryFragment
 import com.touchetime.presentation.ui.fragments.fight.FightFragment
 import com.touchetime.presentation.ui.fragments.style.StyleFragment
 import com.touchetime.presentation.ui.fragments.weight.WeightFragment
+import com.touchetime.utils.state.CategoryState
+import com.touchetime.utils.state.StyleState
 
 class CreateFightFragment : BaseFragment() {
 

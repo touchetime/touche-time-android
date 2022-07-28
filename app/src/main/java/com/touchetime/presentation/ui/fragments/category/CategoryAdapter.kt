@@ -9,7 +9,7 @@ import com.touchetime.R
 import com.touchetime.databinding.BottomSheetItemBinding
 import com.touchetime.extensions.inflate
 import com.touchetime.presentation.model.CategorySelected
-import com.touchetime.presentation.state.CategoryState
+import com.touchetime.utils.state.CategoryState
 
 class CategoryAdapter(
     private val onItemClicked: (enum: CategoryState) -> Unit

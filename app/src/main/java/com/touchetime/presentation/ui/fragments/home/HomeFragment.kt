@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.touchetime.R
 import com.touchetime.databinding.FragmentHomeBinding
@@ -19,11 +20,12 @@ class HomeFragment : BaseFragment() {
 
     private lateinit var viewBinding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModel()
+    private lateinit var adapter: FightAdapter
     private val mainActivity: MainActivity?
         get() = activity as? MainActivity
     private val backPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-            mainActivity?.finishAffinity()
+            finishActivity()
         }
     }
 
@@ -41,14 +43,21 @@ class HomeFragment : BaseFragment() {
 
         activity?.onBackPressedDispatcher?.addCallback(backPressedCallback)
 
+        setupAdapter()
+        setupGetListFight()
         setupCardView()
         setupMainFightListener()
         setupCustomFightListener()
+        setupObserver()
     }
 
     override fun onDestroyView() {
         backPressedCallback.remove()
         super.onDestroyView()
+    }
+
+    private fun setupGetListFight() {
+        viewModel.getListFight()
     }
 
     private fun setupCardView() {
@@ -85,6 +94,18 @@ class HomeFragment : BaseFragment() {
                 FightFragment.show(fight),
                 FightFragment::class.java.name
             )
+        }
+    }
+
+    private fun setupAdapter() {
+        adapter = FightAdapter()
+        viewBinding.lastFights.adapter = adapter
+    }
+
+    private fun setupObserver() {
+        viewModel.listFight.observe(viewLifecycleOwner) {
+            viewBinding.fightContainer.isVisible = it.isNotEmpty()
+            adapter.submitList(it)
         }
     }
 

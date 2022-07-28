@@ -1,4 +1,4 @@
-package com.touchetime.presentation.state
+package com.touchetime.utils.state
 
 import androidx.annotation.StringRes
 import com.touchetime.R

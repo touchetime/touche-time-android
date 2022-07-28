@@ -1,6 +1,6 @@
 package com.touchetime.presentation.model
 
-import com.touchetime.presentation.state.ColorState
+import com.touchetime.utils.state.ColorState
 
 data class Athlete(
     val color: ColorState = ColorState.DEFAULT,

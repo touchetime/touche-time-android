@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import com.touchetime.databinding.MoreScoreDialogFullscreenBinding
 import com.touchetime.presentation.model.Athlete
-import com.touchetime.presentation.state.ColorState
-import com.touchetime.presentation.state.ScoreTypeState
+import com.touchetime.utils.state.ColorState
+import com.touchetime.utils.state.ScoreTypeState
 
 class MoreScoreDialogFullscreen(
     private val athlete: Athlete,

@@ -3,6 +3,7 @@ package com.touchetime.presentation.ui.activity.onboarding
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import com.touchetime.databinding.ActivityOnBoardingBinding
+import com.touchetime.extensions.removeOverScroll
 
 class OnBoardingActivity : FragmentActivity() {
 
@@ -29,6 +30,7 @@ class OnBoardingActivity : FragmentActivity() {
 
     private fun setupAdapter() {
         viewBinding.viewPager.adapter = OnBoardingAdapter(this)
+        viewBinding.viewPager.removeOverScroll()
     }
 
     private fun setupDotsIndicator() {

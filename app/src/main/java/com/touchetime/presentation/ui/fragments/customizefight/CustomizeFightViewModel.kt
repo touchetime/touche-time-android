@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.touchetime.presentation.model.Fight
-import com.touchetime.presentation.state.TimeState
 import com.touchetime.utils.Constants
+import com.touchetime.utils.state.TimeState
 
 class CustomizeFightViewModel : ViewModel() {
 

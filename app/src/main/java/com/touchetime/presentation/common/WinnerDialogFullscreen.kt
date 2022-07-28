@@ -8,7 +8,7 @@ import androidx.core.view.isVisible
 import com.touchetime.R
 import com.touchetime.databinding.WinnerDialogFullscreenBinding
 import com.touchetime.presentation.model.Athlete
-import com.touchetime.presentation.state.ColorState
+import com.touchetime.utils.state.ColorState
 
 class WinnerDialogFullscreen(
     private val athlete: Athlete,

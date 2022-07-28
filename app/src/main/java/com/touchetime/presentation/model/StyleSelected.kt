@@ -1,7 +1,7 @@
 package com.touchetime.presentation.model
 
 import android.os.Parcelable
-import com.touchetime.presentation.state.StyleState
+import com.touchetime.utils.state.StyleState
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

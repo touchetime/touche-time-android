@@ -32,6 +32,6 @@ open class BaseFragment : Fragment() {
     }
 
     open fun finishActivity() {
-        activity?.finish()
+        activity?.finishAffinity()
     }
 }

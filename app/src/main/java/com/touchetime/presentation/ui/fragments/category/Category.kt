@@ -1,7 +1,7 @@
 package com.touchetime.presentation.ui.fragments.category
 
 import com.touchetime.presentation.model.CategorySelected
-import com.touchetime.presentation.state.CategoryState
+import com.touchetime.utils.state.CategoryState
 
 object Category {
 
@@ -13,7 +13,7 @@ object Category {
         CategorySelected(CategoryState.valueOf("U17")),
         CategorySelected(CategoryState.valueOf("U20")),
         CategorySelected(CategoryState.valueOf("SENIOR")),
-        CategorySelected(CategoryState.valueOf("MASTER")),
+        CategorySelected(CategoryState.valueOf("MASTER"))
     )
 
     fun getListCategory(): List<CategorySelected> = listCategory

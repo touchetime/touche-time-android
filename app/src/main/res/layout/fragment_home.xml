@@ -18,20 +18,22 @@
         app:srcCompat="@drawable/ic_touchetime" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/fight_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="@dimen/spacing_x_large"
         android:orientation="vertical"
-        android:paddingHorizontal="@dimen/spacing_large"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logo">
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        tools:visibility="visible">
 
         <androidx.appcompat.widget.AppCompatTextView
             style="@style/DmSansRegularTinyWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_large"
             android:layout_marginBottom="@dimen/spacing_tiny"
             android:text="@string/last_fight" />
 
@@ -39,18 +41,31 @@
             style="@style/DmSansBoldLargeWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_large"
             android:layout_marginBottom="@dimen/spacing_x_large"
             android:text="@string/fight_history" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/last_fights"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_normal"
             android:orientation="horizontal"
+            android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="10"
             tools:listitem="@layout/fight_recycler_view_item" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/spacing_large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fight_container">
 
         <androidx.appcompat.widget.AppCompatTextView
             style="@style/DmSansRegularTinyWhite"

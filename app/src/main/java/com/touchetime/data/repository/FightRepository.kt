@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface FightRepository {
     fun getListFight(): Flow<List<FightResponse>>
-    suspend fun addFight(fightResponse: FightResponse)
+    fun addFight(fightResponse: FightResponse)
 }
