@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.touchetime.analytics.AnalyticsManager
-import com.touchetime.analytics.HomeEvent
+import com.touchetime.analytics.FightEvent
 import com.touchetime.data.model.FightResponse
 import com.touchetime.domain.usecase.FightUseCase
 import com.touchetime.presentation.mapper.AthleteToAthleteBlueResponseMapper
@@ -59,7 +59,7 @@ class FightViewModel(
 
     fun sendEvent(fight: Fight) {
         AnalyticsManager.sendEvent(
-            HomeEvent.FightEvent(fight)
+            FightEvent.FightOpened(fight)
         )
     }
 

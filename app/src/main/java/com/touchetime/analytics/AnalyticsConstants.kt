@@ -3,7 +3,10 @@ package com.touchetime.analytics
 object AnalyticsConstants {
 
     object Events {
-        const val FIGHT_OPENED = "fight_opened"
+        object Fight {
+            const val FIGHT_SCREEN_OPENED = "fight_screen_opened"
+            const val FIGHT_FINISHED = "fight_finished"
+        }
     }
 
     object Keys {
@@ -15,6 +18,8 @@ object AnalyticsConstants {
         const val CATEGORY = "category"
         const val STYLE = "style"
         const val WEIGHT = "weight"
+        const val NAME = "name"
+        const val ID = "id"
     }
 
     object UserTraits {
