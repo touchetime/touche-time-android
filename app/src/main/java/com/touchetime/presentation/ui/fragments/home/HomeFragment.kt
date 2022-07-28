@@ -13,10 +13,12 @@ import com.touchetime.presentation.model.Fight
 import com.touchetime.presentation.ui.activity.main.MainActivity
 import com.touchetime.presentation.ui.fragments.createfight.CreateFightFragment
 import com.touchetime.presentation.ui.fragments.fight.FightFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment() {
 
     private lateinit var viewBinding: FragmentHomeBinding
+    private val viewModel: HomeViewModel by viewModel()
     private val mainActivity: MainActivity?
         get() = activity as? MainActivity
     private val backPressedCallback = object : OnBackPressedCallback(true) {

@@ -49,6 +49,7 @@
         <entry key="app/src/main/res/layout/chronometer_view.xml" value="0.33" />
         <entry key="app/src/main/res/layout/customize_object_view.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fight_custom_view.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fight_recycler_view_item.xml" value="0.2569474134245404" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.24027362120564344" />
         <entry key="app/src/main/res/layout/fragment_create_fight.xml" value="0.25309961522017954" />
         <entry key="app/src/main/res/layout/fragment_customize_fight.xml" value="0.22" />

@@ -57,4 +57,6 @@
     <string name="on_boarding_description_3" translatable="false">Aqui será um subtítulo com algumas informações bem importantes.</string>
     <string name="fight_name_default_1" translatable="false">U-20  |  ESTILO FEMININO -65kg</string>
     <string name="fight_name_default_2" translatable="false">SÊNIOR  |  GRECO ROMANO -79kg</string>
+    <string name="last_fight" translatable="false">Ultimas lutas</string>
+    <string name="fight_history" translatable="false">Histórico de lutas</string>
 </resources>
