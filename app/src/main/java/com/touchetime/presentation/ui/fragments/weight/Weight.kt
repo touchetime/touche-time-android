@@ -111,8 +111,8 @@ object Weight {
         WeightSelect("-70Kg", false),
         WeightSelect("-74Kg", false),
         WeightSelect("-79Kg", false),
-        WeightSelect("-86Kg", false),
         WeightSelect("-82Kg", false),
+        WeightSelect("-86Kg", false),
         WeightSelect("-97Kg", false),
         WeightSelect("-125Kg", false)
     )

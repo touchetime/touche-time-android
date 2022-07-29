@@ -48,8 +48,15 @@
     <string name="time_intervals">Pause time</string>
     <string name="custom_your_fight">Custom your fight</string>
     <string name="finish">Finish</string>
-    <string name="on_boarding_title_1">Crie lutas com regras oficiais</string>
-    <string name="on_boarding_title_2">Personalize sua luta de forma fácil</string>
-    <string name="on_boarding_description_1">Use todas as regras oficiais da UWW para criar suas lutas com base em categoria, peso e idade.</string>
-    <string name="on_boarding_description_2">Deixe sua luta ou treinamento mais dinâmico, defina tempo, quantidade de rounds e pontuações.</string>
+    <string name="skip">Skip</string>
+    <string name="on_boarding_title_1">Create fights with official rules</string>
+    <string name="on_boarding_title_2">Customize your fight the easy way</string>
+    <string name="on_boarding_title_3">Keep track of fight history</string>
+    <string name="on_boarding_description_1">Use all official UWW rules to create your fights based on category, weight and age.</string>
+    <string name="on_boarding_description_2">Make your fight or training more dynamic, set time, number of rounds and scores.</string>
+    <string name="on_boarding_description_3">Quickly and easily view all your latest fights and check your score history.</string>
+    <string name="fight_name_default_1">U-20  |  WOMAN WRESTLING -65kg</string>
+    <string name="fight_name_default_2">SÊNIOR  |  GRECO ROMAN -79kg</string>
+    <string name="last_fight">LAST FIGHTS</string>
+    <string name="fight_history">History of fights</string>
 </resources>
